@@ -1,0 +1,185 @@
+*****************************************************************************************
+*  2003-5-10                                                       Katsumi Degawa
+*                   ALTERA(CYCLONE)-FPGA-PACMAN へようこそ
+*        
+*****************************************************************************************
+【　はじめに　】
+　このALTERA版FPGA-PACMANは、さとう氏(URL:http://members.tripod.co.jp/x1resource/xilinx/)
+が製作されたXilinx-FPGA(SpartanⅡ)-PACMAN(BATA2)を改造したものです.
+　FPGA-PACMANの詳細については、本家URLを参照してください。ここでは、ALTERA版の構築に必要
+な事項について記載します.
+
+【　開発環境　】
+１．ALTERA　CPLD.FPGA開発Tool　｢　Quartus II 2.2 SP1 Web Edition　｣ 
+２．上記Toolが動作するPC
+３．ALTERA FPGA DEVICE (CYCLONE-EP1C6TC144-8)他　回路図(ALTERA-FPGA-PACMAN.pdf)参照
+４．PACMAN　ROMイメージ(下記　9file)
+    pacman  .6e  :pacman  .6f  :pacman  .6h  :pacman  .6j  :pacman  .5e  :pacman  .5f 
+    82s126  .4a  :82s123  .7f  :82s126  .1m 
+
+【　ROMの構築　】
+１．PACMAN　ROMイメージFileをmakerom_alteraフォルダにコピーします。
+    make_rom .bat: batch file
+    bhc      .exe: Binary to Intel HEX converter
+　　7F       .dmy: Dummy Data
+    4A       .dmy: Dummy Data
+    pacman   .dmy: Dummy Data
+    -- to pac.bin --
+    pacman  .6e  : Z80 code 0000-0fff   (size=0x1000)
+    pacman  .6f  : Z80 code 1000-1fff   (size=0x1000)
+    pacman  .6h  : Z80 code 2000-2fff   (size=0x1000)
+    pacman  .6j  : Z80 code 3000-3fff   (size=0x1000)
+    pacman  .5e  : TILE PATTERN DATA    (size=0x1000)
+    pacman  .5f  : OBJECT PATTERN DATA  (size=0x1000)
+    -- to xxx.hex --
+    82s126  .4a  : ColorLookupTable ROM (size=0x80)
+    82s123  .7f  : Video Palette ROM    (size=0x10)
+    82s126  .1m  : SOUND WAVE ROM       (size=0x100)
+
+２．make_rom.batを実行します。以下Fileが作成されます.
+　　PAC_clut_ROM.hex：FPGA-BLOCK-RAM　ini-File
+　　PAC_WAV_ROM .hex：FPGA-BLOCK-RAM　ini-File
+　  PACROM      .bin：FPGA-PACMAN EEPROM binary data
+
+３．PACROM.bin　をROMライタ-からEEPROMにダウンロ-ドします。
+４．PAC_clut_ROM.hex　& PAC_WAV_ROM .hex FileをSourceフォルダにコピーします。
+
+【　ALTERA-FPGA-DATA(top.pof)の作成＆ダウンロード　】
+１．Sourceフォルダの”top.quartus”をダブルクリックしてQuartusⅡを起動してください。
+　　FPGA-PACMANに必要なFileを下記に記載します。Z80IPは、FreeのT80をしています。
+
+	VHDL_FILE = T80_Pack.vhd;
+	VHDL_FILE = T80_Reg.vhd;
+	VHDL_FILE = T80_ALU.vhd;
+	VHDL_FILE = T80_MCode.vhd;
+	VHDL_FILE = T80.vhd;
+	VHDL_FILE = T80as.vhd;
+	VERILOG_FILE = z80ip_t.v;
+	VERILOG_FILE = ARAMB4_S8_S8.v;
+	VERILOG_FILE = PAC_WAV_ROM.v;
+	VERILOG_FILE = ARAMB4_S4_S8.v;
+	VERILOG_FILE = PAC_clut_ROM.v;
+	VERILOG_FILE = ARAMB4_S4.v;
+	VERILOG_FILE = venc_vga8.v;
+	VERILOG_FILE = sound.v;
+	VERILOG_FILE = amemory.v;
+	VERILOG_FILE = clock.v;
+	VERILOG_FILE = dac.v;
+	VERILOG_FILE = inport.v;
+	VERILOG_FILE = irq.v;
+	VERILOG_FILE = adec.v;
+	VERILOG_FILE = video.v;
+	VERILOG_FILE = top.v;
+	VERILOG_FILE = x2alt.v;
+	CDF_FILE = top.cdf;
+
+　　*　FPGAインフォメーション　小山氏のZ80IPでも動作確認しています。T80からZ80IPに
+　　　変更する場合は、下記ファイルを削除して
+	VHDL_FILE = T80_Pack.vhd;
+	VHDL_FILE = T80_Reg.vhd;
+	VHDL_FILE = T80_ALU.vhd;
+	VHDL_FILE = T80_MCode.vhd;
+	VHDL_FILE = T80.vhd;
+	VHDL_FILE = T80as.vhd;
+	VERILOG_FILE = z80ip_t.v;
+　　　
+　　　下記ファイルを追加してください。
+	VHDL_FILE = alu.vhd;
+	VHDL_FILE = cpu_if2.vhd;
+	VHDL_FILE = deccpu.vhd;
+	VHDL_FILE = decreg.vhd;
+	VHDL_FILE = int.vhd;
+	VHDL_FILE = regr.vhd;
+	VHDL_FILE = romdec.vhd;
+	VHDL_FILE = z80top.vhd;
+　　　　VERILOG_FILE = z80ip_b.v;
+
+２．PIN assign　を変更する場合は、”top.csf”内のChip{}を編集してください.
+　　　　　　　　　　　　　　　CHIP(top)
+　　　　　　　　　　　　　　　{
+　　　　　　　　　　　　　　　DEVICE = EP1C6T144C8;
+	　　　　　　　　　　　DEVICE_FILTER_PACKAGE = TQFP;
+　　　　　　　　　　　　　　　DEVICE_FILTER_PIN_COUNT = 144;
+	　　　　　　　　　　　DEVICE_FILTER_SPEED_GRADE = 8;
+
+　　　　　　　　　　　　　　　CLK18M432 : LOCATION = Pin_16;　⇔　Pin_xxx　を編集
+　　　　　　　　　　　　　　　}
+
+３．QuartusⅡ⇒Processing⇒Start Compilation をクリックしてコンパイルを実行
+　　　　　　　***　PentiumⅢ＠850MのPCで約10分かかります。　***
+　　Fittingが成功すると下記メッセージが表示されます。
++-------------------------------------+-----------------------------------------------+
+| Processing status                   | Fitting Successful - Thu May 10 16:08:02 2003 |
+| Timing requirements/analysis status | Circuit will not operate                      |
+| Chip name                           | top                                           |
+| Device for compilation              | EP1C6T144C8                                   |
+| Total logic elements                | 3,054 / 5,980 ( 51 % )                        |
+| Total pins                          | 55 / 98 ( 56 % )                              |
+| Total memory bits                   | 40,960 / 92,160 ( 44 % )                      |
+| Total PLLs                          | 0 / 2 ( 0 % )                                 |
+| Device for timing analysis          | EP1C6T144C8                                   |
++-------------------------------------+-----------------------------------------------+
+
+４．QuartusⅡによって生成された”top.pof”をダウンロードして完了です。
+
+【　FPGA-PACMANコントロール　】
+　LEFT  1P/2P : LEFT
+　RIGHT 1P/2P : RIGHT
+　UP    1P/2P : UP
+　DOWN  1P/2P : DOWN
+　START 1P    : LEFT (and RIGHT off)
+　START 2P    : RIGHT (and LEFT off)
+　COIN1       : LEFT + RIGHT + UP (and DOWN off)
+　COIN2       : LEFT + RIGHT + DOWN (and UP off)
+
+　CPU-RESET   : LEFT + RIGHT + UP + DOWN
+
+  Enjoy!
+　
+【　改修内容(FPGA-PACMAN(BATA2)⇒ALTERA-FPGA-PACMAN)　】
+　　各ソースの変更.追加は、以下のとうりです.
+【変更】
+　　top.v
+　　351行目　xmemory　⇒　Amemory　：Module名称変更
+
+　　vedio.v　
+　　482.483行目の下記記述があると　エラーになるのでコメントアウトした。
+　　wire [7:0] pal_do;   // data output from PaletteRAM
+　　assign { b,g,r } = pal_do; // RGB output
+
+　　venc_vga8.v
+　　87行目　内臓Block RAM をALTERAに変更。
+
+　　Amemory.v
+　　内臓Block RAM をALTERAに変更。
+　　DB_Oの出し方を若干変更。(96～100行目)
+
+【追加】
+　　ALTERA用に追加したソース
+　　x2alt.v　　　  ：xilinxプリミティブをALTERA用に変換
+　　ARAMB4_S4.ｖ　 : ALTARA BLOCK RAM  (XILINX:RAMB4_S4.ｖ   )
+　　ARAMB4_S4_S8.ｖ: ALTARA BLOCK RAM  (XILINX:RAMB4_S4_S8.ｖ)
+　　ARAMB4_S8_S8.ｖ: ALTARA BLOCK RAM  (XILINX:RAMB4_S8_S8.ｖ) 
+　　PAC_clut_ROM.v : clut ROM  (ini File = PAC_clut_ROM.hex)
+　　PAC_WAV_ROM.v  : WAV  ROM  (ini File = PAC_WAV_ROM.hex )
+  　　* ALTARA BLOCK RAM の初期化は、いくつか方法がありますが　今回は.
+　　　　インテルHEXフォーマットFileで実施しています。
+
+【　著作権＆免責　】
+　FPGA-Pacman(BATA2)の著作権は、さとう氏(URL:http://members.tripod.co.jp/x1resource/xilinx/)
+　に属します.
+　T80xxx.vhd　Z80IPの著作権は、Daniel Wallner氏 (jesus@opencores.org)に属します.
+　hbc.exeの著作権は、Kazuhiko Mori(COW)氏(cow@he.mirai.ne.jp)に属します.
+
+　本ソースファイルを使用したことにより生じたいかなる障害、損害において作者は一切責任を負わ
+  ないものとします。
+　各自の責任において使用してください。
+
+【　連絡先　】
+　ご意見、ご要望等ありまりたら是非以下のＩＤまでご連絡をお願いします。
+　ただしROMイメージ等のご質問は、お答えできません。
+
+                                             E-mail    : degawa@mx5.ttcn.ne.jp 
+
+
+  

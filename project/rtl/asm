@@ -1,0 +1,44 @@
+#! /usr/bin/perl
+
+system "z80asm -fh -ltestrom testrom.s";
+
+open(DST, "> testrom.v") || die;
+select DST;
+print <<EOF;
+module testrom(clk, adr, data);
+\tinput clk;
+\tinput [10:0] adr;
+\toutput [7:0] data;
+\treg [7:0] data; 
+\talways @(posedge clk) begin
+\t\tcase (adr)
+EOF
+
+$pc = 0x6000; # start address
+#$pc = 0x6800; # start address
+
+open(SRC, "testrom.bin") || die;
+while (<SRC>) {
+	split("");
+	shift(@_);
+	$n = &gethex;
+	$pc1 = &gethex << 8;
+	$pc1 |= &gethex;
+	&putline(0) while $pc < $pc1;
+	&gethex;
+	&putline(&gethex) while $n--;
+}
+close SRC;
+print "\t\t\tdefault: data = 8'hXX;\n\t\tendcase\n\tend\nendmodule\n";
+close DST;
+exit 0;
+
+sub gethex {
+	my $u = shift(@_);
+	my $l = shift(@_);
+	hex($u) << 4 | hex($l);
+}
+
+sub putline {
+	printf "\t\t\t11'h%03x: data = 8'h%02x;\n", $pc++ & 0x7ff, shift(@_);
+}

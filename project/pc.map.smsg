@@ -1,0 +1,12 @@
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_if2" differs only in case from object "S_IF2" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_imm1" differs only in case from object "S_IMM1" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_imm2" differs only in case from object "S_IMM2" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_mr1" differs only in case from object "S_MR1" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_mr2" differs only in case from object "S_MR2" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_disp" differs only in case from object "S_DISP" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_in" differs only in case from object "S_IN" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_iack" differs only in case from object "S_IACK" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_mw1" differs only in case from object "S_MW1" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_mw2" differs only in case from object "S_MW2" in the same scope
+Info (10281): Verilog HDL Declaration information at fz80.v(883): object "s_out" differs only in case from object "S_OUT" in the same scope
+Info (10281): Verilog HDL Declaration information at boot.v(20): object "ata_data" differs only in case from object "ATA_DATA" in the same scope

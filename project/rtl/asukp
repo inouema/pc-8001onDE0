@@ -1,0 +1,83 @@
+#! /usr/bin/perl
+# UKP assembler
+
+%inst = ("nop", 0, "ldi", 1, "start", 2, 
+		"out0", 4, "out1", 5, "out2", 6, "hiz", 7, 
+		"bz", 8, "bc", 9, "bnak", 10, "djnz", 11,
+		"toggle", 12, "in", 13, "wait", 14);
+
+open(SRC, "ukp.s") || die;
+while (&getline) {
+	if (/^(\w+):/) {
+		if (defined($label{$1})) {
+			printf STDERR "$_ already defined\n";
+			exit 1;
+		}
+		$pc = $pc + 3 & ~3;
+		$label{$1} = $pc;
+		printf "pc=%03x\t%s\n", $pc, $1;
+	}
+	else {
+		split;
+		unless (defined($inst{$_[0]})) {
+			printf STDERR "syntax error: $_\n";
+			exit 1;
+		}
+		$code = $inst{$_[0]};
+		$pc += $code == 1 || $code >= 8 && $code < 12 ? 3 : 1;
+	}
+}
+seek(SRC, 0, SEEK_END);
+$pc = 0;
+open(DST, "> ukprom.v") || die;
+select DST;
+print <<EOF;
+module ukprom(clk, adr, data);
+\tinput clk;
+\tinput [9:0] adr;
+\toutput [3:0] data;
+\treg [3:0] data; 
+\talways @(posedge clk) begin
+\t\tcase (adr)
+EOF
+
+while (&getline) {
+	if (/^(\w+):/) {
+		putline(0) while $pc & 3;
+	}
+	else {
+		split;
+		$code = $inst{$_[0]};
+		putline($code);
+		if ($code == 1) {
+			putline($_[1] & 15);
+			putline($_[1] >> 4);
+		}
+		elsif ($code >= 8 && $code < 12) {
+			unless (defined($label{$_[1]})) {
+				printf STDERR "$_[1] not defined\n";
+				exit 1;
+			}
+			$adr = $label{$_[1]} >> 2;
+			putline($adr & 15);
+			putline($adr >> 4);
+		}
+	}
+}
+close SRC;
+print "\t\t\tdefault: data = 4'hX;\n\t\tendcase\n\tend\nendmodule\n";
+close DST;
+exit 0;
+
+sub getline {
+	do {
+		return 0 unless $_ = <SRC>;
+		chomp;
+		s/\s*;.*$//;
+	} while (/^\s*$/);
+	1;
+}
+
+sub putline {
+	printf "\t\t\t10'h%03x: data = 4'h%x;\n", $pc++, shift(@_);
+}
