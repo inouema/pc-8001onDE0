@@ -41,8 +41,8 @@ module HVGEN (
    // “¯ŠúM†
    //parameter HS_START = 663;
    //parameter HS_END   = 759;
-   parameter HS_START = 671; // “ª‚Ì•¶š‚ª2•¶š‚Å‚é‚Ì‚Å’²®
-   parameter HS_END   = 767; // “ª‚Ì•¶š‚ª2•¶š‚Å‚é‚Ì‚Å’²®
+   parameter HS_START = 656;
+   parameter HS_END   = 752;
    parameter VS_START = 449;
    parameter VS_END   = 451;
 

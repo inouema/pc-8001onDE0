@@ -197,8 +197,9 @@ module pc8001(
 	              );
 
    assign      clk = w_clk_25m;
-   //assign waitreq = start | waitcount < 1;
-   assign waitreq = start | waitcount < 21;
+   
+   assign waitreq = start | waitcount < 16;
+// assign waitreq = start | waitcount < 21;
 
 	always @(posedge clk) begin
 		if (start) waitcount <= 0;
@@ -511,19 +512,17 @@ tv80c Z80(
 /////////////////////////////////////////////////////////////////////////////
 // VGA
 /////////////////////////////////////////////////////////////////////////////
-
-
    VGA VGA(
             .CLK(clk),
             .RST(reset),
-            .port30h_we (iorq & wr & start & cpu_adr[7:4] == 4'h3),
-            .crtc_we    (iorq & wr & start & cpu_adr[7:4] == 4'h5),
-            .adr(cpu_adr[0]),
-            .data(cpu_data_out),
-            .ram_data(w_ram_data),
-            .ram_adr(dma_adr),
-            .busreq(busreq),
-            .busack(busack),
+            .PORT30_WE  (iorq & wr & start & cpu_adr[7:4] == 4'h3),
+            .CRTC_WE    (iorq & wr & start & cpu_adr[7:4] == 4'h5),
+            .ADR(cpu_adr[0]),
+            .DATA(cpu_data_out),
+            .RAM_DATA(w_ram_data),
+            .RAM_ADR(dma_adr),
+            .BUSREQ(busreq),
+            .BUSACK(busack),
             .VGA_R(O_VGA_R),
             .VGA_G(O_VGA_G),
             .VGA_B(O_VGA_B),
