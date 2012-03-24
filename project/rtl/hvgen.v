@@ -1,39 +1,61 @@
-
-
+//***************************************************************************************
+// PC-8001 on the DE0 Altera CycloneIII version.
+// VGA controller
+// Copyright (c) 2012 Masato INOUE
+//***************************************************************************************
+//
+// Permission is hereby granted, free of charge, to any person obtaining a 
+// copy of this software and associated documentation files (the "Software"), 
+// to deal in the Software without restriction, including without limitation 
+// the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+// and/or sell copies of the Software, and to permit persons to whom the 
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included 
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//***************************************************************************************
 
 module HVGEN (
-              input  CLK, // 25MHz
-              input  RST, // High Active
-              output reg HS,
-              output reg VS,
-              output reg [ 9:0] H_CNT,
-              output reg [ 9:0] V_CNT
+              input             I_CLK, // 25MHz
+              input             I_RST, // High Active
+              output reg        O_HS,
+              output reg        O_VS,
+              output reg [ 9:0] O_H_CNT,
+              output reg [ 9:0] O_V_CNT
               );
 
    // 水平カウンタ
    parameter         HMAX = 800;
-   wire              hcntend = (H_CNT == HMAX-10'h001);
+   wire              hcntend = (O_H_CNT == HMAX-10'h001);
 
-   always @ (posedge CLK, posedge RST) begin
-      if ( RST )
-        H_CNT <= 10'h000;
+   always @ (posedge I_CLK, posedge I_RST) begin
+      if ( I_RST )
+        O_H_CNT <= 10'h000;
       else if(hcntend)
-        H_CNT <= 10'h000;
+        O_H_CNT <= 10'h000;
       else
-        H_CNT <= H_CNT + 10'h001;
+        O_H_CNT <= O_H_CNT + 10'h001;
    end
 
    // 垂直カウンタ
    parameter VMAX = 525;
 
-   always @(posedge CLK, posedge RST) begin
-      if ( RST )
-        V_CNT <= 10'h000;
+   always @(posedge I_CLK, posedge I_RST) begin
+      if ( I_RST )
+        O_V_CNT <= 10'h000;
       else if( hcntend ) begin
-         if (V_CNT == VMAX - 10'h001)
-           V_CNT <= 10'h000;
+         if (O_V_CNT == VMAX - 10'h001)
+           O_V_CNT <= 10'h000;
          else
-           V_CNT <= V_CNT + 10'h001;
+           O_V_CNT <= O_V_CNT + 10'h001;
       end
    end
 
@@ -46,23 +68,23 @@ module HVGEN (
    parameter VS_START = 449;
    parameter VS_END   = 451;
 
-   always @( posedge CLK or posedge RST) begin
-      if ( RST )
-        HS <= 1'b1;
-      else if( H_CNT == HS_START )
-        HS <= 1'b0;
-      else if( H_CNT == HS_END )
-        HS <= 1'b1;
+   always @( posedge I_CLK or posedge I_RST) begin
+      if ( I_RST )
+        O_HS <= 1'b1;
+      else if( O_H_CNT == HS_START )
+        O_HS <= 1'b0;
+      else if( O_H_CNT == HS_END )
+        O_HS <= 1'b1;
    end
 
-   always @( posedge CLK or posedge RST) begin
-      if ( RST )
-        VS <= 1'b1;
-      else if(H_CNT == HS_START) begin
-         if( V_CNT == VS_START )
-           VS <= 1'b0;
-         else if ( V_CNT == VS_END)
-           VS <= 1'b1;
+   always @( posedge I_CLK or posedge I_RST) begin
+      if ( I_RST )
+        O_VS <= 1'b1;
+      else if(O_H_CNT == HS_START) begin
+         if( O_V_CNT == VS_START )
+           O_VS <= 1'b0;
+         else if ( O_V_CNT == VS_END)
+           O_VS <= 1'b1;
       end
    end
 

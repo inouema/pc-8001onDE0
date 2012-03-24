@@ -125,7 +125,8 @@ module pc8001(
 // wire & register decralation
 /////////////////////////////////////////////////////////////////////////////
    wire [15:0]   cpu_adr;
-   wire [16:0]   dma_adr;
+//   wire [16:0]   dma_adr;
+   wire [14:0]   dma_adr;
    wire [ 7:0]   cpu_data_in;
    wire [ 7:0]   cpu_data_out;
    wire [ 7:0]   kbd_data;
@@ -513,21 +514,21 @@ tv80c Z80(
 // VGA
 /////////////////////////////////////////////////////////////////////////////
    VGA VGA(
-            .CLK(clk),
-            .RST(reset),
-            .PORT30_WE  (iorq & wr & start & cpu_adr[7:4] == 4'h3),
-            .CRTC_WE    (iorq & wr & start & cpu_adr[7:4] == 4'h5),
-            .ADR(cpu_adr[0]),
-            .DATA(cpu_data_out),
-            .RAM_DATA(w_ram_data),
-            .RAM_ADR(dma_adr),
-            .BUSREQ(busreq),
-            .BUSACK(busack),
-            .VGA_R(O_VGA_R),
-            .VGA_G(O_VGA_G),
-            .VGA_B(O_VGA_B),
-            .VGA_HS(O_VGA_HS),
-            .VGA_VS(O_VGA_VS)
+            .I_CLK(clk),
+            .I_RST(reset),
+            .I_PORT30_WE  (iorq & wr & start & cpu_adr[7:4] == 4'h3),
+            .I_CRTC_WE    (iorq & wr & start & cpu_adr[7:4] == 4'h5),
+            .I_ADR(cpu_adr[0]),
+            .I_DATA(cpu_data_out),
+            .I_RAM_DATA(w_ram_data),
+            .O_RAM_ADR(dma_adr),
+            .O_BUSREQ(busreq),
+            .I_BUSACK(busack),
+            .O_VGA_R(O_VGA_R),
+            .O_VGA_G(O_VGA_G),
+            .O_VGA_B(O_VGA_B),
+            .O_VGA_HS(O_VGA_HS),
+            .O_VGA_VS(O_VGA_VS)
             );
 
 endmodule // module pc
