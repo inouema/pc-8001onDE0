@@ -1,5 +1,5 @@
 EDA Netlist Writer report for pc
-Sun Mar 18 00:28:43 2012
+Sat Mar 24 14:37:28 2012
 Quartus II 32-bit Version 11.1 Build 216 11/23/2011 Service Pack 1 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Sun Mar 18 00:28:43 2012 ;
+; EDA Netlist Writer Status ; Successful - Sat Mar 24 14:37:28 2012 ;
 ; Revision Name             ; pc                                    ;
 ; Top-level Entity Name     ; pc8001                                ;
 ; Family                    ; Cyclone III                           ;
@@ -88,7 +88,7 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 32-bit EDA Netlist Writer
     Info: Version 11.1 Build 216 11/23/2011 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun Mar 18 00:28:37 2012
+    Info: Processing started: Sat Mar 24 14:37:22 2012
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off pc-8001onDE0 -c pc
 Info (204019): Generated file pc_6_1200mv_85c_slow.vo in folder "D:/home/inouema/work/git/pc-8001onDE0/project/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file pc_6_1200mv_0c_slow.vo in folder "D:/home/inouema/work/git/pc-8001onDE0/project/simulation/modelsim/" for EDA simulation tool
@@ -99,8 +99,8 @@ Info (204019): Generated file pc_6_1200mv_0c_v_slow.sdo in folder "D:/home/inoue
 Info (204019): Generated file pc_min_1200mv_0c_v_fast.sdo in folder "D:/home/inouema/work/git/pc-8001onDE0/project/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file pc_v.sdo in folder "D:/home/inouema/work/git/pc-8001onDE0/project/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 32-bit EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 308 megabytes
-    Info: Processing ended: Sun Mar 18 00:28:43 2012
+    Info: Peak virtual memory: 312 megabytes
+    Info: Processing ended: Sat Mar 24 14:37:28 2012
     Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:06
 

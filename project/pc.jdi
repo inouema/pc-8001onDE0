@@ -1,10 +1,10 @@
 <sld_project_info>
   <file_info>
-    <file checksum="0x003577F3" device="EP3C16F484C6" path="pc.sof" usercode="0xFFFFFFFF"/>
+    <file checksum="0x0038B702" device="EP3C16F484C6" path="pc.sof" usercode="0xFFFFFFFF"/>
   </file_info>
   <hub_info ir_width="8" node_count="3"/>
   <node_info>
-    <node hpath="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|sld_mod_ram_rom:mgl_prim2" instance_id="0" mfg_id="110" node_id="3" sld_node_info="0x8186E00" version="1">
+    <node hpath="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|sld_mod_ram_rom:mgl_prim2" instance_id="0" mfg_id="110" node_id="3" sld_node_info="0x8186E00" version="1">
       <parameters>
         <parameter name="SLD_NODE_INFO" type="dec" value="135818752"/>
         <parameter name="SLD_AUTO_INSTANCE_INDEX" type="string" value="yes"/>
@@ -21,14 +21,14 @@
         <parameter name="node_name" type="unknown" value="805306368"/>
       </parameters>
       <inputs>
-        <port name="data_read[0]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|altsyncram_da92:altsyncram1|q_b[0]"/>
-        <port name="data_read[1]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|altsyncram_da92:altsyncram1|q_b[1]"/>
-        <port name="data_read[2]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|altsyncram_da92:altsyncram1|q_b[2]"/>
-        <port name="data_read[3]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|altsyncram_da92:altsyncram1|q_b[3]"/>
-        <port name="data_read[4]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|altsyncram_da92:altsyncram1|q_b[4]"/>
-        <port name="data_read[5]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|altsyncram_da92:altsyncram1|q_b[5]"/>
-        <port name="data_read[6]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|altsyncram_da92:altsyncram1|q_b[6]"/>
-        <port name="data_read[7]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_4ki1:auto_generated|altsyncram_da92:altsyncram1|q_b[7]"/>
+        <port name="data_read[0]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|altsyncram_b1a2:altsyncram1|q_b[0]"/>
+        <port name="data_read[1]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|altsyncram_b1a2:altsyncram1|q_b[1]"/>
+        <port name="data_read[2]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|altsyncram_b1a2:altsyncram1|q_b[2]"/>
+        <port name="data_read[3]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|altsyncram_b1a2:altsyncram1|q_b[3]"/>
+        <port name="data_read[4]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|altsyncram_b1a2:altsyncram1|q_b[4]"/>
+        <port name="data_read[5]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|altsyncram_b1a2:altsyncram1|q_b[5]"/>
+        <port name="data_read[6]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|altsyncram_b1a2:altsyncram1|q_b[6]"/>
+        <port name="data_read[7]" source="alt_ram_32kB:ram|altsyncram:altsyncram_component|altsyncram_2bj1:auto_generated|altsyncram_b1a2:altsyncram1|q_b[7]"/>
         <port name="jtag.bp.ram_altsyncram_component_auto_generated_mgl_prim2_raw_tck" source="jtag.bp.ram_altsyncram_component_auto_generated_mgl_prim2_raw_tck"/>
         <port name="jtag.bp.ram_altsyncram_component_auto_generated_mgl_prim2_tdi" source="jtag.bp.ram_altsyncram_component_auto_generated_mgl_prim2_tdi"/>
         <port name="jtag.bp.ram_altsyncram_component_auto_generated_mgl_prim2_usr1" source="jtag.bp.ram_altsyncram_component_auto_generated_mgl_prim2_usr1"/>
@@ -158,11 +158,11 @@
         <parameter name="SLD_IP_VERSION" type="dec" value="6"/>
         <parameter name="SLD_IP_MINOR_VERSION" type="dec" value="0"/>
         <parameter name="SLD_COMMON_IP_VERSION" type="dec" value="0"/>
-        <parameter name="sld_data_bits" type="unknown" value="96"/>
-        <parameter name="sld_trigger_bits" type="unknown" value="96"/>
+        <parameter name="sld_data_bits" type="unknown" value="128"/>
+        <parameter name="sld_trigger_bits" type="unknown" value="128"/>
         <parameter name="SLD_NODE_CRC_BITS" type="dec" value="32"/>
-        <parameter name="sld_node_crc_hiword" type="unknown" value="4268"/>
-        <parameter name="sld_node_crc_loword" type="unknown" value="51943"/>
+        <parameter name="sld_node_crc_hiword" type="unknown" value="9564"/>
+        <parameter name="sld_node_crc_loword" type="unknown" value="54422"/>
         <parameter name="SLD_INCREMENTAL_ROUTING" type="dec" value="0"/>
         <parameter name="sld_sample_depth" type="unknown" value="1024"/>
         <parameter name="sld_segment_size" type="unknown" value="1024"/>
@@ -186,8 +186,8 @@
         <parameter name="SLD_ADVANCED_TRIGGER_8" type="string" value="NONE"/>
         <parameter name="SLD_ADVANCED_TRIGGER_9" type="string" value="NONE"/>
         <parameter name="SLD_ADVANCED_TRIGGER_10" type="string" value="NONE"/>
-        <parameter name="sld_inversion_mask_length" type="unknown" value="312"/>
-        <parameter name="sld_inversion_mask" type="unknown" value="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
+        <parameter name="sld_inversion_mask_length" type="unknown" value="408"/>
+        <parameter name="sld_inversion_mask" type="unknown" value="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"/>
         <parameter name="sld_power_up_trigger" type="unknown" value="0"/>
         <parameter name="SLD_STATE_FLOW_MGR_ENTITY" type="string" value="state_flow_mgr_entity.vhd"/>
         <parameter name="sld_state_flow_use_generated" type="unknown" value="0"/>
