@@ -72,6 +72,9 @@ module pc8001(
           O_VGA_B,
           O_VGA_HS,
           O_VGA_VS,
+
+          IO_PS2_KBCLK,
+          IO_PS2_KBDAT,
 	      y_out,
           c_out,
 
@@ -113,6 +116,9 @@ module pc8001(
    output [ 3:0] O_VGA_B;
    output        O_VGA_HS;
    output        O_VGA_VS;
+
+   inout         IO_PS2_KBCLK;
+   inout         IO_PS2_KBDAT;
 
    inout        IO_USB_DP;
    inout        IO_USB_DM;
@@ -223,6 +229,7 @@ module pc8001(
 
 
 // I/O Device's
+   wire port00h = cpu_adr[7:4] == 4'h0; // keyboard
    wire port30h = cpu_adr[7:4] == 4'h3;
    wire port40h = cpu_adr[7:4] == 4'h4;
    wire port80h = cpu_adr[7:4] == 4'h8;
@@ -241,7 +248,8 @@ module pc8001(
    wire [7:0] port40data;
    wire [7:0] porte0data;
 
-   assign      port00data = ~kbd_data;
+//   assign      port00data = ~kbd_data;
+   assign      port00data = ~w_keyboard_data;
    assign      port40data = { 2'b00, vrtc[5], cdata, 4'b1010 };
  //  assign    porte0data = boot_data_out;
    assign      porte0data = 8'hFF;
@@ -530,6 +538,23 @@ tv80c Z80(
             .O_VGA_HS(O_VGA_HS),
             .O_VGA_VS(O_VGA_VS)
             );
+
+/////////////////////////////////////////////////////////////////////////////
+// KEY BOARD
+/////////////////////////////////////////////////////////////////////////////
+
+   wire [ 7:0] w_keyboard_data;
+   
+	KEYBOARD KEYBOARD(
+           .I_CLK         (clk),
+           .I_RST         (reset),
+           .I_CPU_ADDR    (cpu_adr[3:0]),
+           .I_CPU_IORQ    (iorq),
+           .I_CPU_PORT00H (port00h),
+           .O_KB_DATA     (w_keyboard_data),
+           .IO_PS2CLK     (IO_PS2_KBCLK),
+           .IO_PS2DATA    (IO_PS2_KBDAT)
+           );
 
 endmodule // module pc
 
