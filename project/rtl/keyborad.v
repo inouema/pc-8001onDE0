@@ -51,104 +51,136 @@ module KEYBOARD(
    assign w_cpu_iorq_fall =  iorq_sreg[1] & ~iorq_sreg[0];
    assign w_cpu_iorq_rise = ~iorq_sreg[1] &  iorq_sreg[0];
 
-   /**
-    * PS2モジュールのValidを判断して,データを受信する.
+   /*
+    * PS2モジュールからのValidを監視する
     */
-   parameter P_PS2_CODE_BREAK = 8'hF0;
+   parameter P_PS2_ADDR_STATUS = 2'h0;
+   parameter P_PS2_ADDR_READ   = 2'h1;
 
    wire [ 7:0] w_ps2_data;
    wire        w_ps2_valid = w_ps2_data[0];
 
    reg  [ 1:0] r_ps2_addr;
+   reg         r_ps2_data_en;
    reg         r_ps2_write_en;
    reg  [ 7:0] r_ps2_write_data;
-   reg  [ 2:0] r_state;
+   reg  [ 2:0] r_ps2_state;
+
+   always @(posedge I_CLK or posedge I_RST) begin
+      if(I_RST) begin
+         r_ps2_addr       <= P_PS2_ADDR_STATUS;
+         r_ps2_write_en   <= 1'b0;
+         r_ps2_write_data <= 8'h00;
+         r_ps2_state      <= 3'h0;
+         r_ps2_data_en    <= 1'b0;
+      end
+      // PS/2データがValidになったらReadアドレスを指定する.
+      else if((r_ps2_state == 3'h0) && w_ps2_valid ) begin
+         r_ps2_addr    <= P_PS2_ADDR_READ;
+         r_ps2_data_en <= 1'b1;
+         r_ps2_state   <= 3'h1;
+      end
+      //
+      else if(r_ps2_state == 3'h1) begin
+         r_ps2_data_en    <= 1'b0;
+         r_ps2_addr       <= P_PS2_ADDR_STATUS;
+         r_ps2_write_en   <= 1'b1;
+         r_ps2_write_data <= 8'h00; // STATUSレジスタのvalidビットをクリアする.
+         r_ps2_state      <= 3'h2;
+      end
+      else if(r_ps2_state == 3'h2) begin
+         r_ps2_write_en <= 1'b0;
+         r_ps2_state    <= 3'h0;
+      end
+   end // always @ (posedge I_CLK or posedge I_RST)
+
+
+
+
+   /*
+    * Z80に対してキーマトリクスコードを出力する.
+    */
+   parameter P_PS2_CODE_BREAK       = 8'hF0;
+   parameter P_PS2_CODE_LEFT_SHIFT  = 8'h12;
+
    reg  [ 7:0] r_kb_data;
+   reg         r_kb_data_en;
    reg  [ 3:0] r_kb_addr;
    reg  [ 3:0] r_kb_scan_cnt;
    reg         r_kb_break;
+   reg         r_kb_shift;
+   reg         r_kb_kana;
+   reg         r_kb_ctrl;
+
+   wire [ 7:0] w_out_kb_data;
+   
 
    always @(posedge I_CLK or posedge I_RST ) begin
       if (I_RST) begin
-         r_ps2_addr       <= 2'h0;
-         r_ps2_write_en   <= 1'b0;
-         r_ps2_write_data <= 8'h00;
-         r_state          <= 3'h0;
-         r_kb_data        <= 8'h00;
-         r_kb_addr        <= 4'hF;
-         r_kb_scan_cnt    <= 4'h0;
-         r_kb_break       <= 1'b0;
-         O_KB_DATA        <= 8'h00;
-     end
-      // PS/2データがValidになったらReadアドレスを指定してデータを読み込む
-      else if((r_state == 3'h0) && w_ps2_valid ) begin
-         r_ps2_addr <= 2'h1;
-         r_state    <= 3'h1;
+         r_kb_data     <= 8'h00;
+         r_kb_addr     <= 4'hF;
+         r_kb_scan_cnt <= 4'h0;
+         r_kb_break    <= 1'b0;
+         r_kb_data_en  <= 1'b0;
+         r_kb_shift    <= 1'b0;
+         r_kb_kana     <= 1'b0;
+         r_kb_ctrl     <= 1'b0;
       end
-      // データ取り込み.
-      else if(r_state == 3'h1) begin
-         r_kb_data        <= w_kb_data[7:0];
-         r_kb_addr        <= w_kb_data[11:8];
-         r_ps2_addr       <= 2'h0;  // PS2 STATUS アドレスに戻す.
-         r_ps2_write_en   <= 1'b1;
-         r_ps2_write_data <= 8'h00; // validレジスタをクリアする.
-         r_state          <= 3'h2;
-      end
-      // CPUのキーボードスキャンタイミングまでキーボードデータを保持する.
-      // ブレークコード(F0h)が来たら次にくるキーコードを無視する.
-      else if(r_state == 3'h2) begin
-         if(r_kb_data == P_PS2_CODE_BREAK ) begin
-            r_kb_break     <= 1'b1;
-            r_kb_addr      <= 4'hF;
-            r_kb_data      <= 8'h00;
-            r_ps2_write_en <= 1'b0;
-            r_state        <= 3'h0;
+      else if ( r_ps2_data_en == 1'b1 ) begin
+         if( w_kb_data[7:0] == P_PS2_CODE_BREAK ) begin
+            r_kb_break <= 1'b1;
          end
-         else if( r_kb_break == 1'b1 ) begin
-            r_kb_break     <= 1'b0;
-            r_kb_addr      <= 4'hF;
-            r_kb_data      <= 8'h00;
-            r_ps2_write_en <= 1'b0;
-            r_state        <= 3'h0;
+         else if ( r_kb_break == 1'b1 ) begin
+            r_kb_break <= 1'b0;
+         end
+         else if ( w_kb_data[7:0] == P_PS2_CODE_LEFT_SHIFT ) begin
+            r_kb_shift <= 1'b1;
+         end
+         else if ( w_kb_data[7:0] == 8'h13 ) begin // kana
+            r_kb_kana <= 1'b1;
+         end
+         else if ( w_kb_data[7:0] == 8'h14 ) begin // ctrl
+            r_kb_ctrl <= 1'b1;
          end
          else begin
-            r_kb_data      <= r_kb_data;
-            r_ps2_write_en <= 1'b0;
-            r_state        <= 3'h3;
+            r_kb_data    <= w_kb_data[7:0];
+            r_kb_addr    <= w_kb_data[11:8];
+            r_kb_data_en <= 1'b1;
          end
       end
       // CPUのキーボードスキャンタイミング
-      else if((r_state == 3'h3) && w_cpu_iorq_rise && I_CPU_PORT00H) begin
-        /**
-         * ヒットしたキーボードデータのテーブル番号と CPUのインプットアドレスが等しければデータ有効とする.
-         */
-         if( I_CPU_ADDR == r_kb_addr ) begin
-           O_KB_DATA <= r_kb_data;
-         end
-         // 特殊系キーコード(Shift)
-         else if( (I_CPU_ADDR == 4'h8) && w_kb_shift_en ) begin
-           O_KB_DATA <= w_kb_data[7:0];
-         end
-         else begin
-           O_KB_DATA <= 8'h00;
-         end
-
+      else if( (r_kb_data_en == 1'b1) && w_cpu_iorq_rise && I_CPU_PORT00H) begin
          if( r_kb_scan_cnt == 4'hD ) begin
-            r_state <= 3'h4;
+            r_kb_data     <= 8'h00;
+            r_kb_addr     <= 4'hF;
             r_kb_scan_cnt <= 4'h0;
+            r_kb_data_en  <= 1'b0;
+            r_kb_shift    <= 1'b0;
+            r_kb_kana     <= 1'b0;
+            r_kb_ctrl     <= 1'b0;
          end
          else begin
             r_kb_scan_cnt <= r_kb_scan_cnt + 4'h1;
          end
       end
-      // CPUのキーボードスキャンタイミング終了
-      else if((r_state == 3'h4) && w_cpu_iorq_rise && I_CPU_PORT00H) begin
-         r_kb_data <= 8'h00;
-         r_kb_addr <= 4'hF;
-         r_state   <= 3'h0;
+   end // always @ (posedge I_CLK or posedge I_RST )
+
+   /**
+    * ヒットしたキーボードデータのテーブル番号と CPUのインプットアドレスが等しければデータ有効とする.
+    */
+   assign w_out_kb_data = ( (I_CPU_ADDR == 4'h8) && (r_kb_shift == 1'b1) ) ? 8'h40 :
+                          ( (I_CPU_ADDR == 4'h8) && (r_kb_kana  == 1'b1) ) ? 8'h20 :
+                          ( (I_CPU_ADDR == 4'h8) && (r_kb_ctrl  == 1'b1) ) ? 8'h80 :
+                          (  I_CPU_ADDR == r_kb_addr )                     ? r_kb_data : 8'h00;
+
+   always @(posedge I_CLK or posedge I_RST ) begin
+      if (I_RST) begin
          O_KB_DATA <= 8'h00;
       end
-   end // always @ (posedge I_CLK or posedge I_RST )
+      else begin
+         O_KB_DATA <= w_out_kb_data;
+      end
+   end
 
 
    /**
@@ -286,7 +318,8 @@ module KEYBOARD(
     */
    wire [11:0]  w_kb_data;
    assign w_kb_data = f_kbtbldata_sel (
-                                        (r_state == 3'h1),
+                                        //(r_ps2_data_en == 1'b1),
+                                        1'b1,
                                         w_keymap_en,
                                         w_keymap_data_0,
                                         w_keymap_data_1,
@@ -300,10 +333,6 @@ module KEYBOARD(
                                         w_keymap_data_9,
                                         w_keymap_data_10
                                       );
-   wire   w_kb_shift_en;
-   assign w_kb_shift_en = (w_kb_data == 12'h840) ? 1'b1 : 1'b0;
-
-
 
 endmodule // KEYBOARD
 
@@ -561,28 +590,30 @@ endmodule // kbtbldata
 
 module KBTBL_8 (I_PS2_DATA, O_KB_DATA);
 
-   parameter _home  = 8'h6C;
+   parameter _home  = 8'h6C; // and "CLR" key
+//   parameter _up    = 8'h75;
    parameter _down  = 8'h72;
-   parameter _left  = 8'h6B;
-   parameter _ins   = 8'h70;
-   parameter _graph = 8'h00;
-   parameter _kana  = 8'h13;
-   parameter _shift = 8'h12; // 左シフト
-   parameter _ctrl  = 8'h14;
+   parameter _right = 8'h6B;
+//   parameter _left  = 8'h6B;
+//   parameter _ins   = 8'h70;
+   parameter _del   = 8'h71;
+   parameter _graph = 8'hFF;
+//   parameter _ctrl  = 8'h14;
 
   input      [ 7:0] I_PS2_DATA;
   output reg [ 7:0] O_KB_DATA;
 
    always @* begin
       case (I_PS2_DATA)
-        _home :   O_KB_DATA <= 8'b00000001;
-        _down :   O_KB_DATA <= 8'b00000010;
-        _left :   O_KB_DATA <= 8'b00000100;
-        _ins :    O_KB_DATA <= 8'b00001000;
-        _graph :  O_KB_DATA <= 8'b00010000;
-        _kana :   O_KB_DATA <= 8'b00100000;
-        _shift :  O_KB_DATA <= 8'b01000000;
-        _ctrl :   O_KB_DATA <= 8'b10000000;
+        _home  : O_KB_DATA <= 8'b00000001;
+//        _up    : O_KB_DATA <= 8'b00000010;
+        _down  : O_KB_DATA <= 8'b00000010;
+        _right : O_KB_DATA <= 8'b00000100;
+//        _left  : O_KB_DATA <= 8'b00000100;
+//        _ins   : O_KB_DATA <= 8'b00001000;
+        _del   : O_KB_DATA <= 8'b00001000;
+        _graph : O_KB_DATA <= 8'b00010000;
+//        _ctrl :   O_KB_DATA <= 8'b10000000;
         default : O_KB_DATA <= 8'b00000000;
       endcase // case(I_PS2_DATA)
    end // always @ *
@@ -591,7 +622,7 @@ endmodule // kbtbldata
 
 module KBTBL_9 (I_PS2_DATA, O_KB_DATA);
 
-   parameter _stop = 8'h77;
+   parameter _stop = 8'h77; // Pause
    parameter _f1 = 8'h05;
    parameter _f2 = 8'h06;
    parameter _f3 = 8'h04;
@@ -624,13 +655,19 @@ endmodule // kbtbldata
 module KBTBL_10 (I_PS2_DATA, O_KB_DATA);
 
   parameter _break = 8'hF0;
+  parameter _left_shift = 8'h12;
+  parameter _kana  = 8'h13;
+  parameter _left_ctrl  = 8'h14;
 
   input      [ 7:0] I_PS2_DATA;
   output reg [ 7:0] O_KB_DATA;
 
    always @* begin
       case (I_PS2_DATA)
-        _break  : O_KB_DATA <= 8'hF0;
+        _break       : O_KB_DATA <= 8'hF0;
+        _left_shift  : O_KB_DATA <= 8'h12;
+        _kana        : O_KB_DATA <= 8'h13;
+        _left_ctrl   : O_KB_DATA <= 8'h14;
         default : O_KB_DATA <= 8'h00;
       endcase // case(I_PS2_DATA)
    end // always @ *
