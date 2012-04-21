@@ -359,7 +359,7 @@ module VGA (
    wire [15:0] w_atr_data;
    assign      w_atr_data[15:8] = w_attbuf_outdata[15:8]; //何桁目の文字から属性付加するか.
    assign      w_atr_data[ 7:0] = w_attbuf_outdata[ 7:0]; //属性情報
-   
+
    always @(posedge I_CLK or posedge I_RST) begin
 
       if ( I_RST ) begin
@@ -432,7 +432,7 @@ module VGA (
 
    reg  [2:0] color; // colorデコーダを作ったらもっていく
 
-   
+
    function sel2;
 	  input [1:0] s;
 	  input [3:0] a;
@@ -470,10 +470,11 @@ module VGA (
                r_chrline <= 8'h00;
             end
 
-            r_qinh  <= r_atr[0]  | (r_atr[1] & w_vcnt[6:5] == 2'b00);
+           r_qinh  <= r_atr[0]  | (r_atr[1] & w_vcnt[6:5] == 2'b00);
 		    r_qrev  <= r_atr[2]  & w_hdisp_en & w_vdisp_en;
-		    r_qcurs <= w_vcnt[6] & w_hdisp_en & (r_xcnt == r_xcurs) & (r_ycnt == r_ycurs);
-		    color <= r_atr[6:4];
+//		    r_qcurs <= w_vcnt[6] & w_hdisp_en & (r_xcnt == r_xcurs) & (r_ycnt == r_ycurs);
+		    r_qcurs <= w_hdisp_en & (r_xcnt == r_xcurs) & (r_ycnt == r_ycurs);
+		    color   <= r_atr[6:4];
 
 	     end
 	     else begin
