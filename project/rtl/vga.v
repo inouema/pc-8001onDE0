@@ -41,30 +41,6 @@ module VGA (
             output            O_VGA_VS
             );
 
-
-
-//************************************//
-//***  Modules   *********************//
-//************************************//
-
-////////////////////////////////////////
-/// H/V Sync Genelator
-///////////////////////////////////////
-
-   wire [ 9:0]                w_hcnt;
-   wire [ 9:0]                w_vcnt;
-
-   HVGEN HVGEN (
-              .I_CLK(I_CLK),
-              .I_RST(I_RST),
-              .O_HS(O_VGA_HS),
-              .O_VS(O_VGA_VS),
-              .O_H_CNT(w_hcnt),
-              .O_V_CNT(w_vcnt)
-              );
-
-
-
 ////////////////////////////////////////
 // Re-timing
 ////////////////////////////////////////
@@ -93,6 +69,29 @@ module VGA (
          r_busack    <= I_BUSACK;
       end
    end
+
+////////////////////////////////////////
+/// H/V Sync Genelator
+///////////////////////////////////////
+
+   wire [ 9:0] w_hcnt;
+   wire [ 9:0] w_vcnt;
+   wire        w_hsync;
+   wire        w_vsync;
+
+   HVGEN HVGEN (
+              .I_CLK(I_CLK),
+              .I_RST(I_RST),
+              .O_HS(w_hsync),
+              .O_VS(w_vsync),
+              .O_H_CNT(w_hcnt),
+              .O_V_CNT(w_vcnt)
+              );
+
+   // 水平,垂直イネーブル信号
+// wire w_hdisp_en = (10'd6 <= w_hcnt && w_hcnt <= 10'd646);
+   wire w_hdisp_en = (10'd0 <= w_hcnt && w_hcnt < 10'd640);
+   wire w_vdisp_en = (w_vcnt < 10'd400);
 
 
 
@@ -158,13 +157,14 @@ module VGA (
    always @(posedge I_CLK or posedge I_RST) begin
       if ( I_RST ) begin
          r_state           <= 4'h0;
-         O_RAM_ADR           <= 15'h0000;
+         O_RAM_ADR         <= 15'h0000;
          r_dma_dst_adr     <= 7'h00;
          r_dma_att_adr     <= 7'h00;
          r_dma_trans_count <= 7'h00;
       end
       else begin
-	     if (r_state == 4'd0 & w_hcnt == 10'd648) begin
+//	     if (r_state == 4'd0 & w_hcnt == 10'd648) begin // AAAAA
+	     if (r_state == 4'd0 & w_hcnt == 10'd639) begin
 		    if (w_vcnt == 10'd524) begin
                O_RAM_ADR       <= 15'h7300;
             end
@@ -212,7 +212,8 @@ module VGA (
          r_xcnt     <= 8'h00;
       end
       else begin
-         if (w_hcnt == 10'd648) begin
+//         if (w_hcnt == 10'd648) begin // AAAAA
+         if (w_hcnt == 10'd639) begin
             r_text_adr <= 7'h00;
             r_xcnt     <= 8'h00;
          end
@@ -238,8 +239,6 @@ module VGA (
    wire        w_attbuf_we = ( (r_state == 4'h1) & r_busack & w_dma_trans_attribute);
 
 
-   // VRAMテキストデータビット
-   assign w_rowbuf_indata = (w_dma_trans_vram & (r_state == 4'h1) & r_busack) ? r_ram_data : 8'h00;
 
    // VRAMテキストバッファアドレス タイミング調整
    reg [ 6:0] r_dma_dst_adr_0;
@@ -256,25 +255,29 @@ module VGA (
    end
 
    // VRAMテキストバッファWEのタイミング調整
-   reg  r_rowbuf_we;
+   reg [1:0] r_rowbuf_we;
    always @(posedge I_CLK or posedge I_RST) begin
       if( I_RST ) begin
-         r_rowbuf_we <= 1'b0;
+         r_rowbuf_we <= 2'h0;
       end
       else begin
-         r_rowbuf_we <= w_rowbuf_we;
+         r_rowbuf_we <= {r_rowbuf_we[0], w_rowbuf_we};
       end
    end
 
+   // VRAMテキストデータビット
+//   assign w_rowbuf_indata = (w_dma_trans_vram & (r_state == 4'h1) & r_busack & r_rowbuf_we[1]) ? r_ram_data : 8'h00;
+   assign w_rowbuf_indata = (r_rowbuf_we[1]) ? r_ram_data : 8'h00;
+
 
    // アトリビュートデータバッファWEのタイミング調整
-   reg [ 4:0] r_attbuf_we;
+   reg [ 3:0] r_attbuf_we;
    always @(posedge I_CLK or posedge I_RST) begin
       if( I_RST ) begin
-         r_attbuf_we <= 5'h00;
+         r_attbuf_we <= 4'h0;
       end
       else begin
-         r_attbuf_we <= {r_attbuf_we[3:0], w_attbuf_we};
+         r_attbuf_we <= {r_attbuf_we[2:0], w_attbuf_we};
       end
    end
 
@@ -330,7 +333,7 @@ module VGA (
    alt_vram ROWBUF (
 	.clock     ( I_CLK ),
 	.wraddress ( { 2'b00, r_dma_dst_adr_1} ),
-	.wren      ( r_rowbuf_we ),
+	.wren      ( r_rowbuf_we[1] ),
 	.data      ( w_rowbuf_indata ),
 	.rdaddress ( { 2'b00, w_rowbuf_adr } ),
 	.q         ( w_rowbuf_outdata )
@@ -339,7 +342,7 @@ module VGA (
   alt_vram_attribute ATTRIBUTE (
 	.clock     ( I_CLK ),
 	.wraddress ( { 2'b00, r_dma_att_adr_3} ),
-	.wren      ( r_attbuf_we[4] ),
+	.wren      ( r_attbuf_we[3] ),
 	.data      ( r_attbuf_indata ),
 	.rdaddress ( {2'b00, r_attbuf_adr} ),
 	.q         ( w_attbuf_outdata )
@@ -353,12 +356,15 @@ module VGA (
 ////////////////////////////////////////////
 // Attribute
 ///////////////////////////////////////////
-    reg [ 6:0] r_atr;
+	reg [ 6:0] r_atr;
 	reg [ 4:0] r_ycnt;
 
-   wire [15:0] w_atr_data;
-   assign      w_atr_data[15:8] = w_attbuf_outdata[15:8]; //何桁目の文字から属性付加するか.
-   assign      w_atr_data[ 7:0] = w_attbuf_outdata[ 7:0]; //属性情報
+	wire [15:0] w_atr_data;
+	assign      w_atr_data[15:8] = w_attbuf_outdata[15:8]; //何桁目の文字から属性付加するか.
+	assign      w_atr_data[ 7:0] = w_attbuf_outdata[ 7:0]; //属性情報
+
+   wire        w_atr_color_en;
+   assign      w_atr_color_en = (r_colormode & w_atr_data[3]);
 
    always @(posedge I_CLK or posedge I_RST) begin
 
@@ -374,20 +380,19 @@ module VGA (
             r_attbuf_adr <= r_attbuf_adr + 7'h01;
 
             // カラーモードの場合
-		    if (r_colormode & w_atr_data[3]) begin
-               r_atr[6:3] <= w_atr_data[7:4]; // 上位3bit,色指定. 下位1bitグラフィックorキャラクタ
-            end
-            // カラーモード,白黒共通
-		    else begin
-               r_atr[2:0] <= w_atr_data[2:0];   // リバース,ブリンク等の指定
+		    if(w_atr_color_en) begin
+               r_atr[6:3] <= w_atr_data[7:4]; // 上位3bit,色指定(MSBからG/R/B). 下位1bitグラフィックorキャラクタ
             end
             // 白黒モードの場合
-		    if (~r_colormode) begin
+		    if(~r_colormode) begin
 			   r_atr[6:3] <= { 3'b111, w_atr_data[7] }; // T/G
             end
+            // カラーモード,白黒共通
+            r_atr[2:0] <= w_atr_data[2:0];   // リバース,ブリンク,シークレット
 	     end
 
-	     if (w_hcnt == 10'd648) begin
+//	     if (w_hcnt == 10'd648) begin // AAAAA
+	     if (w_hcnt == 10'd639) begin
 		    if (w_vcnt == 10'd524) begin
 			   r_attbuf_adr <= 7'h00;
 			   r_ycnt       <= 5'h00;
@@ -411,27 +416,33 @@ module VGA (
    // H_CNTとV_CNTを文字とドットのカウンタとして分けて考える
    wire [ 6:0]                w_hchacnt = w_hcnt[ 9:3]; // 水平文字カウンタ
    wire [ 2:0]                w_hdotcnt = w_hcnt[ 2:0]; // 水平ドットカウンタ
-   wire [ 4:0]                w_vchacnt = w_vcnt[ 8:4]; // 垂直文字カウンタ
+// wire [ 4:0]                w_vchacnt = w_vcnt[ 8:4]; // 垂直文字カウンタ
    wire [ 3:0]                w_vdotcnt = w_vcnt[ 3:0]; // 垂直ドットカウンタ
    wire [ 7:0]                w_cgout;                  // 文字のドットデータ
 
+`ifdef NO_USE
    alt_cgrom_8x16 CGROM (
 	                     .address ( {w_text_data, w_vdotcnt} ),
 	                     .clock   ( I_CLK ),
 	                     .q       ( w_cgout )
 	                    );
-
+`endif
+   cgrom CGROM (
+                .clk(I_CLK),
+                .adr( {w_text_data, w_vdotcnt[2:0]} ),
+                .data (w_cgout)
+                );
 
 ///////////////////////////////////
 // atribute adding
 //////////////////////////////////
-   wire                       w_dotl;
-   wire                       w_dotr;
-   wire [ 7:0]                w_graphic;
-   reg [ 7:0]                 r_chrline;
 
-   reg  [2:0] color; // colorデコーダを作ったらもっていく
-
+   /*
+    * グラフィック描画
+    */
+   wire        w_dotl;
+   wire        w_dotr;
+   wire [ 7:0] w_graphic;
 
    function sel2;
 	  input [1:0] s;
@@ -449,20 +460,26 @@ module VGA (
    assign w_graphic = { w_dotl, w_dotl, w_dotl, w_dotl, w_dotr, w_dotr, w_dotr, w_dotr };
 
 
-   reg r_qinh;
-   reg r_qrev;
-   reg r_qcurs;
+   /*
+    * アトリビュート付加
+    */
+   reg       r_qinh;
+   reg       r_qrev;
+   reg       r_qcurs;
+   reg [2:0] r_color;
+   reg [7:0] r_chrline;
 
    always @(posedge I_CLK or posedge I_RST ) begin
       if ( I_RST ) begin
          r_qinh    <= 1'b0;
          r_qrev    <= 1'b0;
          r_qcurs   <= 1'b0;
-         color     <= 3'h0;
+         r_color   <= 3'b111;
          r_chrline <= 8'h00;
       end
       else begin
 	     if (w_hcnt[2:0] == 3'b111 & (r_width80 | ~w_hcnt[3])) begin
+            // ~w_vdotcnt[3]があることで 10line/文字でも9,10番目はマスクされるので表示されない.
 		    if (w_hdisp_en  & w_vdisp_en  & ~w_vdotcnt[3])begin
                r_chrline <= r_atr[3] ? w_graphic : w_cgout;
             end
@@ -474,7 +491,7 @@ module VGA (
 		    r_qrev  <= r_atr[2]  & w_hdisp_en & w_vdisp_en;
 //		    r_qcurs <= w_vcnt[6] & w_hdisp_en & (r_xcnt == r_xcurs) & (r_ycnt == r_ycurs);
 		    r_qcurs <= w_hdisp_en & (r_xcnt == r_xcurs) & (r_ycnt == r_ycurs);
-		    color   <= r_atr[6:4];
+		    r_color <= r_atr[6:4];
 
 	     end
 	     else begin
@@ -485,23 +502,74 @@ module VGA (
 
 
 
-   // 水平,垂直イネーブル信号
-   wire w_hdisp_en = (10'd6 <= w_hcnt && w_hcnt <= 10'd646);
-   wire w_vdisp_en = (w_vcnt < 10'd400);
+   /*
+    * 出力タイミング調整
+    */
+   // RGB出力データタイミングに合わせてH/Vsyncを調整する.
+   reg [ 7:0] r_vga_hs;
+   reg [ 7:0] r_vga_vs;
+
+   always @( posedge I_CLK or posedge I_RST) begin
+      if(I_RST) begin
+         r_vga_hs <= 8'h00;
+         r_vga_hs <= 8'h00;
+      end
+      else begin
+         r_vga_hs <= {r_vga_hs[6:0], w_hsync};
+         r_vga_vs <= {r_vga_vs[6:0], w_vsync};
+      end
+   end
+
+   assign O_VGA_HS = r_vga_hs[7];
+   assign O_VGA_VS = r_vga_vs[7];
+
+   // RGB出力データタイミングに合わせて表示範囲を調整する.
+   reg [ 7:0] r_hdisp_en;
+   reg [ 7:0] r_vdisp_en;
+
+   always @( posedge I_CLK or posedge I_RST) begin
+      if(I_RST) begin
+         r_hdisp_en <= 8'h00;
+         r_vdisp_en <= 8'h00;
+      end
+      else begin
+         r_hdisp_en <= {r_hdisp_en[ 6:0], w_hdisp_en};
+         r_vdisp_en <= {r_vdisp_en[ 6:0], w_vdisp_en};
+      end
+   end
+
+   // R/G/B抜き取り
+   wire   w_green_en;
+   wire   w_red_en;
+   wire   w_blue_en;
+
+   assign w_green_en = (r_colormode) ? r_color[2] : 1'b1;
+   assign w_red_en   = (r_colormode) ? r_color[1] : 1'b1;
+   assign w_blue_en  = (r_colormode) ? r_color[0] : 1'b1;
 
    // RGB出力信号生成
    always @( posedge I_CLK, posedge I_RST) begin
       if ( I_RST ) begin
-        O_VGA_R <= 4'h0;
         O_VGA_G <= 4'h0;
+        O_VGA_R <= 4'h0;
         O_VGA_B <= 4'h0;
       end
-      else begin
-        O_VGA_R <= {4{w_hdisp_en & w_vdisp_en}} & {4{(r_chrline[7] & ~r_qinh)^r_qrev^r_qcurs}};
-        O_VGA_G <= {4{w_hdisp_en & w_vdisp_en}} & {4{(r_chrline[7] & ~r_qinh)^r_qrev^r_qcurs}};
-        O_VGA_B <= {4{w_hdisp_en & w_vdisp_en}} & {4{(r_chrline[7] & ~r_qinh)^r_qrev^r_qcurs}};
-      end
+`ifdef VGA_CHECK
+      else if( w_hcnt == 10'd319 || w_hcnt == 10'd639 || w_hcnt == 10'd0) begin
+        O_VGA_G <= {4{r_hdisp_en[7] & r_vdisp_en[7]}} & {4{w_hcnt == 10'd319}};
+        O_VGA_R <= {4{r_hdisp_en[7] & r_vdisp_en[7]}} & {4{w_hcnt == 10'd639}};
+        O_VGA_B <= {4{r_hdisp_en[7] & r_vdisp_en[7]}} & {4{w_hcnt == 10'd0}};
+      end // else: !if( I_RST )
+`endif
+     else begin
+        O_VGA_G <= {4{r_hdisp_en[7] & r_vdisp_en[7]}} & {4{(r_chrline[7] & ~r_qinh)^r_qrev^r_qcurs}} & {4{w_green_en}};
+        O_VGA_R <= {4{r_hdisp_en[7] & r_vdisp_en[7]}} & {4{(r_chrline[7] & ~r_qinh)^r_qrev^r_qcurs}} & {4{w_red_en}};
+        O_VGA_B <= {4{r_hdisp_en[7] & r_vdisp_en[7]}} & {4{(r_chrline[7] & ~r_qinh)^r_qrev^r_qcurs}} & {4{w_blue_en}};
+     end // else: !if( I_RST )
    end // always @ ( posedge I_CLK, posedge I_RST)
+
+
+
 
 endmodule // VGA
 
