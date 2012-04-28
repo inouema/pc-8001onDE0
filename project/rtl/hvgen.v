@@ -32,10 +32,22 @@ module HVGEN (
               output reg [ 9:0] O_V_CNT
               );
 
-   // 水平カウンタ
-   parameter         HMAX = 800;
-   wire              hcntend = (O_H_CNT == HMAX-10'h001);
+	/*
+	 * Parameter's
+	 */
+	parameter HMAX = 800;
+	parameter VMAX = 525;
+//   parameter HS_START = 663; // org
+//   parameter HS_END   = 759; // org
+   parameter HS_START = 648;
+   parameter HS_END   = 744;
+   parameter VS_START = 449;
+   parameter VS_END   = 451;
 
+
+
+   // 水平カウンタ
+   wire              hcntend = (O_H_CNT == HMAX-10'h001);
    always @ (posedge I_CLK, posedge I_RST) begin
       if ( I_RST )
         O_H_CNT <= 10'h000;
@@ -46,8 +58,6 @@ module HVGEN (
    end
 
    // 垂直カウンタ
-   parameter VMAX = 525;
-
    always @(posedge I_CLK, posedge I_RST) begin
       if ( I_RST )
         O_V_CNT <= 10'h000;
@@ -59,15 +69,7 @@ module HVGEN (
       end
    end
 
-
-   // 同期信号
-//   parameter HS_START = 663; // org
-//   parameter HS_END   = 759; // org
-   parameter HS_START = 648;
-   parameter HS_END   = 744;
-   parameter VS_START = 449;
-   parameter VS_END   = 451;
-
+	// Hsync
    always @( posedge I_CLK or posedge I_RST) begin
       if ( I_RST )
         O_HS <= 1'b1;
@@ -77,6 +79,7 @@ module HVGEN (
         O_HS <= 1'b1;
    end
 
+	// Vsync
    always @( posedge I_CLK or posedge I_RST) begin
       if ( I_RST )
         O_VS <= 1'b1;

@@ -49,89 +49,43 @@
 // PC-8001 I/O Interface
 /////////////////////////////////////////////////////////////////////////////
 module pc8001(
-	      I_CLK_50M, // Board Clock 50MHz.
-          I_nRESET,  // Board Reset. Low Active.
+	input I_CLK_50M, // Board Clock 50MHz.
+	input I_nRESET,  // Board Reset. Low Active.
 
 `ifdef ICE
-	      sclk,
-	      sdata,
+	input  sclk,
+	output sdata,
 `endif
-          vtune,
-          clk_out,
-          IO_USB_DP,
-          IO_USB_DM,
-          ind,
+	output vtune,
+	output clk_out,
+	inout  IO_USB_DP,
+	inout  IO_USB_DM,
+	output ind,
 
-          O_FL_ADDR,  // Flash ROM Address Bus.
-          I_FL_DQ,   // ROM Data Bus.
-          O_FL_OE_N,  // ROM OE.
-          O_FL_CE_N,  // Flash ROM Chip Enable.
+	output [21:0] O_FL_ADDR,  // Flash ROM Address Bus.
+	input  [ 7:0] I_FL_DQ,   // ROM Data Bus.
+	output        O_FL_OE_N,  // ROM OE.
+	output        O_FL_CE_N,  // Flash ROM Chip Enable.
 
-          O_VGA_R,
-          O_VGA_G,
-          O_VGA_B,
-          O_VGA_HS,
-          O_VGA_VS,
+	output [ 3:0] O_VGA_R,
+	output [ 3:0] O_VGA_G,
+	output [ 3:0] O_VGA_B,
+	output        O_VGA_HS,
+	output        O_VGA_VS,
 
-          IO_PS2_KBCLK,
-          IO_PS2_KBDAT,
-	      y_out,
-          c_out,
+	inout         IO_PS2_KBCLK,
+	inout         IO_PS2_KBDAT,
 
-	      beep_out,
-          motor,
-
-          debug,
-              
-		  I_SW_0,
-		  I_SW_1
+	output        beep_out,
+	output reg    motor,
+	output [ 7:0] debug,
+	input  [ 9:0] I_SLIDE_SWITCH
           );
-
-   output [7:0] debug;
-   
-   input I_CLK_50M;
-   input I_nRESET;
-   
-   input I_SW_0;
-   input I_SW_1;
-
-   output [21:0]  O_FL_ADDR;
-   input  [ 7:0]  I_FL_DQ;
-   output         O_FL_OE_N;
-   output         O_FL_CE_N;
-
-`ifdef ICE
-   input sclk;
-   output sdata;
-`endif
-   
-   output vtune;
-   output clk_out;
-   output ind;
-   output [3:0] y_out;
-   output [3:0] c_out;
-
-   output [ 3:0] O_VGA_R;
-   output [ 3:0] O_VGA_G;
-   output [ 3:0] O_VGA_B;
-   output        O_VGA_HS;
-   output        O_VGA_VS;
-
-   inout         IO_PS2_KBCLK;
-   inout         IO_PS2_KBDAT;
-
-   inout        IO_USB_DP;
-   inout        IO_USB_DM;
-
-   output       beep_out;
-   output       motor;
-
 
 /////////////////////////////////////////////////////////////////////////////
 // wire & register decralation
 /////////////////////////////////////////////////////////////////////////////
    wire [15:0]   cpu_adr;
-//   wire [16:0]   dma_adr;
    wire [14:0]   dma_adr;
    wire [ 7:0]   cpu_data_in;
    wire [ 7:0]   cpu_data_out;
@@ -174,14 +128,12 @@ module pc8001(
    reg        reset1 = 0;
    reg        reset2 = 0;
 
-    wire   w_i_sw_0;
-    assign w_i_sw_0 = I_SW_0;
-    
-    wire   w_i_sw_1;
-    assign w_i_sw_1 = I_SW_1;
-    
-    reg [ 7:0] r_sw_0_filter;
-    reg [ 7:0] r_sw_1_filter;
+
+/*
+ * I_SLIDE_SWITCH Assign
+ */
+
+   wire       w_vga_charactor_size = I_SLIDE_SWITCH[0]; // 0: 8x8/Chara  1:16x8/Chara
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -512,7 +464,7 @@ tv80c Z80(
 /////////////////////////////////////////////////////////////////////////////
 // MOTOR
 /////////////////////////////////////////////////////////////////////////////
-	reg motor = 0;
+//	reg motor = 0;
 
 	always @(posedge clk) begin
 		if (iorq & wr & port30h) motor <= cpu_data_out[3];
@@ -536,7 +488,8 @@ tv80c Z80(
             .O_VGA_G(O_VGA_G),
             .O_VGA_B(O_VGA_B),
             .O_VGA_HS(O_VGA_HS),
-            .O_VGA_VS(O_VGA_VS)
+            .O_VGA_VS(O_VGA_VS),
+            .I_VGA_CHARACTOR_SIZE(w_vga_charactor_size)
             );
 
 /////////////////////////////////////////////////////////////////////////////
