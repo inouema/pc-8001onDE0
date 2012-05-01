@@ -140,7 +140,6 @@ module VGA (
 	// 水平,垂直イネーブル信号
 	parameter P_HDISP_END = 10'd640;
 	parameter P_CHARACTOR_16X8DOT = 1'b1;
-//	wire w_hdisp_en = (10'd0 <= w_hcnt && w_hcnt < P_HDISP_END);
 	wire w_hdisp_en = (w_hcnt < P_HDISP_END);
 	wire w_vdisp_en = (r_charactor_size == P_CHARACTOR_16X8DOT) ? (w_vcnt < 10'd400) : (w_vcnt < 10'd200);
 
@@ -158,7 +157,7 @@ module VGA (
               end
               else begin
                   if(r_charactor_size == P_CHARACTOR_16X8DOT) begin
-                      if(w_vcnt[0]) r_charactor_vcnt <= r_charactor_vcnt + 4'h1;
+                      if(w_vcnt[1]) r_charactor_vcnt <= r_charactor_vcnt + 4'h1;
                   end
                   else begin
                       r_charactor_vcnt <= r_charactor_vcnt + 4'h1;
@@ -477,8 +476,12 @@ module VGA (
 		endcase
 	endfunction // sel2
 
-	assign w_dotl = sel2(w_vdotcnt[2:1], w_rowbuf_outdata[3:0]);
-	assign w_dotr = sel2(w_vdotcnt[2:1], w_rowbuf_outdata[7:4]);
+	assign w_dotl = (r_charactor_size == P_CHARACTOR_16X8DOT) ?
+                    sel2(w_vdotcnt[3:2], w_rowbuf_outdata[3:0]) : sel2(w_vdotcnt[2:1], w_rowbuf_outdata[3:0]);
+
+	assign w_dotr = (r_charactor_size == P_CHARACTOR_16X8DOT) ?
+                    sel2(w_vdotcnt[3:2], w_rowbuf_outdata[7:4]) : sel2(w_vdotcnt[2:1], w_rowbuf_outdata[7:4]);
+
 	assign w_graphic = { w_dotl, w_dotl, w_dotl, w_dotl, w_dotr, w_dotr, w_dotr, w_dotr };
 
 
