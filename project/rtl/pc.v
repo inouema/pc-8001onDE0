@@ -40,7 +40,7 @@
 
 ////// USE CPU SELECTION
 `define MCPU_FZ80
-
+//`define MCPU_TV80
 
 //`define USE_BOOT
 //`define USE_BEEP_ON_OFF_ROM
@@ -78,7 +78,7 @@ module pc8001(
 
 	output        beep_out,
 	output reg    motor,
-	output [ 7:0] debug,
+	output [ 9:0] O_LED,
 	input  [ 9:0] I_SLIDE_SWITCH
           );
 
@@ -156,8 +156,8 @@ module pc8001(
 	              );
 
    assign      clk = w_clk_25m;
-   
-   assign waitreq = start | waitcount < 16;
+
+   assign waitreq = start | waitcount < 16; // FZ80
 // assign waitreq = start | waitcount < 21;
 
 	always @(posedge clk) begin
@@ -182,7 +182,9 @@ module pc8001(
 
 // I/O Device's
    wire port00h = cpu_adr[7:4] == 4'h0; // keyboard
-   wire port30h = cpu_adr[7:4] == 4'h3;
+   wire port21h = cpu_adr[7:0] == 8'h21;
+// wire port30h = cpu_adr[7:4] == 4'h3;
+   wire port30h = cpu_adr[7:0] == 8'h30;
    wire port40h = cpu_adr[7:4] == 4'h4;
    wire port80h = cpu_adr[7:4] == 4'h8;
    wire porte0h = cpu_adr[7:3] == 5'b11100;
@@ -314,8 +316,6 @@ module pc8001(
              );
 `endif
 
-
-
 //----------- TV80 -----------
 `ifdef MCPU_TV80
 
@@ -323,15 +323,36 @@ wire [15:0] ZA;
 wire [7:0] ZDO,ZDI;
 wire ZMREQ_n,ZIORQ_n,ZM1_n,ZRD_n,ZWR_n, ZRFSH_n;
 wire ZCLK, ZINT_n, ZRESET_n, ZWAIT_n;
+wire ZBUSAK_n;
+
+   assign ZRESET_n = ~reset;
+   assign mreq     = ~ZMREQ_n;
+   assign iorq     = ~ZIORQ_n;
+   assign rd       = ~ZRD_n;
+   assign wr       = ~ZWR_n;
+   assign ZWAIT_n  = ~waitreq;
+   assign busack   = ~ZBUSAK_n;
+//   assign start    = 1'b1;
+
+   
 tv80c Z80(
   .reset_n(ZRESET_n),
-  .clk(ZCLK),
-  .A(ZA), .do(ZDO), .di(ZDI),
-  .m1_n(ZM1_n), .mreq_n(ZMREQ_n), .iorq_n(ZIORQ_n), 
-  .rd_n(ZRD_n), .wr_n(ZWR_n),
-  .wait_n(ZWAIT_n), .rfsh_n(ZRFSH_n),
-  .int_n(ZINT_n), .nmi_n(1'b1),.busrq_n(1'b1),
-  .halt_n(), .busak_n()
+  .clk(clk),
+  .A(cpu_adr),
+  .do(cpu_data_out),
+  .di(cpu_data_in),
+  .m1_n(),
+  .mreq_n(ZMREQ_n),
+  .iorq_n(ZIORQ_n),
+  .rd_n(ZRD_n),
+  .wr_n(ZWR_n),
+  .wait_n(ZWAIT_n),
+  .rfsh_n(),
+  .int_n(1'b1),
+  .nmi_n(1'b1),
+  .busrq_n(~busreq),
+  .halt_n(),
+  .busak_n(ZBUSAK_n)
 );
 `endif
 
@@ -466,8 +487,17 @@ tv80c Z80(
 /////////////////////////////////////////////////////////////////////////////
 //	reg motor = 0;
 
-	always @(posedge clk) begin
+//	always @(posedge clk) begin
+//		if (iorq & wr & port30h) motor <= cpu_data_out[3];
+//	end
+
+	always @(posedge clk or posedge reset) begin
+	   if(reset) begin
+	      motor <= 0;
+	   end
+	   else begin
 		if (iorq & wr & port30h) motor <= cpu_data_out[3];
+	   end
 	end
 
 /////////////////////////////////////////////////////////////////////////////
@@ -508,6 +538,20 @@ tv80c Z80(
            .IO_PS2CLK     (IO_PS2_KBCLK),
            .IO_PS2DATA    (IO_PS2_KBDAT)
            );
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// SIO Interface
+/////////////////////////////////////////////////////////////////////////////
+
+   CONTREG_8251 CONTREG_8251(
+							 .I_PORT21_WE (port21h & iorq & wr & start),
+							 .I_DATA(cpu_data_out),
+							 .O_DEBUG(O_LED[7:0]),
+							 .I_RST(reset),
+							 .I_CLK(clk)
+							 );
 
 endmodule // module pc
 
