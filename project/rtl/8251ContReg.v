@@ -22,29 +22,44 @@
 // TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //***************************************************************************************
+`timescale 1ns/1ps
 
 module CONTREG_8251 (
-		     input            I_PORT21_WE,
-		     input      [7:0] I_DATA,
-		     output     [7:0] O_DEBUG,
-		     input            I_RST,
-		     input            I_CLK
+		     input 			  I_CONTROL_EN,
+		     input 			  I_DATA_EN,
+		     input 			  I_WE,
+		     input 			  I_RD,
+		     input [7:0] 	  I_DATA,
+		     output reg [7:0] O_DATA,
+		     output [7:0] 	  O_DEBUG_CMD,
+		     output [1:0]     O_DEBUG_STATE,
+		     input 			  I_RST,
+		     input 			  I_CLK
 		     );
 
 	///////////////////////////////////////////////////////////////
 	// re-timing
 	//////////////////////////////////////////////////////////////
 	reg [7:0] 				r_input_data;
-	reg 					r_port21_we;
-   
+	reg 					r_control_en;
+	reg 					r_data_en;
+	reg 					r_we;
+	reg 					r_rd;
+
 	always @(posedge I_CLK or posedge I_RST) begin
 		if(I_RST) begin
-			r_input_data <= 8'h00;
-			r_port21_we  <= 1'h0;
+		   r_input_data <= 8'h00;
+		   r_control_en <= 1'h0;
+		   r_data_en    <= 1'h0;
+		   r_we <= 1'h0;
+		   r_rd <= 1'h0;
 		end
 		else begin
-			r_input_data <= I_DATA;
-			r_port21_we  <= I_PORT21_WE;
+		   r_input_data <= I_DATA;
+		   r_control_en <= I_CONTROL_EN;
+		   r_data_en    <= I_DATA_EN;
+		   r_we         <= I_WE;
+		   r_rd         <= I_RD;
 		end
 	end
 
@@ -52,49 +67,76 @@ module CONTREG_8251 (
 	/**
 	 * Device Register's
 	 */
-    reg [7:0]  r_command; // 8251 Command registers
-    reg [7:0]  r_status;  // 8251 Status  registers
+	reg [7:0]  r_command; // 8251 Command registers
+	reg [7:0]  r_status;  // 8251 Status  registers
+	reg [7:0]  r_mode;    // 8251 Mode setting
 
-	// Bit assign of the Command Registers
-	wire w_bit_ir   = r_command[6]; // Internal reset
-	wire w_bit_rxe  = r_command[2]; // receive enable (1:enable 0:disable)
-	wire w_bit_txen = r_command[0]; // send enable    (1:enable 0:disable)
+//	wire w_bit_eh    = r_command[7];
+	wire w_bit_ir    = r_command[6]; // Internal reset
+//	wire w_bit_rts   = r_command[5];
+//	wire w_bit_er    = r_command[4];
+//	wire w_bit_sbrk  = r_command[3];
+//	wire w_bit_rxe   = r_command[2]; // receive enable (1:enable 0:disable)
+//	wire w_bit_dtr   = r_command[1];
+//	wire w_bit_txen  = r_command[0]; // send enable    (1:enable 0:disable)
 
-	// debug port assign
-	assign O_DEBUG[6] = w_bit_ir;
-	assign O_DEBUG[2] = w_bit_rxe;
-	assign O_DEBUG[0] = w_bit_txen;
 
+	wire       w_reset;
+	assign     w_reset = I_RST | w_bit_ir;
 
-    wire       w_reset;
-    assign     w_reset = I_RST | w_bit_ir;
-   
    // Edge Detect.
-	reg [1:0] r_port21_we_sreg;
-	wire 	  w_port21_rise;
+	reg [1:0] r_control_we_sreg;
+	wire 	  w_control_we_fall;
 
 	always @(posedge I_CLK or posedge w_reset) begin
 		if(w_reset) begin
-			r_port21_we_sreg <= 2'h0;
+			r_control_we_sreg <= 2'h0;
 		end
 		else begin
-			r_port21_we_sreg <= {r_port21_we_sreg[0], I_PORT21_WE};
+			r_control_we_sreg <= {r_control_we_sreg[0], I_CONTROL_EN & I_WE};
 		end
 	end
 
-	assign w_port21_rise = ~r_port21_we_sreg[1] & r_port21_we_sreg[0];
+	assign w_control_we_fall = r_control_we_sreg[1] & ~r_control_we_sreg[0];
 
+	/**
+	 *  State machine
+	 */
+	parameter P_SIO_STATE_MODE_SETTING = 4'h0;
+	parameter P_SIO_STATE_CMD_SETTING  = 4'h1;
+	reg [3:0] r_state;
 
-	// Decode
 	always @(posedge I_CLK or posedge w_reset) begin
 		if(w_reset) begin
+			r_state   <= P_SIO_STATE_MODE_SETTING;
 			r_command <= 8'h00;
 			r_status  <= 8'h00;
+			r_mode    <= 8'h00;
 		end
-		else if(w_port21_rise & r_port21_we) begin
-			r_command <= r_input_data;
+		else begin
+		   case(r_state)
+			 P_SIO_STATE_MODE_SETTING: begin
+				if(w_control_we_fall) r_state <= P_SIO_STATE_CMD_SETTING;
+				r_status <= 8'h01; // AAAAA test
+			 end
+			 P_SIO_STATE_CMD_SETTING: begin
+				if(r_control_en & r_we) r_command <= r_input_data;
+				if(r_control_en & r_rd) O_DATA    <= r_status;
+				r_state <= r_state;
+			 end
+			 default: begin
+				r_state <= P_SIO_STATE_MODE_SETTING;
+			 end
+		   endcase // case (r_state)
 		end
-	end
+	end // always @ (posedge I_CLK or posedge w_reset)
+
+
+	/**
+	 * debug port assign
+	 */
+	assign O_DEBUG_CMD = r_command;
+	assign O_DEBUG_STATE = r_state;
 
 
 

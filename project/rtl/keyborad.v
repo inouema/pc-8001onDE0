@@ -35,6 +35,71 @@ module KEYBOARD(
            inout             IO_PS2DATA
            );
 
+
+   /**
+    * @brief Keymap Data Table module
+    */
+   wire [11:0]                 w_keymap_data_1,w_keymap_data_2,w_keymap_data_3,
+               w_keymap_data_4,w_keymap_data_5,w_keymap_data_6,w_keymap_data_7,
+               w_keymap_data_8,w_keymap_data_9,w_keymap_data_10;
+
+  /**
+    * @brief Valid kb data selector.
+    */
+   function [15:0] f_kbtbldata_sel;
+
+      input [10:0] en;
+      input [11:0] kbdata_1;
+      input [11:0] kbdata_2;
+      input [11:0] kbdata_3;
+      input [11:0] kbdata_4;
+      input [11:0] kbdata_5;
+      input [11:0] kbdata_6;
+      input [11:0] kbdata_7;
+      input [11:0] kbdata_8;
+      input [11:0] kbdata_9;
+      input [11:0] kbdata_10;
+
+      case(en)
+        11'b000_0000_0010 : f_kbtbldata_sel = {4'h1, kbdata_1};
+        11'b000_0000_0100 : f_kbtbldata_sel = {4'h2, kbdata_2};
+        11'b000_0000_1000 : f_kbtbldata_sel = {4'h3, kbdata_3};
+        11'b000_0001_0000 : f_kbtbldata_sel = {4'h4, kbdata_4};
+        11'b000_0010_0000 : f_kbtbldata_sel = {4'h5, kbdata_5};
+        11'b000_0100_0000 : f_kbtbldata_sel = {4'h6, kbdata_6};
+        11'b000_1000_0000 : f_kbtbldata_sel = {4'h7, kbdata_7};
+        11'b001_0000_0000 : f_kbtbldata_sel = {4'h8, kbdata_8};
+        11'b010_0000_0000 : f_kbtbldata_sel = {4'h9, kbdata_9};
+        11'b100_0000_0000 : f_kbtbldata_sel = {4'hF, kbdata_10};
+        default           : f_kbtbldata_sel = {4'hF, 12'h000};
+      endcase // case(en)
+
+   endfunction // f_kbtbldata_sel
+
+   /*
+    * w_kb_data仕様
+    * b15 - b12 : ヒットしたキーボードのテーブル番号
+    * b11 : Reserve
+    * b10 : Reserve
+    * b 9 : Reserve
+    * b 8 : 強制 Shift Key Enable
+    * b 7 - b0 : PC-8001のマトリックスキーに対応したデータ
+    */
+   wire [15:0]  w_kb_data;
+   assign w_kb_data = f_kbtbldata_sel (
+                                        w_keymap_en,
+                                        w_keymap_data_1,
+                                        w_keymap_data_2,
+                                        w_keymap_data_3,
+                                        w_keymap_data_4,
+                                        w_keymap_data_5,
+                                        w_keymap_data_6,
+                                        w_keymap_data_7,
+                                        w_keymap_data_8,
+                                        w_keymap_data_9,
+                                        w_keymap_data_10
+                                      );
+
     /*
      * Z80からのIORQの立ち上がり/立ち下がり検出
      */
@@ -233,13 +298,6 @@ module KEYBOARD(
             .IO_PS2DATA (IO_PS2DATA)
             );
 
-   /**
-    * @brief Keymap Data Table module
-    */
-   wire [11:0]                 w_keymap_data_1,w_keymap_data_2,w_keymap_data_3,
-               w_keymap_data_4,w_keymap_data_5,w_keymap_data_6,w_keymap_data_7,
-               w_keymap_data_8,w_keymap_data_9,w_keymap_data_10;
-
    KBTBL_1 KBTBL_1 (
                 .I_PS2_DATA (w_ps2_data),
                 .O_KB_DATA  (w_keymap_data_1)
@@ -303,64 +361,9 @@ module KEYBOARD(
    assign        w_keymap_en[9]  = | w_keymap_data_9;
    assign        w_keymap_en[10] = | w_keymap_data_10;
 
-   /**
-    * @brief Valid kb data selector.
-    */
-   function [15:0] f_kbtbldata_sel;
-
-      input [10:0] en;
-      input [11:0] kbdata_1;
-      input [11:0] kbdata_2;
-      input [11:0] kbdata_3;
-      input [11:0] kbdata_4;
-      input [11:0] kbdata_5;
-      input [11:0] kbdata_6;
-      input [11:0] kbdata_7;
-      input [11:0] kbdata_8;
-      input [11:0] kbdata_9;
-      input [11:0] kbdata_10;
-
-      case(en)
-        11'b000_0000_0010 : f_kbtbldata_sel = {4'h1, kbdata_1};
-        11'b000_0000_0100 : f_kbtbldata_sel = {4'h2, kbdata_2};
-        11'b000_0000_1000 : f_kbtbldata_sel = {4'h3, kbdata_3};
-        11'b000_0001_0000 : f_kbtbldata_sel = {4'h4, kbdata_4};
-        11'b000_0010_0000 : f_kbtbldata_sel = {4'h5, kbdata_5};
-        11'b000_0100_0000 : f_kbtbldata_sel = {4'h6, kbdata_6};
-        11'b000_1000_0000 : f_kbtbldata_sel = {4'h7, kbdata_7};
-        11'b001_0000_0000 : f_kbtbldata_sel = {4'h8, kbdata_8};
-        11'b010_0000_0000 : f_kbtbldata_sel = {4'h9, kbdata_9};
-        11'b100_0000_0000 : f_kbtbldata_sel = {4'hF, kbdata_10};
-        default           : f_kbtbldata_sel = {4'hF, 12'h000};
-      endcase // case(en)
-
-   endfunction // f_kbtbldata_sel
+ 
 
 
-
-   /*
-    * w_kb_data仕様
-    * b15 - b12 : ヒットしたキーボードのテーブル番号
-    * b11 : Reserve
-    * b10 : Reserve
-    * b 9 : Reserve
-    * b 8 : 強制 Shift Key Enable
-    * b 7 - b0 : PC-8001のマトリックスキーに対応したデータ
-    */
-   wire [15:0]  w_kb_data;
-   assign w_kb_data = f_kbtbldata_sel (
-                                        w_keymap_en,
-                                        w_keymap_data_1,
-                                        w_keymap_data_2,
-                                        w_keymap_data_3,
-                                        w_keymap_data_4,
-                                        w_keymap_data_5,
-                                        w_keymap_data_6,
-                                        w_keymap_data_7,
-                                        w_keymap_data_8,
-                                        w_keymap_data_9,
-                                        w_keymap_data_10
-                                      );
 
 endmodule // KEYBOARD
 

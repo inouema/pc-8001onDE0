@@ -145,6 +145,7 @@ module VGA (
 
    // 8ライン/文字 or 10ライン/文字 判定カウンタ
    reg [3:0] r_charactor_vcnt;
+   wire 	 w_chlast = (r_charactor_vcnt == r_lpc);
 
    always @(posedge I_CLK or posedge I_RST) begin
        if( I_RST ) begin
@@ -167,8 +168,24 @@ module VGA (
        end // else: !if( I_RST )
    end // always @ (posedge I_CLK or posedge I_RST)
 
-   wire w_chlast = (r_charactor_vcnt == r_lpc);
 
+///////////////////////////////////////
+/// Charactor ROM
+///////////////////////////////////////
+	wire [ 2:0] w_hdotcnt = w_hcnt[ 2:0]; // 水平ドットカウンタ
+	wire [ 3:0] w_vdotcnt = w_vcnt[ 3:0]; // 垂直ドットカウンタ
+	wire [ 7:0] w_cgout;                  // 文字のドットデータ
+
+	wire [ 7:0] w_text_data;
+
+	wire [ 7:0] w_rowbuf_outdata;
+
+	assign      w_text_data = w_rowbuf_outdata[7:0];
+	cgrom CGROM (
+                .clk(I_CLK),
+                .adr( {w_text_data, r_charactor_vcnt[2:0]} ),
+                .data (w_cgout)
+                );
 
 
 
@@ -234,6 +251,8 @@ module VGA (
    end // always @ (posedge I_CLK)
 
 
+
+
 /////////////////////////////////////////////
 // 1行分の文字数カウント
 ////////////////////////////////////////////
@@ -262,7 +281,6 @@ module VGA (
 /// ONE-ROW Buffer
 ///////////////////////////////////////
    wire [ 6:0] w_rowbuf_adr = r_text_adr;
-   wire [ 7:0] w_rowbuf_outdata;
    wire [ 7:0] w_rowbuf_indata;
    wire        w_rowbuf_we = ( (r_dma_state == 4'h1) & r_busack & w_dma_trans_vram);
 
@@ -380,8 +398,6 @@ module VGA (
 	.q         ( w_attbuf_outdata )
 	);
 
-	wire [ 7:0] w_text_data;
-	assign      w_text_data = w_rowbuf_outdata[7:0];
 
 
 
@@ -440,18 +456,6 @@ module VGA (
 
 
 
-///////////////////////////////////////
-/// Charactor ROM
-///////////////////////////////////////
-	wire [ 2:0] w_hdotcnt = w_hcnt[ 2:0]; // 水平ドットカウンタ
-	wire [ 3:0] w_vdotcnt = w_vcnt[ 3:0]; // 垂直ドットカウンタ
-	wire [ 7:0] w_cgout;                  // 文字のドットデータ
-	
-	cgrom CGROM (
-                .clk(I_CLK),
-                .adr( {w_text_data, r_charactor_vcnt[2:0]} ),
-                .data (w_cgout)
-                );
 
 ///////////////////////////////////
 // atribute adding

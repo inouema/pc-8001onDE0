@@ -132,8 +132,10 @@ module pc8001(
 /*
  * I_SLIDE_SWITCH Assign
  */
-
    wire       w_vga_charactor_size = I_SLIDE_SWITCH[0]; // 0: 8x8/Chara  1:16x8/Chara
+
+// Key board
+   wire [ 7:0] w_keyboard_data;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -180,9 +182,12 @@ module pc8001(
    wire reset = ~reset1 & reset2;
 
 
-// I/O Device's
-   wire port00h = cpu_adr[7:4] == 4'h0; // keyboard
-   wire port21h = cpu_adr[7:0] == 8'h21;
+	/**
+	 * I/O Device's
+	 */
+   wire port00h = cpu_adr[7:4] == 4'h0;  // Keyboard
+   wire port20h = cpu_adr[7:0] == 8'h20; // SIO data register
+   wire port21h = cpu_adr[7:0] == 8'h21; // SIO control register
 // wire port30h = cpu_adr[7:4] == 4'h3;
    wire port30h = cpu_adr[7:0] == 8'h30;
    wire port40h = cpu_adr[7:4] == 4'h4;
@@ -190,21 +195,14 @@ module pc8001(
    wire porte0h = cpu_adr[7:3] == 5'b11100;
    wire portefh = cpu_adr[7:0] == 8'hef;
 
-   // MEMO
-   // CPU ADDRESS
-   // 0b xxxx-xxxx-****-xxxx (16bit)
-   // **** = 0000(0x0) : keyboard
-   // **** = 0100(0x4) : RTC(?)
-   // **** = 1000(0x8) : keyboard
-   // **** = 1110(0xE) : 
-
    wire [7:0] port00data;
    wire [7:0] port40data;
    wire [7:0] porte0data;
 
 //   assign      port00data = ~kbd_data;
    assign      port00data = ~w_keyboard_data;
-   assign      port40data = { 2'b00, vrtc[5], cdata, 4'b1010 };
+//   assign      port40data = { 2'b00, vrtc[5], cdata, 4'b1010 };
+   assign      port40data = { 2'b00, vrtc[5], cdata, 4'b1110 }; // bit2 is CMT CDIN detected.
  //  assign    porte0data = boot_data_out;
    assign      porte0data = 8'hFF;
 
@@ -525,8 +523,6 @@ tv80c Z80(
 /////////////////////////////////////////////////////////////////////////////
 // KEY BOARD
 /////////////////////////////////////////////////////////////////////////////
-
-   wire [ 7:0] w_keyboard_data;
    
 	KEYBOARD KEYBOARD(
            .I_CLK         (clk),
@@ -546,11 +542,14 @@ tv80c Z80(
 /////////////////////////////////////////////////////////////////////////////
 
    CONTREG_8251 CONTREG_8251(
-							 .I_PORT21_WE (port21h & iorq & wr & start),
-							 .I_DATA(cpu_data_out),
-							 .O_DEBUG(O_LED[7:0]),
-							 .I_RST(reset),
-							 .I_CLK(clk)
+							 .I_CONTROL_EN (port21h & iorq & start),
+							 .I_DATA_EN    (port20h & iorq & start),
+							 .I_WE         (wr),
+							 .I_RD         (rd),
+							 .I_DATA       (cpu_data_out),
+							 .O_DEBUG_CMD  (O_LED[7:0]),
+							 .I_RST        (reset),
+							 .I_CLK        (clk)
 							 );
 
 endmodule // module pc
