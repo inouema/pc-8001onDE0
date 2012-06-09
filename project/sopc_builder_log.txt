@@ -1,0 +1,4 @@
+2012/06/09 16:13:35 com.altera.utilities.Launcher launch
+î•ñ: Launching:C:/altera/11.1sp1/quartus/bin/cygwin/bin/sh.exe -c . C:/altera/11.1sp1/quartus/sopc_builder/bin/nios_sh ; C:/altera/11.1sp1/quartus/sopc_builder/bin/sopc_builder --classic --no_splash --refresh D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.ptf
+2012/06/09 16:13:44 com.altera.utilities.Launcher launch
+î•ñ: Launching:C:/altera/11.1sp1/quartus/bin/cygwin/bin/sh.exe -c . C:/altera/11.1sp1/quartus/sopc_builder/bin/nios_sh ; C:/altera/11.1sp1/quartus/sopc_builder/bin/sopc_builder --classic --generate D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.ptf

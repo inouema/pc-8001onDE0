@@ -139,6 +139,12 @@ module pc8001(
 
 
 /////////////////////////////////////////////////////////////////////////////
+// Sub System's wire,register's
+/////////////////////////////////////////////////////////////////////////////
+   wire [ 7:0] w_sub_gpio0;
+
+
+/////////////////////////////////////////////////////////////////////////////
 // Clock generate with ALT PLL
 /////////////////////////////////////////////////////////////////////////////
 
@@ -185,18 +191,27 @@ module pc8001(
 	/**
 	 * I/O Device's
 	 */
+	// key board
    wire port00h = cpu_adr[7:4] == 4'h0;  // Keyboard
-   wire port20h = cpu_adr[7:0] == 8'h20; // SIO data register
-   wire port21h = cpu_adr[7:0] == 8'h21; // SIO control register
-// wire port30h = cpu_adr[7:4] == 4'h3;
+   wire [7:0] port00data;
+
+	// SIO
+	wire port20h = cpu_adr[7:0] == 8'h20; // SIO data register
+	wire port21h = cpu_adr[7:0] == 8'h21; // SIO control register
+	wire [ 7:0] port20data;
+	wire [ 7:0] port21data;
+   
+	// motor etc...
    wire port30h = cpu_adr[7:0] == 8'h30;
+
+   // RTC
    wire port40h = cpu_adr[7:4] == 4'h4;
+   wire [7:0] port40data;
+
    wire port80h = cpu_adr[7:4] == 4'h8;
    wire porte0h = cpu_adr[7:3] == 5'b11100;
    wire portefh = cpu_adr[7:0] == 8'hef;
 
-   wire [7:0] port00data;
-   wire [7:0] port40data;
    wire [7:0] porte0data;
 
 //   assign      port00data = ~kbd_data;
@@ -206,22 +221,58 @@ module pc8001(
  //  assign    porte0data = boot_data_out;
    assign      porte0data = 8'hFF;
 
-   reg [7:0]   input_data;
+/*
+ function [7:0] selin;
+	input [3:0] sel;
+	input [23:0] a;
+	case (sel)
+	4'h0: selin = a[23:16]; // keyboard
+	4'h4: selin = a[15:8]; // rtc
+	4'h8: selin = a[23:16]; // keyboard
+	4'he: selin = a[7:0]; // boot
+	default: selin = 8'hff;
+	endcase
+endfunction // selin
+
+   	reg [7:0]   input_data;
+	always @(posedge clk)
+		input_data <= selin(cpu_adr[7:4], { port00data, port40data, porte0data });
+*/
 
  function [7:0] selin;
-		input [3:0] sel;
-		input [23:0] a;
+		input [ 7:0] sel;
+		input [ 7:0] port00;
+		input [ 7:0] port20;
+		input [ 7:0] port21;
+		input [ 7:0] port40;
+		input [ 7:0] porte0;
+
 			case (sel)
-				4'h0: selin = a[23:16]; // keyboard
-				4'h4: selin = a[15:8];  // rtc
-				4'h8: selin = a[23:16]; // keyboard
-				4'he: selin = a[7:0];   // boot
+				8'h00: selin = port00; // keyboard
+				8'h01: selin = port00; // keyboard
+				8'h02: selin = port00; // keyboard
+				8'h03: selin = port00; // keyboard
+				8'h04: selin = port00; // keyboard
+				8'h05: selin = port00; // keyboard
+				8'h06: selin = port00; // keyboard
+				8'h07: selin = port00; // keyboard
+				8'h08: selin = port00; // keyboard
+				8'h09: selin = port00; // keyboard
+				8'h20: selin = port20; // SIO data
+				8'h21: selin = port21; // SIO control
+				8'h40: selin = port40; // rtc
+				8'h80: selin = port00; // keyboard(UKP)
+				8'he0: selin = porte0; // boot
 				default: selin = 8'hff;
 			endcase
 	endfunction // selin
 
-   always @(posedge clk) 
-	 input_data <= selin(cpu_adr[7:4], { port00data, port40data, porte0data });
+	reg [7:0]   input_data;
+	always @(posedge clk)
+		input_data <= selin(cpu_adr[7:0], port00data, port20data, port21data, port40data, porte0data );
+
+
+
 
 ////////////////////////////////////////////
 // --- Z80 Data Input Data Selector
@@ -542,15 +593,50 @@ tv80c Z80(
 /////////////////////////////////////////////////////////////////////////////
 
    CONTREG_8251 CONTREG_8251(
-							 .I_CONTROL_EN (port21h & iorq & start),
-							 .I_DATA_EN    (port20h & iorq & start),
-							 .I_WE         (wr),
-							 .I_RD         (rd),
-							 .I_DATA       (cpu_data_out),
-							 .O_DEBUG_CMD  (O_LED[7:0]),
-							 .I_RST        (reset),
-							 .I_CLK        (clk)
+							 .I_CONTROL_EN   (port21h & iorq & start),
+							 .I_DATA_EN      (port20h & iorq & start),
+							 .I_WE           (wr),
+							 .I_RD           (rd),
+							 .I_DATA         (cpu_data_out),
+							 .O_DATA         (port20data),
+							 .O_CONTROL_DATA (port21data),
+							 .I_MCU_WR       (w_sub_mcu_cmt_gpio_out[0]),
+							 .I_MCU_RD       (w_sub_mcu_cmt_gpio_out[1]),
+							 .I_MCU_DATA     (w_sub_mcu_cmt_dout),
+							 .O_MCU_DATA     (w_sub_mct_cmt_din),
+							 .O_CMT_LOAD     (w_sub_mcu_cmt_gpio_in[0]),
+							 .O_nCMTTxRDY    (w_sub_mcu_cmt_gpio_in[1]),
+							 .O_CMT_SAVE     (w_sub_mcu_cmt_gpio_in[2]),
+							 .O_nCMTRxRDY    (w_sub_mcu_cmt_gpio_in[3]),
+							 .I_RST          (reset),
+							 .I_CLK          (clk)
 							 );
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Sub System
+/////////////////////////////////////////////////////////////////////////////
+
+	assign O_LED[0] = w_sub_mcu_gpio0[0];
+
+	wire [ 7:0] w_sub_mct_cmt_din;
+	wire [ 7:0] w_sub_mcu_cmt_gpio_in;
+	wire [ 7:0] w_sub_mcu_cmt_dout;
+	wire [ 7:0] w_sub_mcu_cmt_gpio_out;
+
+	assign w_sub_mcu_cmt_gpio_in[4] = motor;
+
+	pc8001_sub_system SUB_SYSTEM(
+      .clk_1                          (clk), // 25MHz
+      .in_port_to_the_gpio1           (),
+      .out_port_from_the_gpio0        (w_sub_mcu_gpio0),
+      .in_port_to_the_cmt_din         (w_sub_mct_cmt_din),
+      .in_port_to_the_cmt_gpio_in     (w_sub_mcu_cmt_gpio_in),
+      .out_port_from_the_cmt_dout     (w_sub_mcu_cmt_dout),
+      .out_port_from_the_cmt_gpio_out (w_sub_mcu_cmt_gpio_out),
+      .reset_n                        (~reset)
+    );
+
 
 endmodule // module pc
 

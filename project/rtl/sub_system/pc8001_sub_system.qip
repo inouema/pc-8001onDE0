@@ -1,0 +1,20 @@
+# clk_0
+# clk_1
+# nios2
+set_global_assignment -name SDC_FILE [file join $::quartus(qip_path) nios2.sdc]
+set_global_assignment -name SOURCE_FILE [file join $::quartus(qip_path) nios2.ocp]
+# gpio0
+# gpio1
+# sram
+# jtag_uart
+# sysid
+# cmt_dout
+# cmt_din
+# cmt_gpio_out
+# cmt_gpio_in
+# null
+# timer_0
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID "C860000229EB00000137D01743B5"
+set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_NAME "sopc"
+set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_VERSION "11.1sp1"
+set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_ENV "sopc"

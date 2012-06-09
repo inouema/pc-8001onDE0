@@ -1,0 +1,8 @@
+
+**** Build of configuration Nios II for project pc-8001onDE0_subsystem ****
+
+make all 
+Info: Building ../pc-8001onDE0_subsystem_bsp/
+make --no-print-directory -C ../pc-8001onDE0_subsystem_bsp/
+[BSP build complete]
+[pc-8001onDE0_subsystem build complete]

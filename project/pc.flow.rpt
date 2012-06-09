@@ -1,5 +1,5 @@
 Flow report for pc
-Sun Apr 22 17:51:21 2012
+Sat Jun 09 16:19:31 2012
 Quartus II 32-bit Version 11.1 Build 216 11/23/2011 Service Pack 1 SJ Web Edition
 
 
@@ -38,20 +38,20 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------------+
 ; Flow Summary                                                                       ;
 +------------------------------------+-----------------------------------------------+
-; Flow Status                        ; Successful - Sun Apr 22 17:51:21 2012         ;
+; Flow Status                        ; Successful - Sat Jun 09 16:19:31 2012         ;
 ; Quartus II 32-bit Version          ; 11.1 Build 216 11/23/2011 SP 1 SJ Web Edition ;
 ; Revision Name                      ; pc                                            ;
 ; Top-level Entity Name              ; pc8001                                        ;
 ; Family                             ; Cyclone III                                   ;
 ; Device                             ; EP3C16F484C6                                  ;
 ; Timing Models                      ; Final                                         ;
-; Total logic elements               ; 2,685 / 15,408 ( 17 % )                       ;
-;     Total combinational functions  ; 2,562 / 15,408 ( 17 % )                       ;
-;     Dedicated logic registers      ; 860 / 15,408 ( 6 % )                          ;
-; Total registers                    ; 860                                           ;
-; Total pins                         ; 75 / 347 ( 22 % )                             ;
+; Total logic elements               ; 4,948 / 15,408 ( 32 % )                       ;
+;     Total combinational functions  ; 4,404 / 15,408 ( 29 % )                       ;
+;     Dedicated logic registers      ; 2,268 / 15,408 ( 15 % )                       ;
+; Total registers                    ; 2268                                          ;
+; Total pins                         ; 77 / 347 ( 22 % )                             ;
 ; Total virtual pins                 ; 0                                             ;
-; Total memory bits                  ; 285,712 / 516,096 ( 55 % )                    ;
+; Total memory bits                  ; 373,264 / 516,096 ( 72 % )                    ;
 ; Embedded Multiplier 9-bit elements ; 0 / 112 ( 0 % )                               ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                                ;
 +------------------------------------+-----------------------------------------------+
@@ -62,56 +62,86 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/22/2012 17:50:32 ;
+; Start date & time ; 06/09/2012 16:18:12 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; pc                  ;
 +-------------------+---------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                           ;
-+-------------------------------------+---------------------------------------+---------------+-------------+----------------+
-; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id     ;
-+-------------------------------------+---------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 157395766526.133508463213188          ; --            ; --          ; --             ;
-; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                           ; --            ; --          ; eda_simulation ;
-; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)             ; <None>        ; --          ; --             ;
-; ENABLE_SIGNALTAP                    ; On                                    ; --            ; --          ; --             ;
-; IP_TOOL_NAME                        ; ALTPLL                                ; --            ; --          ; --             ;
-; IP_TOOL_NAME                        ; RAM: 1-PORT                           ; --            ; --          ; --             ;
-; IP_TOOL_NAME                        ; RAM: 2-PORT                           ; --            ; --          ; --             ;
-; IP_TOOL_NAME                        ; ROM: 1-PORT                           ; --            ; --          ; --             ;
-; IP_TOOL_NAME                        ; RAM: 2-PORT                           ; --            ; --          ; --             ;
-; IP_TOOL_VERSION                     ; 11.1                                  ; --            ; --          ; --             ;
-; IP_TOOL_VERSION                     ; 11.1                                  ; --            ; --          ; --             ;
-; IP_TOOL_VERSION                     ; 11.1                                  ; --            ; --          ; --             ;
-; IP_TOOL_VERSION                     ; 11.1                                  ; --            ; --          ; --             ;
-; IP_TOOL_VERSION                     ; 11.1                                  ; --            ; --          ; --             ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                    ; --            ; --          ; --             ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                     ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/pll_inst.v                  ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/pll_bb.v                    ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/pll.ppf                     ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/alt_ram_32kB_inst.v         ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/alt_ram_32kB_bb.v           ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/alt_vram_inst.v             ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/alt_vram_bb.v               ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/alt_cgrom_8x16_inst.v       ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/alt_cgrom_8x16_bb.v         ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/alt_vram_attribute_inst.v   ; --            ; --          ; --             ;
-; MISC_FILE                           ; rtl/altip/alt_vram_attribute_bb.v     ; --            ; --          ; --             ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                     ; --            ; --          ; --             ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                     ; --            ; --          ; --             ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                            ; --            ; --          ; --             ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                            ; --            ; --          ; --             ;
-; PARTITION_COLOR                     ; 16764057                              ; --            ; pc8001      ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                 ; --            ; pc8001      ; Top            ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                                ; --            ; pc8001      ; Top            ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                   ; --            ; --          ; --             ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ; --            ; --          ; --             ;
-; TOP_LEVEL_ENTITY                    ; pc8001                                ; pc            ; --          ; --             ;
-; USE_SIGNALTAP_FILE                  ; pc-8001onDE0.stp                      ; --            ; --          ; --             ;
-+-------------------------------------+---------------------------------------+---------------+-------------+----------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                                                         ;
++--------------------------------------+-----------------------------------------------------------------------------------------------------------+---------------+-------------------+-------------------+
+; Assignment Name                      ; Value                                                                                                     ; Default Value ; Entity Name       ; Section Id        ;
++--------------------------------------+-----------------------------------------------------------------------------------------------------------+---------------+-------------------+-------------------+
+; COMPILER_SIGNATURE_ID                ; 157395766526.133922629202492                                                                              ; --            ; --                ; --                ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                                                        ; --            ; --                ; TEST_CONTREG_8251 ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; TEST_CONTREG_8251                                                                                         ; --            ; --                ; eda_simulation    ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                                                                               ; --            ; --                ; eda_simulation    ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)                                                                                 ; <None>        ; --                ; --                ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                                                                           ; --            ; --                ; eda_simulation    ;
+; EDA_TEST_BENCH_FILE                  ; rtl/test_8251ContReg.v                                                                                    ; --            ; --                ; TEST_CONTREG_8251 ;
+; EDA_TEST_BENCH_MODULE_NAME           ; TEST_CONTREG_8251                                                                                         ; --            ; --                ; TEST_CONTREG_8251 ;
+; EDA_TEST_BENCH_NAME                  ; TEST_CONTREG_8251                                                                                         ; --            ; --                ; eda_simulation    ;
+; EDA_TIME_SCALE                       ; 1 ps                                                                                                      ; --            ; --                ; eda_simulation    ;
+; ENABLE_SIGNALTAP                     ; On                                                                                                        ; --            ; --                ; --                ;
+; IP_TOOL_ENV                          ; sopc                                                                                                      ; --            ; pc8001_sub_system ; --                ;
+; IP_TOOL_NAME                         ; ALTPLL                                                                                                    ; --            ; --                ; --                ;
+; IP_TOOL_NAME                         ; RAM: 1-PORT                                                                                               ; --            ; --                ; --                ;
+; IP_TOOL_NAME                         ; RAM: 2-PORT                                                                                               ; --            ; --                ; --                ;
+; IP_TOOL_NAME                         ; RAM: 2-PORT                                                                                               ; --            ; --                ; --                ;
+; IP_TOOL_NAME                         ; sopc                                                                                                      ; --            ; pc8001_sub_system ; --                ;
+; IP_TOOL_VERSION                      ; 11.1                                                                                                      ; --            ; --                ; --                ;
+; IP_TOOL_VERSION                      ; 11.1                                                                                                      ; --            ; --                ; --                ;
+; IP_TOOL_VERSION                      ; 11.1                                                                                                      ; --            ; --                ; --                ;
+; IP_TOOL_VERSION                      ; 11.1                                                                                                      ; --            ; --                ; --                ;
+; IP_TOOL_VERSION                      ; 11.1sp1                                                                                                   ; --            ; pc8001_sub_system ; --                ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                                                                                        ; --            ; --                ; --                ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                                                                                         ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/pll_inst.v                                                                                      ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/pll_bb.v                                                                                        ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/pll.ppf                                                                                         ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/alt_ram_32kB_inst.v                                                                             ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/alt_ram_32kB_bb.v                                                                               ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/alt_vram_inst.v                                                                                 ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/alt_vram_bb.v                                                                                   ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/alt_vram_attribute_inst.v                                                                       ; --            ; --                ; --                ;
+; MISC_FILE                            ; rtl/altip/alt_vram_attribute_bb.v                                                                         ; --            ; --                ; --                ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS       ; Half Signal Swing                                                                                         ; --            ; --                ; --                ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS       ; Half Signal Swing                                                                                         ; --            ; --                ; --                ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS      ; Half Vccio                                                                                                ; --            ; --                ; --                ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS      ; Half Vccio                                                                                                ; --            ; --                ; --                ;
+; PARTITION_COLOR                      ; 16764057                                                                                                  ; --            ; pc8001            ; Top               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING                                                                                     ; --            ; pc8001            ; Top               ;
+; PARTITION_NETLIST_TYPE               ; SOURCE                                                                                                    ; --            ; pc8001            ; Top               ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                                                                       ; --            ; --                ; --                ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                                                     ; --            ; --                ; --                ;
+; SLD_NODE_CREATOR_ID                  ; 110                                                                                                       ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_ENTITY_NAME                 ; sld_signaltap                                                                                             ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_NODE_INFO=805334528                                                                                   ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_POWER_UP_TRIGGER=0                                                                                    ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0                                                             ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_ATTRIBUTE_MEM_MODE=OFF                                                                                ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STATE_FLOW_USE_GENERATED=0                                                                            ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STATE_BITS=11                                                                                         ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_BUFFER_FULL_STOP=1                                                                                    ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_CURRENT_RESOURCE_WIDTH=1                                                                              ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_LEVEL=1                                                                                       ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_IN_ENABLED=0                                                                                  ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_ADVANCED_TRIGGER_ENTITY=basic,1,                                                                      ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_LEVEL_PIPELINE=1                                                                              ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_ENABLE_ADVANCED_TRIGGER=0                                                                             ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_SEGMENT_SIZE=512                                                                                      ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_SAMPLE_DEPTH=512                                                                                      ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_DATA_BITS=21                                                                                          ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_BITS=21                                                                                       ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000 ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INVERSION_MASK_LENGTH=86                                                                              ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_NODE_CRC_LOWORD=58010                                                                                 ; --            ; --                ; auto_signaltap_0  ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_NODE_CRC_HIWORD=61710                                                                                 ; --            ; --                ; auto_signaltap_0  ;
+; SOPC_BUILDER_SIGNATURE_ID            ; C860000229eb00000137d01743b5                                                                              ; --            ; --                ; --                ;
+; TOP_LEVEL_ENTITY                     ; pc8001                                                                                                    ; pc            ; --                ; --                ;
+; USE_SIGNALTAP_FILE                   ; pc-8001onDE0.stp                                                                                          ; --            ; --                ; --                ;
++--------------------------------------+-----------------------------------------------------------------------------------------------------------+---------------+-------------------+-------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------+
@@ -119,12 +149,12 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:24     ; 1.0                     ; 362 MB              ; 00:00:25                           ;
-; Fitter                    ; 00:00:10     ; 1.0                     ; 405 MB              ; 00:00:10                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 305 MB              ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:05     ; 1.0                     ; 323 MB              ; 00:00:05                           ;
-; EDA Netlist Writer        ; 00:00:05     ; 1.0                     ; 289 MB              ; 00:00:05                           ;
-; Total                     ; 00:00:46     ; --                      ; --                  ; 00:00:46                           ;
+; Analysis & Synthesis      ; 00:00:37     ; 1.0                     ; 394 MB              ; 00:00:37                           ;
+; Fitter                    ; 00:00:19     ; 1.0                     ; 430 MB              ; 00:00:19                           ;
+; Assembler                 ; 00:00:02     ; 1.0                     ; 313 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:08     ; 1.0                     ; 344 MB              ; 00:00:08                           ;
+; EDA Netlist Writer        ; 00:00:08     ; 1.0                     ; 315 MB              ; 00:00:08                           ;
+; Total                     ; 00:01:14     ; --                      ; --                  ; 00:01:14                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

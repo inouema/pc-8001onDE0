@@ -86,8 +86,6 @@ set_location_assignment PIN_P1 -to O_FL_ADDR[19]
 set_location_assignment PIN_P3 -to O_FL_ADDR[20]
 set_location_assignment PIN_R2 -to O_FL_ADDR[21]
 set_location_assignment PIN_H2 -to I_nRESET
-set_location_assignment PIN_H5 -to I_SW_1
-set_location_assignment PIN_J6 -to I_SW_0
 set_location_assignment PIN_N8 -to O_FL_CE_N
 set_location_assignment PIN_R6 -to O_FL_OE_N
 set_instance_assignment -name AUTO_GLOBAL_CLOCK ON -to I_CLK_50M
@@ -121,6 +119,125 @@ set_location_assignment PIN_V2 -to I_FL_DQ[4]
 set_location_assignment PIN_V3 -to I_FL_DQ[5]
 set_location_assignment PIN_W1 -to I_FL_DQ[6]
 set_location_assignment PIN_Y1 -to I_FL_DQ[7]
+set_location_assignment PIN_P22 -to IO_PS2_KBCLK
+set_location_assignment PIN_P21 -to IO_PS2_KBDAT
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to I_CLK_50M -section_id auto_signaltap_0
+set_location_assignment PIN_J6 -to I_SLIDE_SWITCH[0]
+set_location_assignment PIN_H5 -to I_SLIDE_SWITCH[1]
+set_location_assignment PIN_H6 -to I_SLIDE_SWITCH[2]
+set_location_assignment PIN_G4 -to I_SLIDE_SWITCH[3]
+set_location_assignment PIN_G5 -to I_SLIDE_SWITCH[4]
+set_location_assignment PIN_J7 -to I_SLIDE_SWITCH[5]
+set_location_assignment PIN_H7 -to I_SLIDE_SWITCH[6]
+set_location_assignment PIN_E3 -to I_SLIDE_SWITCH[7]
+set_location_assignment PIN_E4 -to I_SLIDE_SWITCH[8]
+set_location_assignment PIN_D2 -to I_SLIDE_SWITCH[9]
+set_location_assignment PIN_B1 -to motor
+set_location_assignment PIN_B2 -to O_LED[8]
+set_location_assignment PIN_C2 -to O_LED[7]
+set_location_assignment PIN_C1 -to O_LED[6]
+set_location_assignment PIN_E1 -to O_LED[5]
+set_location_assignment PIN_F2 -to O_LED[4]
+set_location_assignment PIN_H1 -to O_LED[3]
+set_location_assignment PIN_J3 -to O_LED[2]
+set_location_assignment PIN_J2 -to O_LED[1]
+set_location_assignment PIN_J1 -to O_LED[0]
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME TEST_CONTREG_8251 -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id TEST_CONTREG_8251
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME TEST_CONTREG_8251 -section_id TEST_CONTREG_8251
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH TEST_CONTREG_8251 -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_FILE rtl/test_8251ContReg.v -section_id TEST_CONTREG_8251
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "CONTREG_8251:CONTREG_8251|I_MCU_WR" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "CONTREG_8251:CONTREG_8251|I_RD" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "CONTREG_8251:CONTREG_8251|O_CMT_LOAD" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "CONTREG_8251:CONTREG_8251|O_DATA[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[0]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "CONTREG_8251:CONTREG_8251|I_MCU_DATA[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "CONTREG_8251:CONTREG_8251|I_MCU_WR" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "CONTREG_8251:CONTREG_8251|I_RD" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "CONTREG_8251:CONTREG_8251|O_CMT_LOAD" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "CONTREG_8251:CONTREG_8251|O_DATA[0]" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=512" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=512" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "CONTREG_8251:CONTREG_8251|O_DATA[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "CONTREG_8251:CONTREG_8251|O_DATA[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "CONTREG_8251:CONTREG_8251|O_DATA[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "CONTREG_8251:CONTREG_8251|O_DATA[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "CONTREG_8251:CONTREG_8251|O_DATA[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "CONTREG_8251:CONTREG_8251|O_DATA[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "CONTREG_8251:CONTREG_8251|O_DATA[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "CONTREG_8251:CONTREG_8251|r_data_en" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "CONTREG_8251:CONTREG_8251|O_DATA[1]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "CONTREG_8251:CONTREG_8251|O_DATA[2]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "CONTREG_8251:CONTREG_8251|O_DATA[3]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "CONTREG_8251:CONTREG_8251|O_DATA[4]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "CONTREG_8251:CONTREG_8251|O_DATA[5]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "CONTREG_8251:CONTREG_8251|O_DATA[6]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "CONTREG_8251:CONTREG_8251|O_DATA[7]" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "CONTREG_8251:CONTREG_8251|r_data_en" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "CONTREG_8251:CONTREG_8251|r_rd" -section_id auto_signaltap_0
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "CONTREG_8251:CONTREG_8251|r_rd" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=21" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=21" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=86" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=58010" -section_id auto_signaltap_0
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=61710" -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE rtl/sub_system/timer_0.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/cmt_gpio_out.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/cmt_gpio_in.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/cmt_dout.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/cmt_din.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/nios2_oci_test_bench.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/nios2_test_bench.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/sysid.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/sram.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/nios2_jtag_debug_module_wrapper.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/nios2_jtag_debug_module_tck.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/nios2_jtag_debug_module_sysclk.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/nios2.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/jtag_uart.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/gpio1.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/gpio0.v
+set_global_assignment -name QIP_FILE rtl/sub_system/pc8001_sub_system.qip
+set_global_assignment -name VERILOG_FILE rtl/8251ContReg.v
+set_global_assignment -name VERILOG_FILE rtl/tv80/tv80c.v
+set_global_assignment -name VERILOG_FILE rtl/tv80/tv80_reg.v
+set_global_assignment -name VERILOG_FILE rtl/tv80/tv80_mcode.v
+set_global_assignment -name VERILOG_FILE rtl/tv80/tv80_core.v
+set_global_assignment -name VERILOG_FILE rtl/tv80/tv80_alu.v
 set_global_assignment -name VERILOG_FILE rtl/keyborad.v
 set_global_assignment -name VERILOG_FILE rtl/ps2.v
 set_global_assignment -name VERILOG_FILE rtl/vga.v
@@ -145,10 +262,8 @@ set_global_assignment -name QIP_FILE rtl/altip/pll.qip
 set_global_assignment -name QIP_FILE rtl/altip/alt_ram_32kB.qip
 set_global_assignment -name SIGNALTAP_FILE "pc-8001onDE0.stp"
 set_global_assignment -name QIP_FILE rtl/altip/alt_vram.qip
-set_global_assignment -name QIP_FILE rtl/altip/alt_cgrom_8x16.qip
-set_global_assignment -name HEX_FILE rtl/altip/cgrom8x16.hex
 set_global_assignment -name QIP_FILE rtl/altip/alt_vram_16.qip
 set_global_assignment -name QIP_FILE rtl/altip/alt_vram_attribute.qip
-set_location_assignment PIN_P22 -to IO_PS2_KBCLK
-set_location_assignment PIN_P21 -to IO_PS2_KBDAT
+set_global_assignment -name HEX_FILE rtl/GALA0.hex
+set_global_assignment -name HEX_FILE rtl/GRAPH0.hex
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

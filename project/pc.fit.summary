@@ -1,16 +1,16 @@
-Fitter Status : Successful - Sun Apr 22 17:51:08 2012
+Fitter Status : Successful - Sat Jun 09 16:19:11 2012
 Quartus II 32-bit Version : 11.1 Build 216 11/23/2011 SP 1 SJ Web Edition
 Revision Name : pc
 Top-level Entity Name : pc8001
 Family : Cyclone III
 Device : EP3C16F484C6
 Timing Models : Final
-Total logic elements : 2,685 / 15,408 ( 17 % )
-    Total combinational functions : 2,562 / 15,408 ( 17 % )
-    Dedicated logic registers : 860 / 15,408 ( 6 % )
-Total registers : 860
-Total pins : 75 / 347 ( 22 % )
+Total logic elements : 4,948 / 15,408 ( 32 % )
+    Total combinational functions : 4,404 / 15,408 ( 29 % )
+    Dedicated logic registers : 2,268 / 15,408 ( 15 % )
+Total registers : 2268
+Total pins : 77 / 347 ( 22 % )
 Total virtual pins : 0
-Total memory bits : 285,712 / 516,096 ( 55 % )
+Total memory bits : 373,264 / 516,096 ( 72 % )
 Embedded Multiplier 9-bit elements : 0 / 112 ( 0 % )
 Total PLLs : 1 / 4 ( 25 % )
