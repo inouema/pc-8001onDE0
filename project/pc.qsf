@@ -214,6 +214,28 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=86" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=58010" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=61710" -section_id auto_signaltap_0
+set_location_assignment PIN_Y21 -to O_SD_CLK
+set_location_assignment PIN_W20 -to I_SD_WP_N
+set_location_assignment PIN_AA22 -to I_SD_DAT0
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to I_SD_DAT0
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to I_SD_WP_N
+set_location_assignment PIN_Y22 -to O_SD_CMD
+set_location_assignment PIN_W21 -to O_SD_DAT3
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to O_SD_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to O_SD_CMD
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to O_SD_DAT3
+set_global_assignment -name VERILOG_FILE rtl/sub_system/sdram.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_9.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_8.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_7.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_6.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_5.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_4.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_3.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_2.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_1.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/pc8001_sub_system_clock_0.v
+set_global_assignment -name VERILOG_FILE rtl/sub_system/epcs_flash_controller.v
 set_global_assignment -name VERILOG_FILE rtl/sub_system/timer_0.v
 set_global_assignment -name VERILOG_FILE rtl/sub_system/cmt_gpio_out.v
 set_global_assignment -name VERILOG_FILE rtl/sub_system/cmt_gpio_in.v
@@ -266,4 +288,50 @@ set_global_assignment -name QIP_FILE rtl/altip/alt_vram_16.qip
 set_global_assignment -name QIP_FILE rtl/altip/alt_vram_attribute.qip
 set_global_assignment -name HEX_FILE rtl/GALA0.hex
 set_global_assignment -name HEX_FILE rtl/GRAPH0.hex
+set_location_assignment PIN_F10 -to IO_DRAM_DQ[15]
+set_location_assignment PIN_E10 -to IO_DRAM_DQ[14]
+set_location_assignment PIN_A10 -to IO_DRAM_DQ[13]
+set_location_assignment PIN_B10 -to IO_DRAM_DQ[12]
+set_location_assignment PIN_C10 -to IO_DRAM_DQ[11]
+set_location_assignment PIN_A9 -to IO_DRAM_DQ[10]
+set_location_assignment PIN_B9 -to IO_DRAM_DQ[9]
+set_location_assignment PIN_A8 -to IO_DRAM_DQ[8]
+set_location_assignment PIN_F8 -to IO_DRAM_DQ[7]
+set_location_assignment PIN_H9 -to IO_DRAM_DQ[6]
+set_location_assignment PIN_G9 -to IO_DRAM_DQ[5]
+set_location_assignment PIN_F9 -to IO_DRAM_DQ[4]
+set_location_assignment PIN_E9 -to IO_DRAM_DQ[3]
+set_location_assignment PIN_H10 -to IO_DRAM_DQ[2]
+set_location_assignment PIN_G10 -to IO_DRAM_DQ[1]
+set_location_assignment PIN_D10 -to IO_DRAM_DQ[0]
+set_location_assignment PIN_A7 -to O_DRAM_ADDR[11]
+set_location_assignment PIN_B4 -to O_DRAM_ADDR[10]
+set_location_assignment PIN_B7 -to O_DRAM_ADDR[9]
+set_location_assignment PIN_C7 -to O_DRAM_ADDR[8]
+set_location_assignment PIN_A6 -to O_DRAM_ADDR[7]
+set_location_assignment PIN_B6 -to O_DRAM_ADDR[6]
+set_location_assignment PIN_C6 -to O_DRAM_ADDR[5]
+set_location_assignment PIN_A5 -to O_DRAM_ADDR[4]
+set_location_assignment PIN_C3 -to O_DRAM_ADDR[3]
+set_location_assignment PIN_B3 -to O_DRAM_ADDR[2]
+set_location_assignment PIN_A3 -to O_DRAM_ADDR[1]
+set_location_assignment PIN_C4 -to O_DRAM_ADDR[0]
+set_location_assignment PIN_A4 -to O_DRAM_BA[1]
+set_location_assignment PIN_B5 -to O_DRAM_BA[0]
+set_location_assignment PIN_G8 -to O_DRAM_CAS_N
+set_location_assignment PIN_E6 -to O_DRAM_CKE
+set_location_assignment PIN_G7 -to O_DRAM_CS_N
+set_location_assignment PIN_B8 -to O_DRAM_DQM[1]
+set_location_assignment PIN_E7 -to O_DRAM_DQM[0]
+set_location_assignment PIN_D6 -to O_DRAM_WE_N
+set_location_assignment PIN_F7 -to O_DRAM_RAS_N
+set_location_assignment PIN_K1 -to I_EPCS_DATA
+set_location_assignment PIN_D1 -to O_EPCS_ASDO
+set_location_assignment PIN_E2 -to O_EPCS_CSO_N
+set_location_assignment PIN_K2 -to O_EPCS_DCLK
+set_global_assignment -name RESERVE_DATA0_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DATA1_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_FLASH_NCE_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name RESERVE_DCLK_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_location_assignment PIN_E5 -to O_DRAM_CLK
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

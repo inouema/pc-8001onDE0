@@ -1,20 +1,28 @@
 # clk_0
-# clk_1
 # nios2
 set_global_assignment -name SDC_FILE [file join $::quartus(qip_path) nios2.sdc]
 set_global_assignment -name SOURCE_FILE [file join $::quartus(qip_path) nios2.ocp]
 # gpio0
 # gpio1
-# sram
 # jtag_uart
 # sysid
 # cmt_dout
 # cmt_din
 # cmt_gpio_out
 # cmt_gpio_in
-# null
 # timer_0
-set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID "C860000229EB00000137D01743B5"
+# mmc_spi
+set_global_assignment -name TCL_FILE [file join $::quartus(qip_path) avalonif_mmc_hw.tcl]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) avalonif_mmc.v]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) mmc_spi.v]
+# sub_system_pll
+set_global_assignment -name TCL_FILE [file join $::quartus(ip_rootpath) altera/sopc_builder_ip/altera_avalon_altpll/altera_avalon_altpll_hw.tcl]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sub_system_pll.v]
+# sdram
+# epcs_flash_controller
+# null
+set_global_assignment -name SDC_FILE [file join $::quartus(ip_rootpath) altera/sopc_builder_ip/altera_avalon_clock_adapter/altera_avalon_clock_adapter.sdc]
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID "C860000229EB00000137D469DC4C"
 set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_NAME "sopc"
 set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_VERSION "11.1sp1"
 set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_ENV "sopc"

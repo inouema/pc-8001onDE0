@@ -76,7 +76,7 @@ module nios2_test_bench (
   input   [  3: 0] E_mem_byte_en;
   input   [ 31: 0] E_st_data;
   input            E_valid;
-  input   [ 13: 0] F_pcb;
+  input   [ 25: 0] F_pcb;
   input            F_valid;
   input            R_ctrl_exception;
   input            R_ctrl_ld;
@@ -88,7 +88,7 @@ module nios2_test_bench (
   input            W_estatus_reg;
   input   [ 31: 0] W_ienable_reg;
   input   [ 31: 0] W_ipending_reg;
-  input   [ 13: 0] W_mem_baddr;
+  input   [ 25: 0] W_mem_baddr;
   input   [ 31: 0] W_rf_wr_data;
   input            W_status_reg;
   input            W_valid;
@@ -96,11 +96,11 @@ module nios2_test_bench (
   input   [ 31: 0] W_wr_data;
   input   [ 31: 0] av_ld_data_aligned_unfiltered;
   input            clk;
-  input   [ 13: 0] d_address;
+  input   [ 25: 0] d_address;
   input   [  3: 0] d_byteenable;
   input            d_read;
   input            d_write_nxt;
-  input   [ 13: 0] i_address;
+  input   [ 25: 0] i_address;
   input            i_read;
   input   [ 31: 0] i_readdata;
   input            i_waitrequest;

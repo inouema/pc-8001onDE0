@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="23" version="2.0">
+<workbench progressCount="17" version="2.0">
 <workbenchAdvisor/>
-<window height="831" maximized="true" width="1824" x="1969" y="145">
+<window height="831" maximized="true" width="1824" x="235" y="130">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
-<itemSize x="160"/>
+<itemSize x="725"/>
 </perspectiveBar>
 <coolbarLayout locked="0">
 <coolItem id="group.file" itemType="typeGroupMarker"/>
@@ -18,6 +18,7 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="198" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.cdt.make.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
@@ -31,13 +32,22 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc-8001onDE0_subsystem/main.c" title="main.c" tooltip="pc-8001onDE0_subsystem/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/pc-8001onDE0_subsystem/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5474" selectionTopPixel="2771"/>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/src/main.c" title="main.c" tooltip="pc8001onDE0_subsystem/src/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/pc8001onDE0_subsystem/src/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8045" selectionTopPixel="4641"/>
+</editor>
+<editor id="org.eclipse.cdt.make.editor" name="Makefile" partName="Makefile" path="D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc-8001onDE0_subsystem/Makefile" title="Makefile" tooltip="pc-8001onDE0_subsystem/Makefile" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/pc-8001onDE0_subsystem/Makefile"/>
+<editorState selectionHorizontalPixel="0" selectionLength="158" selectionOffset="5880" selectionTopPixel="2958"/>
+</editor>
+<editor id="org.eclipse.cdt.make.editor" name="Makefile" partName="Makefile" path="D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/Makefile" title="Makefile" tooltip="pc8001onDE0_subsystem/Makefile" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/pc8001onDE0_subsystem/Makefile"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6038" selectionTopPixel="2754"/>
 </editor>
 </editors>
 <views>
@@ -75,8 +85,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
-<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Errors"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="114" org.eclipse.ui.ide.markerType="169" org.eclipse.ui.ide.pathField="224" org.eclipse.ui.ide.resourceField="169" org.eclipse.ui.ide.severityAndDescriptionField="550"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -156,7 +165,6 @@
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.cdt.make.ui.views.MakeView"/>
 <view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
-<view id="org.eclipse.ui.internal.introview"/>
 <fastViewBars/>
 <layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
 <page content="org.eclipse.cdt.ui.CView" label="LabelNotFound"/>
@@ -166,7 +174,7 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@2505b7" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.internal.introview" appearance="2" expanded="1">&#x0A;<page content="org.eclipse.ui.internal.introview" label="Welcome"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@2505b7" ratio="0.75" ratioLeft="750" ratioRight="250" relationship="2" relative="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.internal.introview" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
@@ -252,7 +260,7 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@178b0f9" ratio="0.7512521" ratioLeft="1350" ratioRight="447" relationship="2" relative="topLeft">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@178b0f9" ratio="0.76217914" ratioLeft="1455" ratioRight="454" relationship="2" relative="topLeft">
 <folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
@@ -264,8 +272,8 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.2294686" ratioLeft="380" ratioRight="1276" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottom" ratio="0.35493827" ratioLeft="345" ratioRight="627" relationship="4" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.29683197" ratioLeft="431" ratioRight="1021" relationship="2" relative="topLeft"/>
+<info folder="true" part="bottom" ratio="0.6431262" ratioLeft="683" ratioRight="379" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="com.altera.sbtgui.launch.hardware.ByteStreamConsoleView:USB-Blaster on localhost [USB-0].1.0" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
@@ -283,7 +291,7 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="topRight" ratio="0.8991437" ratioLeft="945" ratioRight="106" relationship="2" relative="org.eclipse.ui.editorss">
+<info folder="true" part="topRight" ratio="0.6441315" ratioLeft="686" ratioRight="379" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -394,6 +402,18 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc-8001onDE0_subsystem/hello_world_small.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc-8001onDE0_subsystem/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/pc-8001onDE0_subsystem/pc-8001onDE0_subsystem.objdump"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc-8001onDE0_subsystem/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc-8001onDE0_subsystem/src/terasic_lib/terasic_includes.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc-8001onDE0_subsystem/src/terasic_fat/FatFileSystem.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/pc-8001onDE0_subsystem/Makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/pc-8001onDE0_subsystem/Makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc-8001onDE0_subsystem/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc-8001onDE0_subsystem/src/terasic_fat/FatFileSystem.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc8001onDE0_subsystem/hello_world.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc8001onDE0_subsystem/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/pc-8001onDE0_subsystem/Makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" path="/pc8001onDE0_subsystem/Makefile"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/pc8001onDE0_subsystem/src/main.c"/>
 </editors>
 <item historyLabel="readme.txt" index="0">
 <position info="not_deleted" x="677" y="0"/>
@@ -463,8 +483,68 @@
 <item historyLabel="main.c" index="8">
 <position info="not_deleted" x="6975" y="0"/>
 </item>
-<item active="true" historyLabel="main.c" index="8">
+<item historyLabel="main.c" index="8">
 <position info="not_deleted" x="5474" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="10">
+<position info="not_deleted" x="4316" y="26"/>
+</item>
+<item historyLabel="main.c" index="10">
+<position info="not_deleted" x="4285" y="29"/>
+</item>
+<item historyLabel="terasic_includes.h" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="FatFileSystem.c" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="terasic_includes.h" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Makefile" index="13">
+<position info="not_deleted" x="243" y="7"/>
+</item>
+<item historyLabel="terasic_includes.h" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Makefile" index="14">
+<position info="not_deleted" x="580" y="0"/>
+</item>
+<item historyLabel="main.c" index="15">
+<position info="not_deleted" x="4285" y="29"/>
+</item>
+<item historyLabel="FatFileSystem.c" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="15">
+<position info="not_deleted" x="4285" y="29"/>
+</item>
+<item historyLabel="hello_world.c" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="18">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Makefile" index="19">
+<position info="not_deleted" x="5880" y="158"/>
+</item>
+<item historyLabel="Makefile" index="20">
+<position info="not_deleted" x="35392" y="0"/>
+</item>
+<item historyLabel="Makefile" index="20">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="21">
+<position info="not_deleted" x="856" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="21">
+<position info="not_deleted" x="8045" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -483,6 +563,21 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" name="Makefile" tooltip="pc8001onDE0_subsystem/Makefile">
+<persistable path="/pc8001onDE0_subsystem/Makefile"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" name="Makefile" tooltip="pc-8001onDE0_subsystem/Makefile">
+<persistable path="/pc-8001onDE0_subsystem/Makefile"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="pc8001onDE0_subsystem/src/main.c">
+<persistable path="/pc8001onDE0_subsystem/src/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FatFileSystem.c" tooltip="pc-8001onDE0_subsystem/src/terasic_fat/FatFileSystem.c">
+<persistable path="/pc-8001onDE0_subsystem/src/terasic_fat/FatFileSystem.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="terasic_includes.h" tooltip="pc-8001onDE0_subsystem/src/terasic_lib/terasic_includes.h">
+<persistable path="/pc-8001onDE0_subsystem/src/terasic_lib/terasic_includes.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="pc-8001onDE0_subsystem/main.c">
 <persistable path="/pc-8001onDE0_subsystem/main.c"/>
 </file>

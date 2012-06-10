@@ -16,7 +16,7 @@
    <frequency preferredWidth="263" />
   </columns>
  </clocktable>
- <window width="1320" height="815" x="2112" y="183" />
+ <window width="1320" height="758" x="600" y="148" />
  <library
    expandedCategories="Library/Interface Protocols/Serial,Project,Library/Processors,Library,Library/Peripherals/Multiprocessor Coordination,Library/Peripherals/Debug and Performance,Library/Memories and Memory Controllers,Library/Interface Protocols,Library/Memories and Memory Controllers/On-Chip,Library/Peripherals,Library/Peripherals/Microcontroller Peripherals" />
 </preferences>

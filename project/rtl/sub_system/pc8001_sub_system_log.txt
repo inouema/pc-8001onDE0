@@ -3,90 +3,118 @@ Copyright (c) 1999-2009 Altera Corporation.  All rights reserved.
 
 
 No .sopc_builder configuration file(!)
-# 2012.06.09 16:13:51 (*) mk_custom_sdk starting
-# 2012.06.09 16:13:51 (*) Reading project D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.ptf.
+# 2012.06.10 12:22:37 (*) mk_custom_sdk starting
+# 2012.06.10 12:22:37 (*) Reading project D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.ptf.
 
-# 2012.06.09 16:13:51 (*) Finding all CPUs
-# 2012.06.09 16:13:51 (*) Finding all available components
-# 2012.06.09 16:13:51 (*) Reading D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/.sopc_builder/install.ptf
+# 2012.06.10 12:22:38 (*) Finding all CPUs
+# 2012.06.10 12:22:38 (*) Finding all available components
+# 2012.06.10 12:22:38 (*) Reading D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/.sopc_builder/install.ptf
 
-# 2012.06.09 16:13:51 (*) Found 63 components
+# 2012.06.10 12:22:38 (*) Found 63 components
 
-# 2012.06.09 16:13:52 (*) Finding all peripherals
+# 2012.06.10 12:22:38 (*) Finding all peripherals
 
-# 2012.06.09 16:13:52 (*) Finding software components
+# 2012.06.10 12:22:38 (*) Finding software components
 
-# 2012.06.09 16:13:52 (*) (Legacy SDK Generation Skipped)
-# 2012.06.09 16:13:52 (*) (All TCL Script Generation Skipped)
-# 2012.06.09 16:13:52 (*) (No Libraries Built)
-# 2012.06.09 16:13:52 (*) (Contents Generation Skipped)
-# 2012.06.09 16:13:52 (*) mk_custom_sdk finishing
+# 2012.06.10 12:22:39 (*) (Legacy SDK Generation Skipped)
+# 2012.06.10 12:22:39 (*) (All TCL Script Generation Skipped)
+# 2012.06.10 12:22:39 (*) (No Libraries Built)
+# 2012.06.10 12:22:39 (*) (Contents Generation Skipped)
+# 2012.06.10 12:22:39 (*) mk_custom_sdk finishing
 
-# 2012.06.09 16:13:52 (*) Starting generation for system: pc8001_sub_system.
+# 2012.06.10 12:22:39 (*) Starting generation for system: pc8001_sub_system.
 
 .
 ..
 .
-.
 .....
 .
+.
+..
+.........
 
-# 2012.06.09 16:13:53 (*) Running Generator Program for nios2
+# 2012.06.10 12:22:40 (*) Running Generator Program for nios2
 
-# 2012.06.09 16:13:54 (*) Starting Nios II generation
-# 2012.06.09 16:13:54 (*)   Checking for plaintext license.
-# 2012.06.09 16:13:55 (*)   Couldn't query license setup in Quartus directory c:/altera/11.1sp1/quartus
-# 2012.06.09 16:13:55 (*)   Defaulting to contents of LM_LICENSE_FILE environment variable
-# 2012.06.09 16:13:55 (*)   LM_LICENSE_FILE environment variable is empty
-# 2012.06.09 16:13:55 (*)   Plaintext license not found.
-# 2012.06.09 16:13:55 (*)   No license required to generate encrypted Nios II/e.
+# 2012.06.10 12:22:40 (*) Starting Nios II generation
+# 2012.06.10 12:22:40 (*)   Checking for plaintext license.
+# 2012.06.10 12:22:41 (*)   Couldn't query license setup in Quartus directory c:/altera/11.1sp1/quartus
+# 2012.06.10 12:22:41 (*)   Defaulting to contents of LM_LICENSE_FILE environment variable
+# 2012.06.10 12:22:41 (*)   LM_LICENSE_FILE environment variable is empty
+# 2012.06.10 12:22:41 (*)   Plaintext license not found.
+# 2012.06.10 12:22:41 (*)   No license required to generate encrypted Nios II/e.
 
-# 2012.06.09 16:13:55 (*)   Getting CPU configuration settings
-# 2012.06.09 16:13:55 (*)   Elaborating CPU configuration settings
-# 2012.06.09 16:13:55 (*)   Creating all objects for CPU
-# 2012.06.09 16:13:56 (*)   Generating HDL from CPU objects
-# 2012.06.09 16:13:56 (*)   Creating plain-text HDL
-# 2012.06.09 16:13:57 (*) Done Nios II generation
+# 2012.06.10 12:22:41 (*)   Getting CPU configuration settings
+# 2012.06.10 12:22:41 (*)   Elaborating CPU configuration settings
+# 2012.06.10 12:22:41 (*)   Creating all objects for CPU
+# 2012.06.10 12:22:42 (*)   Generating HDL from CPU objects
+# 2012.06.10 12:22:42 (*)   Creating plain-text HDL
+# 2012.06.10 12:22:43 (*) Done Nios II generation
 
-# 2012.06.09 16:13:57 (*) Running Generator Program for gpio0
+# 2012.06.10 12:22:43 (*) Running Generator Program for gpio0
 
-# 2012.06.09 16:13:58 (*) Running Generator Program for gpio1
+# 2012.06.10 12:22:44 (*) Running Generator Program for gpio1
 
-# 2012.06.09 16:13:58 (*) Running Generator Program for sram
+# 2012.06.10 12:22:45 (*) Running Generator Program for jtag_uart
 
-# 2012.06.09 16:13:59 (*) Running Generator Program for jtag_uart
+# 2012.06.10 12:22:46 (*) Running Generator Program for sysid
 
-# 2012.06.09 16:14:00 (*) Running Generator Program for sysid
+# 2012.06.10 12:22:46 (*) Running Generator Program for cmt_dout
 
-# 2012.06.09 16:14:00 (*) Running Generator Program for cmt_dout
+# 2012.06.10 12:22:47 (*) Running Generator Program for cmt_din
 
-# 2012.06.09 16:14:01 (*) Running Generator Program for cmt_din
+# 2012.06.10 12:22:47 (*) Running Generator Program for cmt_gpio_out
 
-# 2012.06.09 16:14:01 (*) Running Generator Program for cmt_gpio_out
+# 2012.06.10 12:22:48 (*) Running Generator Program for cmt_gpio_in
 
-# 2012.06.09 16:14:02 (*) Running Generator Program for cmt_gpio_in
+# 2012.06.10 12:22:49 (*) Running Generator Program for timer_0
 
-# 2012.06.09 16:14:02 (*) Running Generator Program for timer_0
+# 2012.06.10 12:22:50 (*) Running Generator Program for sdram
+
+# 2012.06.10 12:22:50 (*) Running Generator Program for epcs_flash_controller
+
+# 2012.06.10 12:22:51 (*) Running Generator Program for pc8001_sub_system_clock_0
+
+# 2012.06.10 12:22:52 (*) Running Generator Program for pc8001_sub_system_clock_1
+
+# 2012.06.10 12:22:53 (*) Running Generator Program for pc8001_sub_system_clock_2
+
+# 2012.06.10 12:22:54 (*) Running Generator Program for pc8001_sub_system_clock_3
+
+# 2012.06.10 12:22:55 (*) Running Generator Program for pc8001_sub_system_clock_4
+
+# 2012.06.10 12:22:56 (*) Running Generator Program for pc8001_sub_system_clock_5
+
+# 2012.06.10 12:22:57 (*) Running Generator Program for pc8001_sub_system_clock_6
+
+# 2012.06.10 12:22:58 (*) Running Generator Program for pc8001_sub_system_clock_7
+
+# 2012.06.10 12:22:59 (*) Running Generator Program for pc8001_sub_system_clock_8
+
+# 2012.06.10 12:23:00 (*) Running Generator Program for pc8001_sub_system_clock_9
+
+.
 
 
-# 2012.06.09 16:14:02 (*) Making arbitration and system (top) modules.
+# 2012.06.10 12:23:01 (*) Running Test Generator Program for sdram
 
-# 2012.06.09 16:14:05 (*) Generating Quartus symbol for top level: pc8001_sub_system
+# 2012.06.10 12:23:01 (*) Making arbitration and system (top) modules.
 
-# 2012.06.09 16:14:05 (*) Symbol D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.bsf already exists, no need to regenerate
-# 2012.06.09 16:14:05 (*) Creating command-line system-generation script: D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system_generation_script
+# 2012.06.10 12:23:08 (*) Generating Quartus symbol for top level: pc8001_sub_system
 
-# 2012.06.09 16:14:05 (*) Running setup for HDL simulator: modelsim
+# 2012.06.10 12:23:08 (*) Symbol D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.bsf already exists, no need to regenerate
+# 2012.06.10 12:23:08 (*) Creating command-line system-generation script: D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system_generation_script
+
+# 2012.06.10 12:23:08 (*) Running setup for HDL simulator: modelsim
 
 
 00
-# 2012.06.09 16:14:05 (*) Completed generation for system: pc8001_sub_system.
-# 2012.06.09 16:14:05 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
+# 2012.06.10 12:23:09 (*) Completed generation for system: pc8001_sub_system.
+# 2012.06.10 12:23:09 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
   SOPC Builder database : D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.ptf 
   System HDL Model : D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.v 
   System Generation Script : D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system_generation_script 
 
-# 2012.06.09 16:14:05 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
+# 2012.06.10 12:23:09 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
 
 
 Press 'Exit' to exit.

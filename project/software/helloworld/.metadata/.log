@@ -899,3 +899,303 @@ org.eclipse.core.runtime.AssertionFailedException: unknown saveable: org.eclipse
 
 !ENTRY com.altera.sbtgui.launch 1 0 2012-06-09 17:31:37.645
 !MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339225994 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc-8001onDE0_subsystem/pc-8001onDE0_subsystem.elf]
+!SESSION 2012-06-09 20:36:39.899 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ja_JP
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-09 21:04:10.163
+!MESSAGE Indexed 'pc-8001onDE0_subsystem' (4 sources, 100 headers) in 0.83 sec: 3,703 declarations; 4,818 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-09 21:05:54.699
+!MESSAGE Indexed 'pc-8001onDE0_subsystem' (4 sources, 100 headers) in 0.44 sec: 3,703 declarations; 4,818 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-09 21:08:04.388
+!MESSAGE Indexed 'pc-8001onDE0_subsystem' (4 sources, 100 headers) in 0.40 sec: 3,703 declarations; 4,818 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-09 21:10:11.348
+!MESSAGE Indexed 'pc-8001onDE0_subsystem' (4 sources, 100 headers) in 0.39 sec: 3,703 declarations; 4,818 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-09 21:14:59.126
+!MESSAGE Indexed 'pc-8001onDE0_subsystem' (4 sources, 100 headers) in 0.39 sec: 3,703 declarations; 4,818 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-09 21:16:08.343
+!MESSAGE Indexed 'pc-8001onDE0_subsystem' (4 sources, 100 headers) in 0.39 sec: 3,703 declarations; 4,818 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-09 21:19:05.133
+!MESSAGE Indexed 'pc-8001onDE0_subsystem' (4 sources, 100 headers) in 0.58 sec: 3,703 declarations; 4,818 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-09 21:25:29.992
+!MESSAGE Indexed 'pc-8001onDE0_subsystem_bsp' (81 sources, 124 headers) in 0.76 sec: 3,996 declarations; 4,844 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+!SESSION 2012-06-10 10:49:53.697 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ja_JP
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-10 10:51:57.446
+!MESSAGE Indexed 'pc-8001onDE0_subsystem_bsp' (81 sources, 124 headers) in 1.05 sec: 3,996 declarations; 4,844 references; 0 unresolved inclusions; 2 syntax errors; 6 unresolved names (0.07%)
+!SESSION 2012-06-10 11:31:00.123 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ja_JP
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-06-10 11:31:05.164
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2012-06-10 12:37:15.101 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ja_JP
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+
+!ENTRY com.altera.sbtgui.core 4 0 2012-06-10 12:37:33.122
+!MESSAGE Error executing 'nios2-bsp-generate-files --bsp-dir . --settings settings.bsp', unexpected return code 1.
+
+Error message:
+
+SEVERE: BSP not valid.
+SEVERE: BSP not valid.
+SEVERE: nios2-bsp-generate-files failed.
+
+
+!ENTRY com.altera.sbtgui.core 4 0 2012-06-10 12:39:15.287
+!MESSAGE Error executing 'nios2-bsp-generate-files --bsp-dir . --settings settings.bsp', unexpected return code 1.
+
+Error message:
+
+SEVERE: BSP not valid.
+SEVERE: BSP not valid.
+SEVERE: nios2-bsp-generate-files failed.
+
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-10 12:44:02.593
+!MESSAGE Indexed 'pc8001onDE0_subsystem_bsp' (84 sources, 64 headers) in 0.61 sec: 1,135 declarations; 2,986 references; 121 unresolved inclusions; 5 syntax errors; 215 unresolved names (4.96%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-06-10 12:44:08.464
+!MESSAGE Indexed 'pc8001onDE0_subsystem' (1 sources, 13 headers) in 0.02 sec: 1 declarations; 1 references; 14 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY org.eclipse.cdt.debug.core 4 103 2012-06-10 12:49:03.606
+!MESSAGE Project helloworld does not exist. Please check that your launch configuration specifies a valid project in your workspace.
+
+!ENTRY com.altera.sbtgui.launch 4 0 2012-06-10 12:50:11.247
+!MESSAGE The system console model is invalid. Cannot launch.
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 12:50:34.482
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 12:50:38.619
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2012-06-10 12:50:46.135
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [USB-0]', --device=1, --instance=0, --go, --sidp=0x28, --id=0x0, --timestamp=1339298534, /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf] return code: 4, 'other error'
+
+!ENTRY com.altera.sbtgui.launch 4 0 2012-06-10 12:50:46.137
+!MESSAGE Downloading ELF Process failed
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 12:52:39.308
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 12:52:42.822
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2012-06-10 12:52:49.730
+!MESSAGE Failed Executing: [nios2-download, '--cable=USB-Blaster on localhost [USB-0]', --device=1, --instance=0, --go, --sidp=0x28, --id=0x0, --timestamp=1339298534, /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf] return code: 4, 'other error'
+
+!ENTRY com.altera.sbtgui.launch 4 0 2012-06-10 12:52:49.731
+!MESSAGE Downloading ELF Process failed
+!SESSION 2012-06-10 13:00:18.589 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ja_JP
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 13:00:39.365
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 13:00:43.395
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 13:06:59.528
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 13:07:03.211
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY org.eclipse.ltk.ui.refactoring 4 10000 2012-06-10 13:08:57.746
+!MESSAGE Internal Error
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:799)
+	at org.eclipse.core.internal.resources.Project.delete(Project.java:331)
+	at org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange.perform(DeleteResourceChange.java:130)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Could not delete 'D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp\Makefile'.
+org.eclipse.core.runtime.CoreException: Problems encountered while deleting files.
+	at org.eclipse.core.internal.filesystem.local.LocalFile.delete(LocalFile.java:125)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFile(ResourceTree.java:304)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteProject(ResourceTree.java:384)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteProject(ResourceTree.java:837)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1944)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:786)
+	at org.eclipse.core.internal.resources.Project.delete(Project.java:331)
+	at org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange.perform(DeleteResourceChange.java:130)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Could not delete: D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp\Makefile.
+Contains: Could not delete 'D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp'.
+!SUBENTRY 1 org.eclipse.core.resources 4 273 2012-06-10 13:08:57.747
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 2 org.eclipse.core.resources 4 273 2012-06-10 13:08:57.747
+!MESSAGE Could not delete 'D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp\Makefile'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Problems encountered while deleting files.
+	at org.eclipse.core.internal.filesystem.local.LocalFile.delete(LocalFile.java:125)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFile(ResourceTree.java:304)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteProject(ResourceTree.java:384)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteProject(ResourceTree.java:837)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1944)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:786)
+	at org.eclipse.core.internal.resources.Project.delete(Project.java:331)
+	at org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange.perform(DeleteResourceChange.java:130)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Could not delete: D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp\Makefile.
+!SUBENTRY 3 org.eclipse.core.filesystem 4 273 2012-06-10 13:08:57.747
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 4 org.eclipse.core.filesystem 4 273 2012-06-10 13:08:57.747
+!MESSAGE Could not delete: D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp\Makefile.
+!SUBENTRY 2 org.eclipse.core.resources 4 273 2012-06-10 13:08:57.747
+!MESSAGE Could not delete 'D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp'.
+
+!ENTRY org.eclipse.core.resources 4 273 2012-06-10 13:08:57.748
+!MESSAGE Problems encountered while deleting resources.
+!SUBENTRY 1 org.eclipse.core.resources 4 273 2012-06-10 13:08:57.748
+!MESSAGE Could not delete 'D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp\Makefile'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Problems encountered while deleting files.
+	at org.eclipse.core.internal.filesystem.local.LocalFile.delete(LocalFile.java:125)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFile(ResourceTree.java:304)
+	at org.eclipse.core.internal.resources.ResourceTree.internalDeleteProject(ResourceTree.java:384)
+	at org.eclipse.core.internal.resources.ResourceTree.standardDeleteProject(ResourceTree.java:837)
+	at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1944)
+	at org.eclipse.core.internal.resources.Resource.delete(Resource.java:786)
+	at org.eclipse.core.internal.resources.Project.delete(Project.java:331)
+	at org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange.perform(DeleteResourceChange.java:130)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Could not delete: D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp\Makefile.
+!SUBENTRY 2 org.eclipse.core.filesystem 4 273 2012-06-10 13:08:57.748
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 3 org.eclipse.core.filesystem 4 273 2012-06-10 13:08:57.748
+!MESSAGE Could not delete: D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp\Makefile.
+!SUBENTRY 1 org.eclipse.core.resources 4 273 2012-06-10 13:08:57.748
+!MESSAGE Could not delete 'D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc-8001onDE0_subsystem_bsp'.
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 13:09:57.912
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 13:10:01.445
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 13:15:58.896
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 13:16:02.437
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+!SESSION 2012-06-10 15:57:18.343 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ja_JP
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+
+!ENTRY com.altera.sbtgui.launch 4 0 2012-06-10 16:08:06.874
+!MESSAGE The system console model is invalid. Cannot launch.
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:08:34.570
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:08:38.735
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:09:57.239
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:10:00.755
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:12:17.645
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:12:21.174
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:17:10.122
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:17:13.632
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:26:49.239
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:26:52.861
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:29:35.862
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:29:39.420
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:32:55.225
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:32:58.767
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]

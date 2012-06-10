@@ -7,16 +7,18 @@
    <connections preferredWidth="47" />
    <irq preferredWidth="34" />
    <export visible="0" />
+   <inputclock preferredWidth="152" />
   </columns>
  </systemtable>
  <clocktable>
   <columns>
-   <clockname preferredWidth="240" />
-   <clocksource preferredWidth="240" />
-   <frequency preferredWidth="224" />
+   <clockname preferredWidth="336" />
+   <clocksource preferredWidth="334" />
+   <frequency preferredWidth="317" />
+   <pipeline visible="1" preferredWidth="131" />
   </columns>
  </clocktable>
- <window width="1320" height="781" x="407" y="184" />
+ <window width="1498" height="1057" x="300" y="61" />
  <library
-   expandedCategories="Library/Peripherals,Project,Library/Peripherals/Microcontroller Peripherals,Library" />
+   expandedCategories="Library/Peripherals/Multiprocessor Coordination,Project,Library/Interface Protocols,Library,Library/Memories and Memory Controllers/On-Chip,Library/Memories and Memory Controllers,Library/Peripherals/Debug and Performance,Library/Processors,Library/Interface Protocols/Serial,Library/Peripherals/Microcontroller Peripherals,Library/Peripherals" />
 </preferences>

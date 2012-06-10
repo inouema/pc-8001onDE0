@@ -49,37 +49,59 @@
 // PC-8001 I/O Interface
 /////////////////////////////////////////////////////////////////////////////
 module pc8001(
-	input I_CLK_50M, // Board Clock 50MHz.
-	input I_nRESET,  // Board Reset. Low Active.
+	input 		  I_CLK_50M, // Board Clock 50MHz.
+	input 		  I_nRESET, // Board Reset. Low Active.
 
 `ifdef ICE
-	input  sclk,
-	output sdata,
+	input 		  sclk,
+	output 		  sdata,
 `endif
-	output vtune,
-	output clk_out,
-	inout  IO_USB_DP,
-	inout  IO_USB_DM,
-	output ind,
+	output 		  vtune,
+	output 		  clk_out,
+	inout 		  IO_USB_DP,
+	inout 		  IO_USB_DM,
+	output 		  ind,
 
-	output [21:0] O_FL_ADDR,  // Flash ROM Address Bus.
-	input  [ 7:0] I_FL_DQ,   // ROM Data Bus.
-	output        O_FL_OE_N,  // ROM OE.
-	output        O_FL_CE_N,  // Flash ROM Chip Enable.
+	output [21:0] O_FL_ADDR, // Flash ROM Address Bus.
+	input [ 7:0]  I_FL_DQ, // ROM Data Bus.
+	output 		  O_FL_OE_N, // ROM OE.
+	output 		  O_FL_CE_N, // Flash ROM Chip Enable.
 
 	output [ 3:0] O_VGA_R,
 	output [ 3:0] O_VGA_G,
 	output [ 3:0] O_VGA_B,
-	output        O_VGA_HS,
-	output        O_VGA_VS,
+	output 		  O_VGA_HS,
+	output 		  O_VGA_VS,
 
-	inout         IO_PS2_KBCLK,
-	inout         IO_PS2_KBDAT,
+	inout 		  IO_PS2_KBCLK,
+	inout 		  IO_PS2_KBDAT,
 
-	output        beep_out,
-	output reg    motor,
+	output 		  O_SD_CLK,
+	output 		  O_SD_CMD,
+	output 		  O_SD_DAT3,
+	input 		  I_SD_DAT0,
+	input 		  I_SD_WP_N,
+
+	output 		  O_EPCS_DCLK,
+	output 		  O_EPCS_CSO_N,
+	output 		  O_EPCS_ASDO,
+	input 		  I_EPCS_DATA,
+
+	output [11:0] O_DRAM_ADDR,
+	output [ 1:0] O_DRAM_BA,
+	output 		  O_DRAM_CAS_N,
+	output 		  O_DRAM_CKE,
+	output        O_DRAM_CLK,
+	output 		  O_DRAM_CS_N,
+	inout [15:0]  IO_DRAM_DQ,
+	output [ 1:0] O_DRAM_DQM,
+	output 		  O_DRAM_RAS_N,
+	output 		  O_DRAM_WE_N,
+
+	output 		  beep_out,
+	output reg 	  motor,
 	output [ 9:0] O_LED,
-	input  [ 9:0] I_SLIDE_SWITCH
+	input [ 9:0]  I_SLIDE_SWITCH
           );
 
 /////////////////////////////////////////////////////////////////////////////
@@ -603,7 +625,7 @@ tv80c Z80(
 							 .I_MCU_WR       (w_sub_mcu_cmt_gpio_out[0]),
 							 .I_MCU_RD       (w_sub_mcu_cmt_gpio_out[1]),
 							 .I_MCU_DATA     (w_sub_mcu_cmt_dout),
-							 .O_MCU_DATA     (w_sub_mct_cmt_din),
+							 .O_MCU_DATA     (w_sub_mcu_cmt_din),
 							 .O_CMT_LOAD     (w_sub_mcu_cmt_gpio_in[0]),
 							 .O_nCMTTxRDY    (w_sub_mcu_cmt_gpio_in[1]),
 							 .O_CMT_SAVE     (w_sub_mcu_cmt_gpio_in[2]),
@@ -617,24 +639,56 @@ tv80c Z80(
 // Sub System
 /////////////////////////////////////////////////////////////////////////////
 
-	assign O_LED[0] = w_sub_mcu_gpio0[0];
 
-	wire [ 7:0] w_sub_mct_cmt_din;
+	wire [ 7:0] w_sub_mcu_cmt_din;
 	wire [ 7:0] w_sub_mcu_cmt_gpio_in;
 	wire [ 7:0] w_sub_mcu_cmt_dout;
 	wire [ 7:0] w_sub_mcu_cmt_gpio_out;
-
+	wire [ 7:0] w_sub_mcu_gpio0;
+   
 	assign w_sub_mcu_cmt_gpio_in[4] = motor;
+	assign O_LED[0] = w_sub_mcu_gpio0[0];
 
 	pc8001_sub_system SUB_SYSTEM(
-      .clk_1                          (clk), // 25MHz
-      .in_port_to_the_gpio1           (),
-      .out_port_from_the_gpio0        (w_sub_mcu_gpio0),
-      .in_port_to_the_cmt_din         (w_sub_mct_cmt_din),
-      .in_port_to_the_cmt_gpio_in     (w_sub_mcu_cmt_gpio_in),
-      .out_port_from_the_cmt_dout     (w_sub_mcu_cmt_dout),
-      .out_port_from_the_cmt_gpio_out (w_sub_mcu_cmt_gpio_out),
-      .reset_n                        (~reset)
+	// GPIO interface
+      .in_port_to_the_gpio1              (),
+      .out_port_from_the_gpio0           (w_sub_mcu_gpio0),
+
+	// CMT-SD Interface
+      .in_port_to_the_cmt_din            (w_sub_mcu_cmt_din),
+      .in_port_to_the_cmt_gpio_in        (w_sub_mcu_cmt_gpio_in),
+      .out_port_from_the_cmt_dout        (w_sub_mcu_cmt_dout),
+      .out_port_from_the_cmt_gpio_out    (w_sub_mcu_cmt_gpio_out),
+
+	// SD/MMC Interface
+      .MMC_CD_to_the_mmc_spi             (1'b0),
+      .MMC_SCK_from_the_mmc_spi          (O_SD_CLK),
+      .MMC_SDI_to_the_mmc_spi            (I_SD_DAT0),
+      .MMC_SDO_from_the_mmc_spi          (O_SD_CMD),
+      .MMC_WP_to_the_mmc_spi             (I_SD_WP_N),
+      .MMC_nCS_from_the_mmc_spi          (O_SD_DAT3),
+
+	// EPCS interface
+      .data0_to_the_epcs_flash_controller  (I_EPCS_DATA),
+      .dclk_from_the_epcs_flash_controller (O_EPCS_DCLK),
+      .sce_from_the_epcs_flash_controller  (O_EPCS_CSO_N),
+      .sdo_from_the_epcs_flash_controller  (O_EPCS_ASDO),
+
+	// SDRAM interface
+      .zs_addr_from_the_sdram              (O_DRAM_ADDR),
+      .zs_ba_from_the_sdram                (O_DRAM_BA),
+      .zs_cas_n_from_the_sdram             (O_DRAM_CAS_N),
+      .zs_cke_from_the_sdram               (O_DRAM_CKE),
+      .zs_cs_n_from_the_sdram              (O_DRAM_CS_N),
+      .zs_dq_to_and_from_the_sdram         (IO_DRAM_DQ),
+      .zs_dqm_from_the_sdram               (O_DRAM_DQM),
+      .zs_ras_n_from_the_sdram             (O_DRAM_RAS_N),
+      .zs_we_n_from_the_sdram              (O_DRAM_WE_N),
+      .pll_sdram                           (O_DRAM_CLK),
+
+	// SystemInterface
+      .clk_0                             (I_CLK_50M), // 50MHz
+      .reset_n                           (~reset)
     );
 
 
