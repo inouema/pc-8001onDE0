@@ -1199,3 +1199,33 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.
 
 !ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 16:32:58.767
 !MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:02:14.512
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:02:18.647
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:07:33.397
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:07:36.941
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:09:59.978
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:10:03.514
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:13:00.434
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:13:04.015
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:22:00.227
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x28 --id=0x0 --timestamp=1339298534]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:22:04.043
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]

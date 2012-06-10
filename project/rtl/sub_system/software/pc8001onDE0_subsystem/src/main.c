@@ -104,6 +104,7 @@
 #include "priv/alt_legacy_irq.h"
 #endif
 #include "sys/alt_stdio.h"
+#include "os/alt_syscall.h"
 
 /**
  * Altera Driver's
@@ -193,7 +194,8 @@ static unsigned char prg[] = {
 /**************************************************************/
 
 // タイマエッジキャプチャの値を保持する変数レジスタ
-volatile int edge_capture_timer;
+volatile        int edge_capture_timer;
+volatile static int f_wait_time=0;
 
 
 /**
@@ -213,7 +215,8 @@ static void alt_timer_Interrupt (void* context, alt_u32 id)
 	// タイマのエッジキャプチャに0x1を設定にする
 	edge_capture_timer = 0x1;
 
-	/* timer test */
+	if( f_wait_time>0)  --f_wait_time;
+
 #if 0
 	IOWR_ALTERA_AVALON_PIO_DATA(GPIO0_BASE, 0);
 	IOWR_ALTERA_AVALON_PIO_DATA(GPIO0_BASE, 1);
@@ -248,6 +251,15 @@ static void alt_timer_init (void)
 
 
 /**
+ * @func Wait ms function
+ */
+static void wait_ms(int time)
+{
+	f_wait_time = time; /* ms */
+	while( f_wait_time != 0 ); /* wait */
+}
+
+/**
  * @func main
  */
 int main()
@@ -264,37 +276,40 @@ int main()
 	i = mmcfs_setup();
 	printf("mmcfs_setup value = %d\n",i);
 
-	fp[0] = fopen("mmcfs:/de0/de0_test.cmt","rb");
-	if (fp[0] == NULL) {
-		printf("nofiles\n");
-		//nd_halt();
-	}
-
-	fseek(fp[0], 0, SEEK_END);
-	i = ftell(fp[0]);
-	printf("filesize = %dbytes\n",i);
-	fseek(fp[0], 0, SEEK_SET);
 
 	/* Event loop never exits. */
 	while (1)
 	{
-
 		if( (P_CMT_GPIO_RD() & P_CMT_LOAD) && (P_CMT_GPIO_RD() & P_CMT_MOTOR) )
 		{
+			fp[0] = fopen("mmcfs:/de0/de0_test.cmt","rb");
+			if (fp[0] == NULL) {
+				printf("nofiles\n");
+				//nd_halt();
+			}
+
+			fseek(fp[0], 0, SEEK_END);
+			i = ftell(fp[0]);
+			printf("filesize = %dbytes\n",i);
+			fseek(fp[0], 0, SEEK_SET);
+
 			printf("SD/MMC Load start.\n");
-			for(i=0; i<1250000; i++); /* dummy wait 2.5s */
+			IOWR_ALTERA_AVALON_PIO_DATA(GPIO0_BASE, 1); /* LED ON */
+
+			wait_ms(2500); /* 2500ms */
 			while( (c = fgetc(fp[0])) != EOF)
 			{
-			//	fputc(c, fp[1]);
 				P_CMT_GPIO_WR(P_CMT_MCU_WR_ASSERT);
 				P_CMT_DOUT_WR((unsigned char)c);
 				P_CMT_GPIO_WR(P_CMT_MCU_WR_NEGATE);
-				for(j=0; j<20000; j++);
+				wait_ms(75);
 				printf("filedata = %02x \n",c);
 				while( P_CMT_GPIO_RD() & P_CMT_TxRDY ); /* wait for send ok */
 			}
-			for(i=0; i<650000; i++); /* dummy wait 1.3s */
+			wait_ms(13000); /* 1300ms */
 			printf("SD/MMC Load end.\n");
+			IOWR_ALTERA_AVALON_PIO_DATA(GPIO0_BASE, 0); /* LED OFF */
+
 			fclose(fp[0]);
 		}
 
