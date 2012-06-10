@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2' in SOPC Builder design 'pc8001_sub_system'
  * SOPC Builder design path: D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.sopcinfo
  *
- * Generated: Sun Jun 10 12:44:01 JST 2012
+ * Generated: Sun Jun 10 22:10:11 JST 2012
  */
 
 /*
@@ -65,11 +65,13 @@
  *
  */
 
-#define EPCS_FLASH_CONTROLLER_REGION_BASE 0x1800
-#define EPCS_FLASH_CONTROLLER_REGION_SPAN 2048
-#define RESET_REGION_BASE 0x2000000
+#define EPCS_FLASH_CONTROLLER_REGION_BASE 0x801820
+#define EPCS_FLASH_CONTROLLER_REGION_SPAN 2016
+#define RESET_REGION_BASE 0x801800
 #define RESET_REGION_SPAN 32
-#define SDRAM_REGION_BASE 0x2000020
+#define SDRAM_BEFORE_EXCEPTION_REGION_BASE 0x0
+#define SDRAM_BEFORE_EXCEPTION_REGION_SPAN 32
+#define SDRAM_REGION_BASE 0x20
 #define SDRAM_REGION_SPAN 8388576
 
 
@@ -79,7 +81,7 @@
  */
 
 #define ALT_EXCEPTIONS_DEVICE SDRAM
-#define ALT_RESET_DEVICE SDRAM
+#define ALT_RESET_DEVICE EPCS_FLASH_CONTROLLER
 #define ALT_RODATA_DEVICE SDRAM
 #define ALT_RWDATA_DEVICE SDRAM
 #define ALT_TEXT_DEVICE SDRAM

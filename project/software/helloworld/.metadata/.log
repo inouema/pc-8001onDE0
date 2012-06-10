@@ -1229,3 +1229,25 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.
 
 !ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 18:22:04.043
 !MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x28 --id=0x0 --timestamp=1339298534 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+!SESSION 2012-06-10 22:03:05.196 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_23
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ja_JP
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.cpp.product -perspective com.altera.sbtgui.ui.cPerspective
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-06-10 22:03:09.116
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.altera.sbtgui.launch 4 0 2012-06-10 22:04:55.377
+!MESSAGE The system console model is invalid. Cannot launch.
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 22:05:21.417
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --sidp=0x800028 --id=0x0 --timestamp=1339333083]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2012-06-10 22:05:25.529
+!MESSAGE Executing: [C:\Windows\system32\cmd.exe, /C, C:/altera/11.1sp1/quartus\bin\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --sidp=0x800028 --id=0x0 --timestamp=1339333083 /cygdrive/d/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/software/pc8001onDE0_subsystem/pc8001onDE0_subsystem.elf]
+
+!ENTRY com.altera.sbtgui.launch 4 0 2012-06-10 22:10:57.475
+!MESSAGE The system console model is invalid. Cannot launch.

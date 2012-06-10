@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2' in SOPC Builder design 'pc8001_sub_system'
  * SOPC Builder design path: D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.sopcinfo
  *
- * Generated: Sun Jun 10 12:44:01 JST 2012
+ * Generated: Sun Jun 10 22:10:11 JST 2012
  */
 
 /*
@@ -50,14 +50,15 @@
 
 MEMORY
 {
-    epcs_flash_controller : ORIGIN = 0x1800, LENGTH = 2048
-    reset : ORIGIN = 0x2000000, LENGTH = 32
-    sdram : ORIGIN = 0x2000020, LENGTH = 8388576
+    sdram_BEFORE_EXCEPTION : ORIGIN = 0x0, LENGTH = 32
+    sdram : ORIGIN = 0x20, LENGTH = 8388576
+    reset : ORIGIN = 0x801800, LENGTH = 32
+    epcs_flash_controller : ORIGIN = 0x801820, LENGTH = 2016
 }
 
 /* Define symbols for each memory base-address */
-__alt_mem_epcs_flash_controller = 0x1800;
-__alt_mem_sdram = 0x2000000;
+__alt_mem_sdram = 0x0;
+__alt_mem_epcs_flash_controller = 0x801800;
 
 OUTPUT_FORMAT( "elf32-littlenios2",
                "elf32-littlenios2",
@@ -308,24 +309,7 @@ SECTIONS
      *
      */
 
-    .epcs_flash_controller : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
-    {
-        PROVIDE (_alt_partition_epcs_flash_controller_start = ABSOLUTE(.));
-        *(.epcs_flash_controller. epcs_flash_controller.*)
-        . = ALIGN(4);
-        PROVIDE (_alt_partition_epcs_flash_controller_end = ABSOLUTE(.));
-    } > epcs_flash_controller
-
-    PROVIDE (_alt_partition_epcs_flash_controller_load_addr = LOADADDR(.epcs_flash_controller));
-
-    /*
-     *
-     * This section's LMA is set to the .text region.
-     * crt0 will copy to this section's specified mapped region virtual memory address (VMA)
-     *
-     */
-
-    .sdram LOADADDR (.epcs_flash_controller) + SIZEOF (.epcs_flash_controller) : AT ( LOADADDR (.epcs_flash_controller) + SIZEOF (.epcs_flash_controller) )
+    .sdram LOADADDR (.bss) + SIZEOF (.bss) : AT ( LOADADDR (.bss) + SIZEOF (.bss) )
     {
         PROVIDE (_alt_partition_sdram_start = ABSOLUTE(.));
         *(.sdram. sdram.*)
@@ -337,6 +321,23 @@ SECTIONS
     } > sdram
 
     PROVIDE (_alt_partition_sdram_load_addr = LOADADDR(.sdram));
+
+    /*
+     *
+     * This section's LMA is set to the .text region.
+     * crt0 will copy to this section's specified mapped region virtual memory address (VMA)
+     *
+     */
+
+    .epcs_flash_controller : AT ( LOADADDR (.sdram) + SIZEOF (.sdram) )
+    {
+        PROVIDE (_alt_partition_epcs_flash_controller_start = ABSOLUTE(.));
+        *(.epcs_flash_controller. epcs_flash_controller.*)
+        . = ALIGN(4);
+        PROVIDE (_alt_partition_epcs_flash_controller_end = ABSOLUTE(.));
+    } > epcs_flash_controller
+
+    PROVIDE (_alt_partition_epcs_flash_controller_load_addr = LOADADDR(.epcs_flash_controller));
 
     /*
      * Stabs debugging sections.
@@ -385,7 +386,7 @@ SECTIONS
 /*
  * Don't override this, override the __alt_stack_* symbols instead.
  */
-__alt_data_end = 0x2800000;
+__alt_data_end = 0x800000;
 
 /*
  * The next two symbols define the location of the default stack.  You can
@@ -401,4 +402,4 @@ PROVIDE( __alt_stack_limit   = __alt_stack_base );
  * Override this symbol to put the heap in a different memory.
  */
 PROVIDE( __alt_heap_start    = end );
-PROVIDE( __alt_heap_limit    = 0x2800000 );
+PROVIDE( __alt_heap_limit    = 0x800000 );

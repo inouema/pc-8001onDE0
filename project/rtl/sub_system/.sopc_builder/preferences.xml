@@ -12,13 +12,13 @@
  </systemtable>
  <clocktable>
   <columns>
-   <clockname preferredWidth="336" />
-   <clocksource preferredWidth="334" />
-   <frequency preferredWidth="317" />
+   <clockname preferredWidth="276" />
+   <clocksource preferredWidth="275" />
+   <frequency preferredWidth="258" />
    <pipeline visible="1" preferredWidth="131" />
   </columns>
  </clocktable>
- <window width="1498" height="1057" x="300" y="61" />
+ <window width="1936" height="1096" x="1912" y="-8" />
  <library
-   expandedCategories="Library/Peripherals/Multiprocessor Coordination,Project,Library/Interface Protocols,Library,Library/Memories and Memory Controllers/On-Chip,Library/Memories and Memory Controllers,Library/Peripherals/Debug and Performance,Library/Processors,Library/Interface Protocols/Serial,Library/Peripherals/Microcontroller Peripherals,Library/Peripherals" />
+   expandedCategories="Project,Library/Peripherals/Microcontroller Peripherals,Library/Memories and Memory Controllers/On-Chip,Library/Peripherals/Debug and Performance,Library/Processors,Library/Interface Protocols/Serial,Library/Interface Protocols,Library/Peripherals,Library/Memories and Memory Controllers,Library,Library/Peripherals/Multiprocessor Coordination" />
 </preferences>

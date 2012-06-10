@@ -6,7 +6,7 @@
    {
       datum baseAddress
       {
-         value = "32";
+         value = "8388640";
          type = "long";
       }
    }
@@ -14,7 +14,7 @@
    {
       datum baseAddress
       {
-         value = "112";
+         value = "8388720";
          type = "long";
       }
    }
@@ -94,7 +94,7 @@
    {
       datum baseAddress
       {
-         value = "40";
+         value = "8388648";
          type = "long";
       }
    }
@@ -102,7 +102,7 @@
    {
       datum baseAddress
       {
-         value = "6144";
+         value = "8394752";
          type = "long";
       }
    }
@@ -139,7 +139,7 @@
    {
       datum baseAddress
       {
-         value = "2048";
+         value = "8390656";
          type = "long";
       }
    }
@@ -163,7 +163,7 @@
    {
       datum _sortIndex
       {
-         value = "1";
+         value = "13";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -179,31 +179,7 @@
    {
       datum baseAddress
       {
-         value = "160";
-         type = "long";
-      }
-   }
-   element gpio1.s1
-   {
-      datum baseAddress
-      {
-         value = "16";
-         type = "long";
-      }
-   }
-   element cmt_gpio_out.s1
-   {
-      datum baseAddress
-      {
-         value = "80";
-         type = "long";
-      }
-   }
-   element cmt_dout.s1
-   {
-      datum baseAddress
-      {
-         value = "48";
+         value = "8388768";
          type = "long";
       }
    }
@@ -216,31 +192,15 @@
       }
       datum baseAddress
       {
-         value = "96";
+         value = "8388704";
          type = "long";
       }
    }
-   element sdram.s1
+   element cmt_dout.s1
    {
       datum baseAddress
       {
-         value = "33554432";
-         type = "long";
-      }
-   }
-   element timer_0.s1
-   {
-      datum baseAddress
-      {
-         value = "128";
-         type = "long";
-      }
-   }
-   element cmt_din.s1
-   {
-      datum baseAddress
-      {
-         value = "64";
+         value = "8388656";
          type = "long";
       }
    }
@@ -248,7 +208,47 @@
    {
       datum baseAddress
       {
+         value = "8388608";
+         type = "long";
+      }
+   }
+   element gpio1.s1
+   {
+      datum baseAddress
+      {
+         value = "8388624";
+         type = "long";
+      }
+   }
+   element cmt_gpio_out.s1
+   {
+      datum baseAddress
+      {
+         value = "8388688";
+         type = "long";
+      }
+   }
+   element sdram.s1
+   {
+      datum baseAddress
+      {
          value = "0";
+         type = "long";
+      }
+   }
+   element cmt_din.s1
+   {
+      datum baseAddress
+      {
+         value = "8388672";
+         type = "long";
+      }
+   }
+   element timer_0.s1
+   {
+      datum baseAddress
+      {
+         value = "8388736";
          type = "long";
       }
    }
@@ -256,7 +256,7 @@
    {
       datum _sortIndex
       {
-         value = "13";
+         value = "1";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -303,8 +303,8 @@
  <parameter name="maxAdditionalLatency" value="0" />
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="true" />
- <parameter name="systemHash" value="63299349893" />
- <parameter name="timeStamp" value="1339298533742" />
+ <parameter name="systemHash" value="61057024657" />
+ <parameter name="timeStamp" value="1339333608835" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <module kind="clock_source" version="11.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />
@@ -360,7 +360,7 @@
   <parameter name="setting_activateModelChecker" value="false" />
   <parameter name="setting_HDLSimCachesCleared" value="true" />
   <parameter name="setting_HBreakTest" value="false" />
-  <parameter name="resetSlave" value="sdram.s1" />
+  <parameter name="resetSlave">epcs_flash_controller.epcs_control_port</parameter>
   <parameter name="resetOffset" value="0" />
   <parameter name="muldiv_multiplierType" value="EmbeddedMulFast" />
   <parameter name="muldiv_divider" value="false" />
@@ -381,8 +381,8 @@
   <parameter name="mmu_TLBMissExcOffset" value="0" />
   <parameter name="manuallyAssignCpuID" value="false" />
   <parameter name="internalIrqMaskSystemInfo" value="15" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='nios2.jtag_debug_module' start='0x800' end='0x1000' /><slave name='epcs_flash_controller.epcs_control_port' start='0x1800' end='0x2000' /><slave name='sdram.s1' start='0x2000000' end='0x2800000' /></address-map>]]></parameter>
-  <parameter name="instAddrWidth" value="26" />
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' /><slave name='nios2.jtag_debug_module' start='0x800800' end='0x801000' /><slave name='epcs_flash_controller.epcs_control_port' start='0x801800' end='0x802000' /></address-map>]]></parameter>
+  <parameter name="instAddrWidth" value="24" />
   <parameter name="impl" value="Tiny" />
   <parameter name="icache_size" value="_4096" />
   <parameter name="icache_ramBlockType" value="Automatic" />
@@ -405,8 +405,8 @@
   <parameter name="dcache_numTCDM" value="_0" />
   <parameter name="dcache_lineSize" value="_32" />
   <parameter name="dcache_bursts" value="false" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='gpio0.s1' start='0x0' end='0x10' /><slave name='gpio1.s1' start='0x10' end='0x20' /><slave name='jtag_uart.avalon_jtag_slave' start='0x20' end='0x28' /><slave name='sysid.control_slave' start='0x28' end='0x30' /><slave name='cmt_dout.s1' start='0x30' end='0x40' /><slave name='cmt_din.s1' start='0x40' end='0x50' /><slave name='cmt_gpio_out.s1' start='0x50' end='0x60' /><slave name='cmt_gpio_in.s1' start='0x60' end='0x70' /><slave name='mmc_spi.avalon_slave_0' start='0x70' end='0x80' /><slave name='timer_0.s1' start='0x80' end='0xA0' /><slave name='sub_system_pll.pll_slave' start='0xA0' end='0xB0' /><slave name='nios2.jtag_debug_module' start='0x800' end='0x1000' /><slave name='epcs_flash_controller.epcs_control_port' start='0x1800' end='0x2000' /><slave name='sdram.s1' start='0x2000000' end='0x2800000' /></address-map>]]></parameter>
-  <parameter name="dataAddrWidth" value="26" />
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sdram.s1' start='0x0' end='0x800000' /><slave name='gpio0.s1' start='0x800000' end='0x800010' /><slave name='gpio1.s1' start='0x800010' end='0x800020' /><slave name='jtag_uart.avalon_jtag_slave' start='0x800020' end='0x800028' /><slave name='sysid.control_slave' start='0x800028' end='0x800030' /><slave name='cmt_dout.s1' start='0x800030' end='0x800040' /><slave name='cmt_din.s1' start='0x800040' end='0x800050' /><slave name='cmt_gpio_out.s1' start='0x800050' end='0x800060' /><slave name='cmt_gpio_in.s1' start='0x800060' end='0x800070' /><slave name='mmc_spi.avalon_slave_0' start='0x800070' end='0x800080' /><slave name='timer_0.s1' start='0x800080' end='0x8000A0' /><slave name='sub_system_pll.pll_slave' start='0x8000A0' end='0x8000B0' /><slave name='nios2.jtag_debug_module' start='0x800800' end='0x801000' /><slave name='epcs_flash_controller.epcs_control_port' start='0x801800' end='0x802000' /></address-map>]]></parameter>
+  <parameter name="dataAddrWidth" value="24" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="cpuReset" value="false" />
   <parameter name="cpuID" value="0" />
@@ -756,7 +756,7 @@
    start="nios2.instruction_master"
    end="nios2.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0800" />
+  <parameter name="baseAddress" value="0x00800800" />
  </connection>
  <connection
    kind="avalon"
@@ -764,15 +764,15 @@
    start="nios2.data_master"
    end="nios2.jtag_debug_module">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0800" />
+  <parameter name="baseAddress" value="0x00800800" />
  </connection>
  <connection kind="avalon" version="11.1" start="nios2.data_master" end="gpio0.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x00800000" />
  </connection>
  <connection kind="avalon" version="11.1" start="nios2.data_master" end="gpio1.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0010" />
+  <parameter name="baseAddress" value="0x00800010" />
  </connection>
  <connection
    kind="avalon"
@@ -780,7 +780,7 @@
    start="nios2.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0020" />
+  <parameter name="baseAddress" value="0x00800020" />
  </connection>
  <connection
    kind="interrupt"
@@ -795,7 +795,7 @@
    start="nios2.data_master"
    end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0028" />
+  <parameter name="baseAddress" value="0x00800028" />
  </connection>
  <connection
    kind="avalon"
@@ -803,7 +803,7 @@
    start="nios2.data_master"
    end="cmt_dout.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0030" />
+  <parameter name="baseAddress" value="0x00800030" />
  </connection>
  <connection
    kind="avalon"
@@ -811,7 +811,7 @@
    start="nios2.data_master"
    end="cmt_din.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0040" />
+  <parameter name="baseAddress" value="0x00800040" />
  </connection>
  <connection
    kind="avalon"
@@ -819,7 +819,7 @@
    start="nios2.data_master"
    end="cmt_gpio_out.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0050" />
+  <parameter name="baseAddress" value="0x00800050" />
  </connection>
  <connection
    kind="avalon"
@@ -827,7 +827,7 @@
    start="nios2.data_master"
    end="cmt_gpio_in.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0060" />
+  <parameter name="baseAddress" value="0x00800060" />
  </connection>
  <connection
    kind="avalon"
@@ -835,7 +835,7 @@
    start="nios2.data_master"
    end="timer_0.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0080" />
+  <parameter name="baseAddress" value="0x00800080" />
  </connection>
  <connection kind="interrupt" version="11.1" start="nios2.d_irq" end="timer_0.irq">
   <parameter name="irqNumber" value="1" />
@@ -846,7 +846,7 @@
    start="nios2.data_master"
    end="mmc_spi.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0070" />
+  <parameter name="baseAddress" value="0x00800070" />
  </connection>
  <connection
    kind="interrupt"
@@ -866,7 +866,7 @@
    start="nios2.data_master"
    end="sub_system_pll.pll_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00a0" />
+  <parameter name="baseAddress" value="0x008000a0" />
  </connection>
  <connection kind="clock" version="11.1" start="sub_system_pll.c0" end="nios2.clk" />
  <connection kind="clock" version="11.1" start="sub_system_pll.c2" end="gpio0.clk" />
@@ -908,11 +908,11 @@
    start="nios2.instruction_master"
    end="sdram.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02000000" />
+  <parameter name="baseAddress" value="0x0000" />
  </connection>
  <connection kind="avalon" version="11.1" start="nios2.data_master" end="sdram.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x02000000" />
+  <parameter name="baseAddress" value="0x0000" />
  </connection>
  <connection kind="clock" version="11.1" start="sub_system_pll.c1" end="sdram.clk" />
  <connection
@@ -921,7 +921,7 @@
    start="nios2.instruction_master"
    end="epcs_flash_controller.epcs_control_port">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x1800" />
+  <parameter name="baseAddress" value="0x00801800" />
  </connection>
  <connection
    kind="avalon"
@@ -929,7 +929,7 @@
    start="nios2.data_master"
    end="epcs_flash_controller.epcs_control_port">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x1800" />
+  <parameter name="baseAddress" value="0x00801800" />
  </connection>
  <connection
    kind="interrupt"

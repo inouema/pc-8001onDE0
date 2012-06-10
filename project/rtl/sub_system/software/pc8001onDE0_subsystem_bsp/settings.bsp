@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>2012/06/10 12:44:25</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1339299865302</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>2012/06/10 22:10:10</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1339333810735</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\software\pc8001onDE0_subsystem_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>D:\home\inouema\work\git\pc-8001onDE0\project\rtl\sub_system\pc8001_sub_system.sopcinfo</SopcDesignFile>
@@ -851,82 +851,82 @@
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
         <MemoryMap>
+                <slaveDescriptor>sdram</slaveDescriptor>
+                <addressRange>0x00000000 - 0x007FFFFF</addressRange>
+                <addressSpan>8388608</addressSpan>
+                <attributes>memory</attributes>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>gpio0</slaveDescriptor>
-                <addressRange>0x00000000 - 0x0000000F</addressRange>
+                <addressRange>0x00800000 - 0x0080000F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>gpio1</slaveDescriptor>
-                <addressRange>0x00000010 - 0x0000001F</addressRange>
+                <addressRange>0x00800010 - 0x0080001F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart</slaveDescriptor>
-                <addressRange>0x00000020 - 0x00000027</addressRange>
+                <addressRange>0x00800020 - 0x00800027</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid</slaveDescriptor>
-                <addressRange>0x00000028 - 0x0000002F</addressRange>
+                <addressRange>0x00800028 - 0x0080002F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>cmt_dout</slaveDescriptor>
-                <addressRange>0x00000030 - 0x0000003F</addressRange>
+                <addressRange>0x00800030 - 0x0080003F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>cmt_din</slaveDescriptor>
-                <addressRange>0x00000040 - 0x0000004F</addressRange>
+                <addressRange>0x00800040 - 0x0080004F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>cmt_gpio_out</slaveDescriptor>
-                <addressRange>0x00000050 - 0x0000005F</addressRange>
+                <addressRange>0x00800050 - 0x0080005F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>cmt_gpio_in</slaveDescriptor>
-                <addressRange>0x00000060 - 0x0000006F</addressRange>
+                <addressRange>0x00800060 - 0x0080006F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>mmc_spi</slaveDescriptor>
-                <addressRange>0x00000070 - 0x0000007F</addressRange>
+                <addressRange>0x00800070 - 0x0080007F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>timer_0</slaveDescriptor>
-                <addressRange>0x00000080 - 0x0000009F</addressRange>
+                <addressRange>0x00800080 - 0x0080009F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sub_system_pll</slaveDescriptor>
-                <addressRange>0x000000A0 - 0x000000AF</addressRange>
+                <addressRange>0x008000A0 - 0x008000AF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>epcs_flash_controller</slaveDescriptor>
-                <addressRange>0x00001800 - 0x00001FFF</addressRange>
+                <addressRange>0x00801800 - 0x00801FFF</addressRange>
                 <addressSpan>2048</addressSpan>
                 <attributes>flash, memory, non-volatile</attributes>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>sdram</slaveDescriptor>
-                <addressRange>0x02000000 - 0x027FFFFF</addressRange>
-                <addressSpan>8388608</addressSpan>
-                <attributes>memory</attributes>
         </MemoryMap>
         <LinkerSection>
                 <sectionName>.text</sectionName>

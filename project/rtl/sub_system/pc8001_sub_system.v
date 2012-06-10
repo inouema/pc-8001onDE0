@@ -1129,11 +1129,11 @@ module epcs_flash_controller_epcs_control_port_arbitrator (
   input            epcs_flash_controller_epcs_control_port_irq;
   input   [ 31: 0] epcs_flash_controller_epcs_control_port_readdata;
   input            epcs_flash_controller_epcs_control_port_readyfordata;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input            nios2_data_master_read;
   input            nios2_data_master_write;
   input   [ 31: 0] nios2_data_master_writedata;
-  input   [ 25: 0] nios2_instruction_master_address_to_slave;
+  input   [ 23: 0] nios2_instruction_master_address_to_slave;
   input            nios2_instruction_master_read;
   input            reset_n;
 
@@ -1201,8 +1201,8 @@ module epcs_flash_controller_epcs_control_port_arbitrator (
   wire             nios2_instruction_master_read_data_valid_epcs_flash_controller_epcs_control_port;
   wire             nios2_instruction_master_requests_epcs_flash_controller_epcs_control_port;
   wire             nios2_instruction_master_saved_grant_epcs_flash_controller_epcs_control_port;
-  wire    [ 25: 0] shifted_address_to_epcs_flash_controller_epcs_control_port_from_nios2_data_master;
-  wire    [ 25: 0] shifted_address_to_epcs_flash_controller_epcs_control_port_from_nios2_instruction_master;
+  wire    [ 23: 0] shifted_address_to_epcs_flash_controller_epcs_control_port_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_epcs_flash_controller_epcs_control_port_from_nios2_instruction_master;
   wire             wait_for_epcs_flash_controller_epcs_control_port_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -1217,7 +1217,7 @@ module epcs_flash_controller_epcs_control_port_arbitrator (
   //assign epcs_flash_controller_epcs_control_port_readdata_from_sa = epcs_flash_controller_epcs_control_port_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign epcs_flash_controller_epcs_control_port_readdata_from_sa = epcs_flash_controller_epcs_control_port_readdata;
 
-  assign nios2_data_master_requests_epcs_flash_controller_epcs_control_port = ({nios2_data_master_address_to_slave[25 : 11] , 11'b0} == 26'h1800) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_epcs_flash_controller_epcs_control_port = ({nios2_data_master_address_to_slave[23 : 11] , 11'b0} == 24'h801800) & (nios2_data_master_read | nios2_data_master_write);
   //assign epcs_flash_controller_epcs_control_port_dataavailable_from_sa = epcs_flash_controller_epcs_control_port_dataavailable so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign epcs_flash_controller_epcs_control_port_dataavailable_from_sa = epcs_flash_controller_epcs_control_port_dataavailable;
 
@@ -1313,7 +1313,7 @@ module epcs_flash_controller_epcs_control_port_arbitrator (
   //assign epcs_flash_controller_epcs_control_port_endofpacket_from_sa = epcs_flash_controller_epcs_control_port_endofpacket so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign epcs_flash_controller_epcs_control_port_endofpacket_from_sa = epcs_flash_controller_epcs_control_port_endofpacket;
 
-  assign nios2_instruction_master_requests_epcs_flash_controller_epcs_control_port = (({nios2_instruction_master_address_to_slave[25 : 11] , 11'b0} == 26'h1800) & (nios2_instruction_master_read)) & nios2_instruction_master_read;
+  assign nios2_instruction_master_requests_epcs_flash_controller_epcs_control_port = (({nios2_instruction_master_address_to_slave[23 : 11] , 11'b0} == 24'h801800) & (nios2_instruction_master_read)) & nios2_instruction_master_read;
   //nios2/data_master granted epcs_flash_controller/epcs_control_port last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -2080,7 +2080,7 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   input   [ 31: 0] jtag_uart_avalon_jtag_slave_readdata;
   input            jtag_uart_avalon_jtag_slave_readyfordata;
   input            jtag_uart_avalon_jtag_slave_waitrequest;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
   input            nios2_data_master_write;
@@ -2135,7 +2135,7 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   wire             nios2_data_master_read_data_valid_jtag_uart_avalon_jtag_slave;
   wire             nios2_data_master_requests_jtag_uart_avalon_jtag_slave;
   wire             nios2_data_master_saved_grant_jtag_uart_avalon_jtag_slave;
-  wire    [ 25: 0] shifted_address_to_jtag_uart_avalon_jtag_slave_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_jtag_uart_avalon_jtag_slave_from_nios2_data_master;
   wire             wait_for_jtag_uart_avalon_jtag_slave_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -2150,7 +2150,7 @@ module jtag_uart_avalon_jtag_slave_arbitrator (
   //assign jtag_uart_avalon_jtag_slave_readdata_from_sa = jtag_uart_avalon_jtag_slave_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_readdata_from_sa = jtag_uart_avalon_jtag_slave_readdata;
 
-  assign nios2_data_master_requests_jtag_uart_avalon_jtag_slave = ({nios2_data_master_address_to_slave[25 : 3] , 3'b0} == 26'h20) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_jtag_uart_avalon_jtag_slave = ({nios2_data_master_address_to_slave[23 : 3] , 3'b0} == 24'h800020) & (nios2_data_master_read | nios2_data_master_write);
   //assign jtag_uart_avalon_jtag_slave_dataavailable_from_sa = jtag_uart_avalon_jtag_slave_dataavailable so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign jtag_uart_avalon_jtag_slave_dataavailable_from_sa = jtag_uart_avalon_jtag_slave_dataavailable;
 
@@ -2674,14 +2674,14 @@ module nios2_jtag_debug_module_arbitrator (
   output           nios2_jtag_debug_module_write;
   output  [ 31: 0] nios2_jtag_debug_module_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_debugaccess;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
   input            nios2_data_master_write;
   input   [ 31: 0] nios2_data_master_writedata;
-  input   [ 25: 0] nios2_instruction_master_address_to_slave;
+  input   [ 23: 0] nios2_instruction_master_address_to_slave;
   input            nios2_instruction_master_read;
   input   [ 31: 0] nios2_jtag_debug_module_readdata;
   input            nios2_jtag_debug_module_resetrequest;
@@ -2750,8 +2750,8 @@ module nios2_jtag_debug_module_arbitrator (
   wire             nios2_jtag_debug_module_waits_for_write;
   wire             nios2_jtag_debug_module_write;
   wire    [ 31: 0] nios2_jtag_debug_module_writedata;
-  wire    [ 25: 0] shifted_address_to_nios2_jtag_debug_module_from_nios2_data_master;
-  wire    [ 25: 0] shifted_address_to_nios2_jtag_debug_module_from_nios2_instruction_master;
+  wire    [ 23: 0] shifted_address_to_nios2_jtag_debug_module_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_nios2_jtag_debug_module_from_nios2_instruction_master;
   wire             wait_for_nios2_jtag_debug_module_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -2766,7 +2766,7 @@ module nios2_jtag_debug_module_arbitrator (
   //assign nios2_jtag_debug_module_readdata_from_sa = nios2_jtag_debug_module_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign nios2_jtag_debug_module_readdata_from_sa = nios2_jtag_debug_module_readdata;
 
-  assign nios2_data_master_requests_nios2_jtag_debug_module = ({nios2_data_master_address_to_slave[25 : 11] , 11'b0} == 26'h800) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_nios2_jtag_debug_module = ({nios2_data_master_address_to_slave[23 : 11] , 11'b0} == 24'h800800) & (nios2_data_master_read | nios2_data_master_write);
   //nios2_jtag_debug_module_arb_share_counter set values, which is an e_mux
   assign nios2_jtag_debug_module_arb_share_set_values = 1;
 
@@ -2853,7 +2853,7 @@ module nios2_jtag_debug_module_arbitrator (
   //nios2_jtag_debug_module_writedata mux, which is an e_mux
   assign nios2_jtag_debug_module_writedata = nios2_data_master_writedata;
 
-  assign nios2_instruction_master_requests_nios2_jtag_debug_module = (({nios2_instruction_master_address_to_slave[25 : 11] , 11'b0} == 26'h800) & (nios2_instruction_master_read)) & nios2_instruction_master_read;
+  assign nios2_instruction_master_requests_nios2_jtag_debug_module = (({nios2_instruction_master_address_to_slave[23 : 11] , 11'b0} == 24'h800800) & (nios2_instruction_master_read)) & nios2_instruction_master_read;
   //nios2/data_master granted nios2/jtag_debug_module last time, which is an e_register
   always @(posedge clk or negedge reset_n)
     begin
@@ -3218,7 +3218,7 @@ module nios2_data_master_arbitrator (
                                     )
 ;
 
-  output  [ 25: 0] nios2_data_master_address_to_slave;
+  output  [ 23: 0] nios2_data_master_address_to_slave;
   output  [  1: 0] nios2_data_master_dbs_address;
   output  [ 15: 0] nios2_data_master_dbs_write_16;
   output  [ 31: 0] nios2_data_master_irq;
@@ -3246,7 +3246,7 @@ module nios2_data_master_arbitrator (
   input   [ 31: 0] jtag_uart_avalon_jtag_slave_readdata_from_sa;
   input            jtag_uart_avalon_jtag_slave_waitrequest_from_sa;
   input            mmc_spi_avalon_slave_0_irq_from_sa;
-  input   [ 25: 0] nios2_data_master_address;
+  input   [ 23: 0] nios2_data_master_address;
   input   [  1: 0] nios2_data_master_byteenable_pc8001_sub_system_clock_9_in;
   input            nios2_data_master_granted_epcs_flash_controller_epcs_control_port;
   input            nios2_data_master_granted_jtag_uart_avalon_jtag_slave;
@@ -3338,7 +3338,7 @@ module nios2_data_master_arbitrator (
   wire             dbs_counter_overflow;
   wire             last_dbs_term_and_run;
   wire    [  1: 0] next_dbs_address;
-  wire    [ 25: 0] nios2_data_master_address_to_slave;
+  wire    [ 23: 0] nios2_data_master_address_to_slave;
   reg     [  1: 0] nios2_data_master_dbs_address;
   wire    [  1: 0] nios2_data_master_dbs_increment;
   wire    [ 15: 0] nios2_data_master_dbs_write_16;
@@ -3368,9 +3368,7 @@ module nios2_data_master_arbitrator (
   assign r_2 = ((~nios2_data_master_qualified_request_pc8001_sub_system_clock_6_in | ~(nios2_data_master_read | nios2_data_master_write) | (1 & ~pc8001_sub_system_clock_6_in_waitrequest_from_sa & (nios2_data_master_read | nios2_data_master_write)))) & ((~nios2_data_master_qualified_request_pc8001_sub_system_clock_6_in | ~(nios2_data_master_read | nios2_data_master_write) | (1 & ~pc8001_sub_system_clock_6_in_waitrequest_from_sa & (nios2_data_master_read | nios2_data_master_write)))) & 1 & (nios2_data_master_qualified_request_pc8001_sub_system_clock_7_in | ~nios2_data_master_requests_pc8001_sub_system_clock_7_in) & ((~nios2_data_master_qualified_request_pc8001_sub_system_clock_7_in | ~(nios2_data_master_read | nios2_data_master_write) | (1 & ~pc8001_sub_system_clock_7_in_waitrequest_from_sa & (nios2_data_master_read | nios2_data_master_write)))) & ((~nios2_data_master_qualified_request_pc8001_sub_system_clock_7_in | ~(nios2_data_master_read | nios2_data_master_write) | (1 & ~pc8001_sub_system_clock_7_in_waitrequest_from_sa & (nios2_data_master_read | nios2_data_master_write)))) & 1 & (nios2_data_master_qualified_request_pc8001_sub_system_clock_9_in | (nios2_data_master_write & !nios2_data_master_byteenable_pc8001_sub_system_clock_9_in & nios2_data_master_dbs_address[1]) | ~nios2_data_master_requests_pc8001_sub_system_clock_9_in) & ((~nios2_data_master_qualified_request_pc8001_sub_system_clock_9_in | ~nios2_data_master_read | (1 & ~pc8001_sub_system_clock_9_in_waitrequest_from_sa & (nios2_data_master_dbs_address[1]) & nios2_data_master_read))) & ((~nios2_data_master_qualified_request_pc8001_sub_system_clock_9_in | ~nios2_data_master_write | (1 & ~pc8001_sub_system_clock_9_in_waitrequest_from_sa & (nios2_data_master_dbs_address[1]) & nios2_data_master_write))) & 1 & ((~nios2_data_master_qualified_request_sysid_control_slave | ~nios2_data_master_read | (1 & 1 & nios2_data_master_read))) & ((~nios2_data_master_qualified_request_sysid_control_slave | ~nios2_data_master_write | (1 & nios2_data_master_write))) & 1 & (nios2_data_master_qualified_request_timer_0_s1 | ~nios2_data_master_requests_timer_0_s1) & ((~nios2_data_master_qualified_request_timer_0_s1 | ~nios2_data_master_read | (1 & 1 & nios2_data_master_read))) & ((~nios2_data_master_qualified_request_timer_0_s1 | ~nios2_data_master_write | (1 & nios2_data_master_write)));
 
   //optimize select-logic by passing only those address bits which matter.
-  assign nios2_data_master_address_to_slave = {nios2_data_master_address[25],
-    2'b0,
-    nios2_data_master_address[22 : 0]};
+  assign nios2_data_master_address_to_slave = nios2_data_master_address[23 : 0];
 
   //nios2/data_master readdata mux, which is an e_mux
   assign nios2_data_master_readdata = ({32 {~nios2_data_master_requests_epcs_flash_controller_epcs_control_port}} | epcs_flash_controller_epcs_control_port_readdata_from_sa) &
@@ -3569,7 +3567,7 @@ module nios2_instruction_master_arbitrator (
                                            )
 ;
 
-  output  [ 25: 0] nios2_instruction_master_address_to_slave;
+  output  [ 23: 0] nios2_instruction_master_address_to_slave;
   output  [  1: 0] nios2_instruction_master_dbs_address;
   output  [ 31: 0] nios2_instruction_master_readdata;
   output           nios2_instruction_master_waitrequest;
@@ -3578,7 +3576,7 @@ module nios2_instruction_master_arbitrator (
   input            d1_nios2_jtag_debug_module_end_xfer;
   input            d1_pc8001_sub_system_clock_8_in_end_xfer;
   input   [ 31: 0] epcs_flash_controller_epcs_control_port_readdata_from_sa;
-  input   [ 25: 0] nios2_instruction_master_address;
+  input   [ 23: 0] nios2_instruction_master_address;
   input            nios2_instruction_master_granted_epcs_flash_controller_epcs_control_port;
   input            nios2_instruction_master_granted_nios2_jtag_debug_module;
   input            nios2_instruction_master_granted_pc8001_sub_system_clock_8_in;
@@ -3602,8 +3600,8 @@ module nios2_instruction_master_arbitrator (
   wire             dbs_count_enable;
   wire             dbs_counter_overflow;
   wire    [  1: 0] next_dbs_address;
-  reg     [ 25: 0] nios2_instruction_master_address_last_time;
-  wire    [ 25: 0] nios2_instruction_master_address_to_slave;
+  reg     [ 23: 0] nios2_instruction_master_address_last_time;
+  wire    [ 23: 0] nios2_instruction_master_address_to_slave;
   reg     [  1: 0] nios2_instruction_master_dbs_address;
   wire    [  1: 0] nios2_instruction_master_dbs_increment;
   reg              nios2_instruction_master_read_last_time;
@@ -3624,9 +3622,7 @@ module nios2_instruction_master_arbitrator (
   assign r_2 = 1 & ((~nios2_instruction_master_qualified_request_pc8001_sub_system_clock_8_in | ~nios2_instruction_master_read | (1 & ~pc8001_sub_system_clock_8_in_waitrequest_from_sa & (nios2_instruction_master_dbs_address[1]) & nios2_instruction_master_read)));
 
   //optimize select-logic by passing only those address bits which matter.
-  assign nios2_instruction_master_address_to_slave = {nios2_instruction_master_address[25],
-    2'b0,
-    nios2_instruction_master_address[22 : 0]};
+  assign nios2_instruction_master_address_to_slave = nios2_instruction_master_address[23 : 0];
 
   //nios2/instruction_master readdata mux, which is an e_mux
   assign nios2_instruction_master_readdata = ({32 {~nios2_instruction_master_requests_epcs_flash_controller_epcs_control_port}} | epcs_flash_controller_epcs_control_port_readdata_from_sa) &
@@ -3796,7 +3792,7 @@ module pc8001_sub_system_clock_0_in_arbitrator (
   output           pc8001_sub_system_clock_0_in_write;
   output  [ 31: 0] pc8001_sub_system_clock_0_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
@@ -3854,7 +3850,7 @@ module pc8001_sub_system_clock_0_in_arbitrator (
   wire             pc8001_sub_system_clock_0_in_waits_for_write;
   wire             pc8001_sub_system_clock_0_in_write;
   wire    [ 31: 0] pc8001_sub_system_clock_0_in_writedata;
-  wire    [ 25: 0] shifted_address_to_pc8001_sub_system_clock_0_in_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_pc8001_sub_system_clock_0_in_from_nios2_data_master;
   wire             wait_for_pc8001_sub_system_clock_0_in_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -3869,7 +3865,7 @@ module pc8001_sub_system_clock_0_in_arbitrator (
   //assign pc8001_sub_system_clock_0_in_readdata_from_sa = pc8001_sub_system_clock_0_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_0_in_readdata_from_sa = pc8001_sub_system_clock_0_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_0_in = ({nios2_data_master_address_to_slave[25 : 4] , 4'b0} == 26'h0) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_0_in = ({nios2_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h800000) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_0_in_waitrequest_from_sa = pc8001_sub_system_clock_0_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_0_in_waitrequest_from_sa = pc8001_sub_system_clock_0_in_waitrequest;
 
@@ -4306,7 +4302,7 @@ module pc8001_sub_system_clock_1_in_arbitrator (
   output           pc8001_sub_system_clock_1_in_write;
   output  [ 31: 0] pc8001_sub_system_clock_1_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
@@ -4364,7 +4360,7 @@ module pc8001_sub_system_clock_1_in_arbitrator (
   wire             pc8001_sub_system_clock_1_in_waits_for_write;
   wire             pc8001_sub_system_clock_1_in_write;
   wire    [ 31: 0] pc8001_sub_system_clock_1_in_writedata;
-  wire    [ 25: 0] shifted_address_to_pc8001_sub_system_clock_1_in_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_pc8001_sub_system_clock_1_in_from_nios2_data_master;
   wire             wait_for_pc8001_sub_system_clock_1_in_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -4379,7 +4375,7 @@ module pc8001_sub_system_clock_1_in_arbitrator (
   //assign pc8001_sub_system_clock_1_in_readdata_from_sa = pc8001_sub_system_clock_1_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_1_in_readdata_from_sa = pc8001_sub_system_clock_1_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_1_in = ({nios2_data_master_address_to_slave[25 : 4] , 4'b0} == 26'h10) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_1_in = ({nios2_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h800010) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_1_in_waitrequest_from_sa = pc8001_sub_system_clock_1_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_1_in_waitrequest_from_sa = pc8001_sub_system_clock_1_in_waitrequest;
 
@@ -4816,7 +4812,7 @@ module pc8001_sub_system_clock_2_in_arbitrator (
   output           pc8001_sub_system_clock_2_in_write;
   output  [ 31: 0] pc8001_sub_system_clock_2_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
@@ -4874,7 +4870,7 @@ module pc8001_sub_system_clock_2_in_arbitrator (
   wire             pc8001_sub_system_clock_2_in_waits_for_write;
   wire             pc8001_sub_system_clock_2_in_write;
   wire    [ 31: 0] pc8001_sub_system_clock_2_in_writedata;
-  wire    [ 25: 0] shifted_address_to_pc8001_sub_system_clock_2_in_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_pc8001_sub_system_clock_2_in_from_nios2_data_master;
   wire             wait_for_pc8001_sub_system_clock_2_in_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -4889,7 +4885,7 @@ module pc8001_sub_system_clock_2_in_arbitrator (
   //assign pc8001_sub_system_clock_2_in_readdata_from_sa = pc8001_sub_system_clock_2_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_2_in_readdata_from_sa = pc8001_sub_system_clock_2_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_2_in = ({nios2_data_master_address_to_slave[25 : 4] , 4'b0} == 26'h30) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_2_in = ({nios2_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h800030) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_2_in_waitrequest_from_sa = pc8001_sub_system_clock_2_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_2_in_waitrequest_from_sa = pc8001_sub_system_clock_2_in_waitrequest;
 
@@ -5326,7 +5322,7 @@ module pc8001_sub_system_clock_3_in_arbitrator (
   output           pc8001_sub_system_clock_3_in_write;
   output  [ 31: 0] pc8001_sub_system_clock_3_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
@@ -5384,7 +5380,7 @@ module pc8001_sub_system_clock_3_in_arbitrator (
   wire             pc8001_sub_system_clock_3_in_waits_for_write;
   wire             pc8001_sub_system_clock_3_in_write;
   wire    [ 31: 0] pc8001_sub_system_clock_3_in_writedata;
-  wire    [ 25: 0] shifted_address_to_pc8001_sub_system_clock_3_in_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_pc8001_sub_system_clock_3_in_from_nios2_data_master;
   wire             wait_for_pc8001_sub_system_clock_3_in_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -5399,7 +5395,7 @@ module pc8001_sub_system_clock_3_in_arbitrator (
   //assign pc8001_sub_system_clock_3_in_readdata_from_sa = pc8001_sub_system_clock_3_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_3_in_readdata_from_sa = pc8001_sub_system_clock_3_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_3_in = ({nios2_data_master_address_to_slave[25 : 4] , 4'b0} == 26'h40) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_3_in = ({nios2_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h800040) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_3_in_waitrequest_from_sa = pc8001_sub_system_clock_3_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_3_in_waitrequest_from_sa = pc8001_sub_system_clock_3_in_waitrequest;
 
@@ -5836,7 +5832,7 @@ module pc8001_sub_system_clock_4_in_arbitrator (
   output           pc8001_sub_system_clock_4_in_write;
   output  [ 31: 0] pc8001_sub_system_clock_4_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
@@ -5894,7 +5890,7 @@ module pc8001_sub_system_clock_4_in_arbitrator (
   wire             pc8001_sub_system_clock_4_in_waits_for_write;
   wire             pc8001_sub_system_clock_4_in_write;
   wire    [ 31: 0] pc8001_sub_system_clock_4_in_writedata;
-  wire    [ 25: 0] shifted_address_to_pc8001_sub_system_clock_4_in_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_pc8001_sub_system_clock_4_in_from_nios2_data_master;
   wire             wait_for_pc8001_sub_system_clock_4_in_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -5909,7 +5905,7 @@ module pc8001_sub_system_clock_4_in_arbitrator (
   //assign pc8001_sub_system_clock_4_in_readdata_from_sa = pc8001_sub_system_clock_4_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_4_in_readdata_from_sa = pc8001_sub_system_clock_4_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_4_in = ({nios2_data_master_address_to_slave[25 : 4] , 4'b0} == 26'h50) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_4_in = ({nios2_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h800050) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_4_in_waitrequest_from_sa = pc8001_sub_system_clock_4_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_4_in_waitrequest_from_sa = pc8001_sub_system_clock_4_in_waitrequest;
 
@@ -6346,7 +6342,7 @@ module pc8001_sub_system_clock_5_in_arbitrator (
   output           pc8001_sub_system_clock_5_in_write;
   output  [ 31: 0] pc8001_sub_system_clock_5_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
@@ -6404,7 +6400,7 @@ module pc8001_sub_system_clock_5_in_arbitrator (
   wire             pc8001_sub_system_clock_5_in_waits_for_write;
   wire             pc8001_sub_system_clock_5_in_write;
   wire    [ 31: 0] pc8001_sub_system_clock_5_in_writedata;
-  wire    [ 25: 0] shifted_address_to_pc8001_sub_system_clock_5_in_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_pc8001_sub_system_clock_5_in_from_nios2_data_master;
   wire             wait_for_pc8001_sub_system_clock_5_in_counter;
   always @(posedge clk or negedge reset_n)
     begin
@@ -6419,7 +6415,7 @@ module pc8001_sub_system_clock_5_in_arbitrator (
   //assign pc8001_sub_system_clock_5_in_readdata_from_sa = pc8001_sub_system_clock_5_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_5_in_readdata_from_sa = pc8001_sub_system_clock_5_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_5_in = ({nios2_data_master_address_to_slave[25 : 4] , 4'b0} == 26'h60) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_5_in = ({nios2_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h800060) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_5_in_waitrequest_from_sa = pc8001_sub_system_clock_5_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_5_in_waitrequest_from_sa = pc8001_sub_system_clock_5_in_waitrequest;
 
@@ -6856,7 +6852,7 @@ module pc8001_sub_system_clock_6_in_arbitrator (
   output           pc8001_sub_system_clock_6_in_write;
   output  [ 31: 0] pc8001_sub_system_clock_6_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
@@ -6928,7 +6924,7 @@ module pc8001_sub_system_clock_6_in_arbitrator (
   //assign pc8001_sub_system_clock_6_in_readdata_from_sa = pc8001_sub_system_clock_6_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_6_in_readdata_from_sa = pc8001_sub_system_clock_6_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_6_in = ({nios2_data_master_address_to_slave[25 : 4] , 4'b0} == 26'h70) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_6_in = ({nios2_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h800070) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_6_in_waitrequest_from_sa = pc8001_sub_system_clock_6_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_6_in_waitrequest_from_sa = pc8001_sub_system_clock_6_in_waitrequest;
 
@@ -7364,7 +7360,7 @@ module pc8001_sub_system_clock_7_in_arbitrator (
   output           pc8001_sub_system_clock_7_in_write;
   output  [ 31: 0] pc8001_sub_system_clock_7_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
@@ -7436,7 +7432,7 @@ module pc8001_sub_system_clock_7_in_arbitrator (
   //assign pc8001_sub_system_clock_7_in_readdata_from_sa = pc8001_sub_system_clock_7_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_7_in_readdata_from_sa = pc8001_sub_system_clock_7_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_7_in = ({nios2_data_master_address_to_slave[25 : 4] , 4'b0} == 26'ha0) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_7_in = ({nios2_data_master_address_to_slave[23 : 4] , 4'b0} == 24'h8000a0) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_7_in_waitrequest_from_sa = pc8001_sub_system_clock_7_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_7_in_waitrequest_from_sa = pc8001_sub_system_clock_7_in_waitrequest;
 
@@ -7867,7 +7863,7 @@ module pc8001_sub_system_clock_8_in_arbitrator (
   output           pc8001_sub_system_clock_8_in_waitrequest_from_sa;
   output           pc8001_sub_system_clock_8_in_write;
   input            clk;
-  input   [ 25: 0] nios2_instruction_master_address_to_slave;
+  input   [ 23: 0] nios2_instruction_master_address_to_slave;
   input   [  1: 0] nios2_instruction_master_dbs_address;
   input            nios2_instruction_master_read;
   input            pc8001_sub_system_clock_8_in_endofpacket;
@@ -7935,7 +7931,7 @@ module pc8001_sub_system_clock_8_in_arbitrator (
   //assign pc8001_sub_system_clock_8_in_readdata_from_sa = pc8001_sub_system_clock_8_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_8_in_readdata_from_sa = pc8001_sub_system_clock_8_in_readdata;
 
-  assign nios2_instruction_master_requests_pc8001_sub_system_clock_8_in = (({nios2_instruction_master_address_to_slave[25 : 23] , 23'b0} == 26'h2000000) & (nios2_instruction_master_read)) & nios2_instruction_master_read;
+  assign nios2_instruction_master_requests_pc8001_sub_system_clock_8_in = (({nios2_instruction_master_address_to_slave[23] , 23'b0} == 24'h0) & (nios2_instruction_master_read)) & nios2_instruction_master_read;
   //assign pc8001_sub_system_clock_8_in_waitrequest_from_sa = pc8001_sub_system_clock_8_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_8_in_waitrequest_from_sa = pc8001_sub_system_clock_8_in_waitrequest;
 
@@ -8378,7 +8374,7 @@ module pc8001_sub_system_clock_9_in_arbitrator (
   output           pc8001_sub_system_clock_9_in_write;
   output  [ 15: 0] pc8001_sub_system_clock_9_in_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input   [  3: 0] nios2_data_master_byteenable;
   input   [  1: 0] nios2_data_master_dbs_address;
   input   [ 15: 0] nios2_data_master_dbs_write_16;
@@ -8455,7 +8451,7 @@ module pc8001_sub_system_clock_9_in_arbitrator (
   //assign pc8001_sub_system_clock_9_in_readdata_from_sa = pc8001_sub_system_clock_9_in_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_9_in_readdata_from_sa = pc8001_sub_system_clock_9_in_readdata;
 
-  assign nios2_data_master_requests_pc8001_sub_system_clock_9_in = ({nios2_data_master_address_to_slave[25 : 23] , 23'b0} == 26'h2000000) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_pc8001_sub_system_clock_9_in = ({nios2_data_master_address_to_slave[23] , 23'b0} == 24'h0) & (nios2_data_master_read | nios2_data_master_write);
   //assign pc8001_sub_system_clock_9_in_waitrequest_from_sa = pc8001_sub_system_clock_9_in_waitrequest so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign pc8001_sub_system_clock_9_in_waitrequest_from_sa = pc8001_sub_system_clock_9_in_waitrequest;
 
@@ -10350,7 +10346,7 @@ module sysid_control_slave_arbitrator (
   output  [ 31: 0] sysid_control_slave_readdata_from_sa;
   output           sysid_control_slave_reset_n;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input            nios2_data_master_read;
   input            nios2_data_master_write;
   input            reset_n;
@@ -10370,7 +10366,7 @@ module sysid_control_slave_arbitrator (
   wire             nios2_data_master_read_data_valid_sysid_control_slave;
   wire             nios2_data_master_requests_sysid_control_slave;
   wire             nios2_data_master_saved_grant_sysid_control_slave;
-  wire    [ 25: 0] shifted_address_to_sysid_control_slave_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_sysid_control_slave_from_nios2_data_master;
   wire             sysid_control_slave_address;
   wire             sysid_control_slave_allgrants;
   wire             sysid_control_slave_allow_new_arb_cycle;
@@ -10411,7 +10407,7 @@ module sysid_control_slave_arbitrator (
   //assign sysid_control_slave_readdata_from_sa = sysid_control_slave_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign sysid_control_slave_readdata_from_sa = sysid_control_slave_readdata;
 
-  assign nios2_data_master_requests_sysid_control_slave = (({nios2_data_master_address_to_slave[25 : 3] , 3'b0} == 26'h28) & (nios2_data_master_read | nios2_data_master_write)) & nios2_data_master_read;
+  assign nios2_data_master_requests_sysid_control_slave = (({nios2_data_master_address_to_slave[23 : 3] , 3'b0} == 24'h800028) & (nios2_data_master_read | nios2_data_master_write)) & nios2_data_master_read;
   //sysid_control_slave_arb_share_counter set values, which is an e_mux
   assign sysid_control_slave_arb_share_set_values = 1;
 
@@ -10612,7 +10608,7 @@ module timer_0_s1_arbitrator (
   output           timer_0_s1_write_n;
   output  [ 15: 0] timer_0_s1_writedata;
   input            clk;
-  input   [ 25: 0] nios2_data_master_address_to_slave;
+  input   [ 23: 0] nios2_data_master_address_to_slave;
   input            nios2_data_master_read;
   input            nios2_data_master_waitrequest;
   input            nios2_data_master_write;
@@ -10635,7 +10631,7 @@ module timer_0_s1_arbitrator (
   wire             nios2_data_master_read_data_valid_timer_0_s1;
   wire             nios2_data_master_requests_timer_0_s1;
   wire             nios2_data_master_saved_grant_timer_0_s1;
-  wire    [ 25: 0] shifted_address_to_timer_0_s1_from_nios2_data_master;
+  wire    [ 23: 0] shifted_address_to_timer_0_s1_from_nios2_data_master;
   wire    [  2: 0] timer_0_s1_address;
   wire             timer_0_s1_allgrants;
   wire             timer_0_s1_allow_new_arb_cycle;
@@ -10680,7 +10676,7 @@ module timer_0_s1_arbitrator (
   //assign timer_0_s1_readdata_from_sa = timer_0_s1_readdata so that symbol knows where to group signals which may go to master only, which is an e_assign
   assign timer_0_s1_readdata_from_sa = timer_0_s1_readdata;
 
-  assign nios2_data_master_requests_timer_0_s1 = ({nios2_data_master_address_to_slave[25 : 5] , 5'b0} == 26'h80) & (nios2_data_master_read | nios2_data_master_write);
+  assign nios2_data_master_requests_timer_0_s1 = ({nios2_data_master_address_to_slave[23 : 5] , 5'b0} == 24'h800080) & (nios2_data_master_read | nios2_data_master_write);
   //timer_0_s1_arb_share_counter set values, which is an e_mux
   assign timer_0_s1_arb_share_set_values = 1;
 
@@ -11289,8 +11285,8 @@ module pc8001_sub_system (
   wire             mmc_spi_avalon_slave_0_reset;
   wire             mmc_spi_avalon_slave_0_write;
   wire    [ 31: 0] mmc_spi_avalon_slave_0_writedata;
-  wire    [ 25: 0] nios2_data_master_address;
-  wire    [ 25: 0] nios2_data_master_address_to_slave;
+  wire    [ 23: 0] nios2_data_master_address;
+  wire    [ 23: 0] nios2_data_master_address_to_slave;
   wire    [  3: 0] nios2_data_master_byteenable;
   wire    [  1: 0] nios2_data_master_byteenable_pc8001_sub_system_clock_9_in;
   wire    [  1: 0] nios2_data_master_dbs_address;
@@ -11359,8 +11355,8 @@ module pc8001_sub_system (
   wire             nios2_data_master_waitrequest;
   wire             nios2_data_master_write;
   wire    [ 31: 0] nios2_data_master_writedata;
-  wire    [ 25: 0] nios2_instruction_master_address;
-  wire    [ 25: 0] nios2_instruction_master_address_to_slave;
+  wire    [ 23: 0] nios2_instruction_master_address;
+  wire    [ 23: 0] nios2_instruction_master_address_to_slave;
   wire    [  1: 0] nios2_instruction_master_dbs_address;
   wire             nios2_instruction_master_granted_epcs_flash_controller_epcs_control_port;
   wire             nios2_instruction_master_granted_nios2_jtag_debug_module;

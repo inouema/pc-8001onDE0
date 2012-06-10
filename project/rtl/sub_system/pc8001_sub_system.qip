@@ -22,7 +22,7 @@ set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sub_sys
 # epcs_flash_controller
 # null
 set_global_assignment -name SDC_FILE [file join $::quartus(ip_rootpath) altera/sopc_builder_ip/altera_avalon_clock_adapter/altera_avalon_clock_adapter.sdc]
-set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID "C860000229EB00000137D469DC4C"
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID "C860000229EB00000137D68127ED"
 set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_NAME "sopc"
 set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_VERSION "11.1sp1"
 set_global_assignment -entity "pc8001_sub_system" -name IP_TOOL_ENV "sopc"

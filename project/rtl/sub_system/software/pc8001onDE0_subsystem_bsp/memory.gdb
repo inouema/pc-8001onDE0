@@ -3,7 +3,7 @@
 # Machine generated for CPU 'nios2' in SOPC Builder design 'pc8001_sub_system'
 # SOPC Builder design path: D:/home/inouema/work/git/pc-8001onDE0/project/rtl/sub_system/pc8001_sub_system.sopcinfo
 #
-# Generated: Sun Jun 10 12:44:01 JST 2012
+# Generated: Sun Jun 10 22:03:39 JST 2012
 
 # DO NOT MODIFY THIS FILE
 #
@@ -46,8 +46,8 @@
 # The cache attribute is specified which improves GDB performance
 # by allowing GDB to cache memory contents on the host.
 
-# epcs_flash_controller
-memory 0x1800 0x2000 cache
-
 # sdram
-memory 0x2000000 0x2800000 cache
+memory 0x0 0x800000 cache
+
+# epcs_flash_controller
+memory 0x801800 0x802000 cache
